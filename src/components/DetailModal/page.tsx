@@ -62,6 +62,24 @@ const DetailModal = ({
 									</svg>
 									재생
 								</button>
+								<button className="modal__mylist-button text-white border-gray200 bg-neutral-900 border-2 rounded-full w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										role="img"
+										viewBox="0 0 24 24"
+										width="24"
+										height="24"
+										data-icon="PlusStandard"
+										aria-hidden="true"
+									>
+										<path
+											fill-rule="evenodd"
+											d="M11 11V2H13V11H22V13H13V22H11V13H2V11H11Z"
+											fill="currentColor"
+										></path>
+									</svg>
+								</button>
 					</div>
 					</div>
 				</div>
