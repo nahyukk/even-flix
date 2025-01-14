@@ -35,7 +35,7 @@ const CardList: React.FC<CardListProps> = ({ title, moviesAndSeries }) => {
   };
   return (
     <section className="cardList my-5">
-      <div className="title-and-pagination relative flex flex-row justify-between">
+      <div className="title-and-pagination relative flex flex-row justify-between mb-3">
         <h2 className="mx-2 text-xl font-bold left-2">{title}</h2>
         <div className="swiper-pagination" ref={paginationRef}></div>
       </div>
@@ -92,15 +92,15 @@ const CardList: React.FC<CardListProps> = ({ title, moviesAndSeries }) => {
         </Swiper>
         <button
           ref={prevRef}
-          className="absolute top-1/2 left-0 transform -translate-y-1/2 h-full p-2 bg-gray-700 text-white hover:bg-gray-600 focus:outline-none z-50"
+          className="absolute top-1/2 left-0 transform -translate-y-1/2 h-full p-2 bg-black opacity-0 text-white hover:opacity-70 hover:text-4xl focus:outline-none z-50"
         >
-          {"<"}
+          <i className="fas fa-chevron-left text-2xl"></i>
         </button>
         <button
           ref={nextRef}
-          className="absolute top-1/2 right-0 transform -translate-y-1/2 h-full p-2 bg-gray-700 text-white hover:bg-gray-600 focus:outline-none z-50"
+          className="absolute top-1/2 right-0 transform -translate-y-1/2 h-full p-2  bg-black opacity-0 text-white hover:opacity-70 hover:text-4xl   focus:outline-none z-50"
         >
-          {">"}
+          <i className="fas fa-chevron-right text-2xl"></i>
         </button>
       </div>
     </section>
