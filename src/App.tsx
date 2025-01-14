@@ -1,20 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
-import DetailModal from "./components/DetailModal/page";
 
 function App() {
-	const [isModalOpen, setIsModalOpen] = useState(false);
-
-	const handleClick = () => {
-		setIsModalOpen(true);
-	};
-
-	return (
-		<>
-			<button onClick={handleClick}>Open Modal</button>
-			{isModalOpen && <DetailModal setIsModalOpen={setIsModalOpen} />}
-		</>
-	);
+	return <></>;
 }
 
 export default App;
