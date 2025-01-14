@@ -45,6 +45,23 @@ const DetailModal = ({
 							src="https://image.tmdb.org/t/p/original/2JB2nJQOBZ7Q9vAtzbha2YsqJbH.jpg"
 							alt="modal__poster-img"
 						></img>
+						<div className="modal__buttons-container absolute bottom-4 left-8 sm:bottom-8 sm:left-8 md:bottom-12 md:left-8 lg:bottom-16 lg:left-8 flex items-center space-x-4">
+							<div className="modal_play-button-container flex items-center justify-center space-x-3">
+								<button
+									className="flex relative items-center px-4 py-1 text-black text-xs bg-white font-semibold rounded-md border-none hover:bg-gray-200 sm:px-3 sm:py-1 sm:text-base md:px-5 md:py-1 md:text-lg lg:px-6 lg:py-2 lg:text-xl"
+								>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 24 24"
+										className="w-5 h-5 mr-2 sm:w-6 sm:h-6 md:w-7 md:h-7"
+									>
+										<path
+											d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+											fill="currentColor"
+										></path>
+									</svg>
+									재생
+								</button>
 					</div>
 					</div>
 				</div>
