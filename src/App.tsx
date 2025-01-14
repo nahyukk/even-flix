@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 function App() {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const handleClick = () => {
+		setIsModalOpen(true);
+	};
+
 	return (
 		<>
-			<h1 className="text-3xl font-bold underline">이븐하게 시작</h1>
+			<button onClick={handleClick}>Open Modal</button>
 		</>
 	);
 }
