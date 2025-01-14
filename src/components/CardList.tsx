@@ -8,6 +8,8 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper as SwiperType } from "swiper";
 
+import "../styles/swiper.css";
+
 interface MovieOrSeries {
   id: number;
   backdropUrl: string;
@@ -21,10 +23,23 @@ interface CardListProps {
 const CardList: React.FC<CardListProps> = ({ title, moviesAndSeries }) => {
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
+  const paginationRef = useRef<HTMLDivElement | null>(null);
 
+  const pagination = {
+    el: paginationRef.current,
+    renderBullet: function (index: number, className: string) {
+      return `
+      <span class="${className}"></span>
+    `;
+    },
+  };
   return (
-    <section className="cardList">
-      <h2>{title}</h2>
+    <section className="cardList my-5">
+      <div className="title-and-pagination relative flex flex-row justify-between">
+        <h2 className="mx-2 text-xl font-bold left-2">{title}</h2>
+        <div className="swiper-pagination" ref={paginationRef}></div>
+      </div>
+
       <div className="swiper-and-buttons relative">
         <Swiper
           loop={true}
@@ -41,7 +56,15 @@ const CardList: React.FC<CardListProps> = ({ title, moviesAndSeries }) => {
               navigation.prevEl = prevRef.current;
               navigation.nextEl = nextRef.current;
             }
+            if (paginationRef.current) {
+              paginationRef.current.style.display = "flex";
+            }
+            const pagination = swiper.params.pagination;
+            if (pagination && pagination !== true) {
+              pagination.el = paginationRef.current;
+            }
           }}
+          pagination={pagination}
           breakpoints={{
             1378: {
               slidesPerView: 6,
