@@ -10,6 +10,18 @@ const DetailModal = ({
 
 	useOnClickOutside({ ref: ref, handler: () => setIsModalOpen(false) });
 
+	const handlePlayAction = () => {
+		console.log("tapPlay");
+	};
+
+	const handleMyListAction = () => {
+		console.log("tapMyList");
+	};
+
+	const handleThumbUpAction = () => {
+		console.log("tapThumpUp");
+	};
+
 	return (
 		<div className="presenter z-10 absolute">
 			<div className="wrapper-model fixed inset-0 bg-black bg-opacity-70 flex justify-center">
@@ -49,6 +61,7 @@ const DetailModal = ({
 							<div className="modal_play-button-container flex items-center justify-center space-x-3">
 								<button
 									className="flex relative items-center px-4 py-1 text-black text-xs bg-white font-semibold rounded-md border-none hover:bg-gray-200 sm:px-3 sm:py-1 sm:text-base md:px-5 md:py-1 md:text-lg lg:px-6 lg:py-2 lg:text-xl"
+									onClick={() => handlePlayAction()}
 								>
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +75,10 @@ const DetailModal = ({
 									</svg>
 									재생
 								</button>
-								<button className="modal__mylist-button text-white border-gray200 bg-neutral-900 border-2 rounded-full w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center">
+								<button
+									className="modal__mylist-button text-white border-gray200 bg-neutral-900 border-2 rounded-full w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center"
+									onClick={() => handleMyListAction()}
+								>
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										fill="none"
@@ -80,7 +96,10 @@ const DetailModal = ({
 										></path>
 									</svg>
 								</button>
-								<button className="modal__thumbup-button text-white border-gray200 bg-neutral-900 border-2 rounded-full w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center">
+								<button
+									className="modal__thumbup-button text-white border-gray200 bg-neutral-900 border-2 rounded-full w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center"
+									onClick={() => handleThumbUpAction()}
+								>
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										fill="none"
