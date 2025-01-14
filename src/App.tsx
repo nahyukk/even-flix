@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import DetailModal from "./components/DetailModal/page";
 
 function App() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -11,6 +12,7 @@ function App() {
 	return (
 		<>
 			<button onClick={handleClick}>Open Modal</button>
+			{isModalOpen && <DetailModal setIsModalOpen={setIsModalOpen} />}
 		</>
 	);
 }
