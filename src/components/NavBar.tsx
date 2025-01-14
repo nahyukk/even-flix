@@ -15,20 +15,24 @@ const NavBar = () => {
                     <NavItem href="/browse/original-audio">언어별로 찾아보기</NavItem>
                 </ul>
                 <div className='flex absolute top-0 right-[4%] h-full justify-end items-center grow'>
-                    <div>
+                    <div className='mr-[10px]'>
                         <button>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.382 7.032a9 9 0 1 1 1.414-1.414l5.675 5.675-1.414 1.414z" fill="currentColor" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.382 7.032a9 9 0 1 1 1.414-1.414l5.675 5.675-1.414 1.414z" fill="#fff" /></svg>
                         </button>
                     </div>
-                    <div>키즈</div>
-                    <div><button><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M13 4.07c3.392.486 6 3.404 6 6.93v4.254a91 91 0 0 1 3.107.28l-.214 1.99A93 93 0 0 0 12 17c-3.41 0-6.722.181-9.893.523l-.214-1.988A91 91 0 0 1 5 15.254V11a7 7 0 0 1 6-6.93V2h2zm4 11.059V11a5 5 0 0 0-10 0v4.129a97 97 0 0 1 10 0M8.626 19.37C8.662 20.517 10.15 22 12 22c1.848 0 3.337-1.483 3.373-2.629.007-.222-.197-.371-.42-.371H9.046c-.223 0-.427.149-.42.371" fill="currentColor"/></svg></button></div>
-                    <div>
+                    <div className='mr-[10px]'>키즈</div>
+                    <div className='mr-[10px]'>
+                        <button>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M13 4.07c3.392.486 6 3.404 6 6.93v4.254a91 91 0 0 1 3.107.28l-.214 1.99A93 93 0 0 0 12 17c-3.41 0-6.722.181-9.893.523l-.214-1.988A91 91 0 0 1 5 15.254V11a7 7 0 0 1 6-6.93V2h2zm4 11.059V11a5 5 0 0 0-10 0v4.129a97 97 0 0 1 10 0M8.626 19.37C8.662 20.517 10.15 22 12 22c1.848 0 3.337-1.483 3.373-2.629.007-.222-.197-.371-.42-.371H9.046c-.223 0-.427.149-.42.371" fill="#fff" /></svg>
+                        </button>
+                    </div>
+                    <div className='flex items-center cursor-pointer group'>
                         <a>
                             <span>
-                                <img src='https://cdn.discordapp.com/attachments/1308994714183270403/1328673367921918023/profile_1.png?ex=67878f00&is=67863d80&hm=edcdaf06d1d97605707d436436263e32f8ee2ab21c2fbc8ef396a8519378bc9b&'></img>
+                                <img className='rounded-[4px] w-[32px] h-[32px] align-middle' src='https://cdn.discordapp.com/attachments/1308994714183270403/1328673367921918023/profile_1.png?ex=67878f00&is=67863d80&hm=edcdaf06d1d97605707d436436263e32f8ee2ab21c2fbc8ef396a8519378bc9b&'></img>
                             </span>
                         </a>
-                        <span></span>
+                        <span className="inline-block border-t-[5px] border-l-[5px] border-r-[5px] border-b-0 border-solid border-t-white border-l-transparent border-r-transparent h-0 w-0 ml-[10px] transition-transform duration-[367ms] ease-[cubic-bezier(0.21,0,0.07,1)] group-hover:rotate-180"></span>
                     </div>
                 </div>
             </div>
