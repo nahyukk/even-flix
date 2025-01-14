@@ -1,7 +1,7 @@
 import React from "react";
 
 const NavItem: React.FC<{ href: string; children: React.ReactNode }> = ({ href, children }) => (
-    <li className="ml-[18px]">
+    <li className="ml-[18px] transition-all duration-400 hover:text-[#b3b3b3]">
         <a href={href}>{children}</a>
     </li>
 );
