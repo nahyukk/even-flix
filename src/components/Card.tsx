@@ -5,8 +5,9 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ backdropUrl }) => {
+
   return (
-    <div className="relative overflow-hidden">
+    <div>
       <img src={backdropUrl} alt="" className="h-auto object-cover" />
     </div>
   );
