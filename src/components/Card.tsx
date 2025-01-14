@@ -1,13 +1,13 @@
 import React from "react";
 
 interface CardProps {
-  imageUrl: string;
+  backdropUrl: string;
 }
 
-const Card: React.FC<CardProps> = ({ imageUrl }) => {
+const Card: React.FC<CardProps> = ({ backdropUrl }) => {
   return (
     <div className="relative overflow-hidden">
-      <img src={imageUrl} alt="" className="h-auto object-cover" />
+      <img src={backdropUrl} alt="" className="h-auto object-cover" />
     </div>
   );
 };
