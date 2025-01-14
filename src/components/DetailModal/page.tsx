@@ -60,6 +60,30 @@ const DetailModal = ({
 								소년 하쿠가 나타나 빨리 이곳을 나가라고 소리치는데..."
 							</p>
 						</div>
+						<div className="flex flex-col gap-y-3 text-sm">
+							<p className="text-sm text-gray-500">
+								출연: {/* map 필요 */} 
+								{/* credit에서 상위 세명 */}
+								<a className="text-white hover:underline" href="/">
+									미야자키하야오
+								</a>
+							</p>
+							<p className="text-sm text-gray-500">
+								장르: {/* map 필요 */}
+								{/* genres id, name */}
+								<a className="text-white hover:underline" href="/">
+									가족영화
+								</a>
+							</p>
+							<p className="text-sm text-gray-500">
+
+								영화 특징: {/* map 필요 */}
+								{/* 뭔지 모르겟음 keywords? */}
+								<a className="text-white hover:underline" href="/">
+									상상의 나래
+								</a>
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
