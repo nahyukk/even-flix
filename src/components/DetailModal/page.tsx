@@ -76,7 +76,7 @@ const DetailModal = ({
 									재생
 								</button>
 								<button
-									className="modal__mylist-button text-white border-gray200 bg-neutral-900 border-2 rounded-full w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center"
+									className="modal__mylist-button text-white border-gray-400 bg-neutral-900 border-2 rounded-full w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center"
 									onClick={() => handleMyListAction()}
 								>
 									<svg
@@ -97,7 +97,7 @@ const DetailModal = ({
 									</svg>
 								</button>
 								<button
-									className="modal__thumbup-button text-white border-gray200 bg-neutral-900 border-2 rounded-full w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center"
+									className="modal__thumbup-button text-white border-gray-400 bg-neutral-900 border-2 rounded-full w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center hover:border-white"
 									onClick={() => handleThumbUpAction()}
 								>
 									<svg
