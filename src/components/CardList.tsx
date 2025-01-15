@@ -33,14 +33,15 @@ const CardList: React.FC<CardListProps> = ({ title, moviesAndSeries }) => {
     `;
     },
   };
+
   return (
-    <section className="cardList my-5">
+    <section className="cardList my-5 mx-12 overflow-visible">
       <div className="title-and-pagination relative flex flex-row justify-between mb-3">
-        <h2 className="mx-2 text-xl font-bold left-2">{title}</h2>
+        <h2 className="text-xl font-bold left-2">{title}</h2>
         <div className="swiper-pagination" ref={paginationRef}></div>
       </div>
 
-      <div className="swiper-and-buttons relative">
+      <div className="swiper-and-buttons relative overflow-visible w-full z-30">
         <Swiper
           loop={true}
           spaceBetween={5}
@@ -90,17 +91,19 @@ const CardList: React.FC<CardListProps> = ({ title, moviesAndSeries }) => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <button
-          ref={prevRef}
-          className="absolute top-1/2 left-0 transform -translate-y-1/2 h-full p-2 bg-black opacity-0 text-white hover:opacity-70 hover:text-4xl focus:outline-none z-50"
-        >
-          <i className="fas fa-chevron-left text-2xl"></i>
-        </button>
+        <div>
+          <button
+            ref={prevRef}
+            className="absolute top-1/2 -left-12 transform -translate-y-1/2 h-full p-2 px-[0.9rem] rounded-s-s bg-black opacity-0 text-white hover:opacity-70  hover:text-4xl focus:outline-none z-5"
+          >
+            <i className="fas fa-chevron-left text-2xl hover:opacity-100"></i>
+          </button>
+        </div>
         <button
           ref={nextRef}
-          className="absolute top-1/2 right-0 transform -translate-y-1/2 h-full p-2  bg-black opacity-0 text-white hover:opacity-70 hover:text-4xl   focus:outline-none z-50"
+          className="absolute top-1/2 -right-12 transform -translate-y-1/2 h-full p-2 px-[0.9rem] rounded-s-s bg-black opacity-0 text-white hover:opacity-70 hover:text-4xl  focus:outline-none z-50"
         >
-          <i className="fas fa-chevron-right text-2xl"></i>
+          <i className="fas fa-chevron-right text-2xl hover:opacity-100"></i>
         </button>
       </div>
     </section>
