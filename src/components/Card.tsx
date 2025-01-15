@@ -5,10 +5,13 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ backdropUrl }) => {
-
   return (
     <div className="relative">
-      <img src={backdropUrl} alt="" className="h-auto object-cover" />
+      <img
+        src={backdropUrl}
+        alt=""
+        className="h-auto object-cover rounded-sm"
+      />
     </div>
   );
 };
