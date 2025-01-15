@@ -1,8 +1,14 @@
 import React from "react";
 import "./App.css";
+import Banner from "./components/Banner";
 
 function App() {
-	return <></>;
+	return (
+		<div>
+			<Banner/>
+		</div>
+
+);
 }
 
 export default App;
