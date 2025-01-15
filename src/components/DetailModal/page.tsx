@@ -93,7 +93,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 						className="modal relative bg-neutral-900 w-full max-w-6xl mt-8 mx-2 rounded-lg overflow-auto"
 						ref={ref}
 					>
-						(<ModalHeader setIsModalOpen={setIsModalOpen} />
+						<ModalHeader setIsModalOpen={setIsModalOpen} />
 						<ModalPoster video={video}>
 							<ModalPosterButtons />
 						</ModalPoster>
