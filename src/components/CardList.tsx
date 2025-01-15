@@ -43,7 +43,9 @@ const CardList: React.FC<CardListProps> = ({ title, moviesAndSeries }) => {
 
       <div className="swiper-and-buttons relative overflow-visible w-full z-30">
         <Swiper
+          // allowTouchMove={true}
           loop={true}
+          loopAddBlankSlides={false}
           spaceBetween={5}
           modules={[Navigation, Pagination]}
           navigation={{
@@ -94,7 +96,7 @@ const CardList: React.FC<CardListProps> = ({ title, moviesAndSeries }) => {
         <div>
           <button
             ref={prevRef}
-            className="absolute top-1/2 -left-12 transform -translate-y-1/2 h-full p-2 px-[0.9rem] rounded-s-s bg-black opacity-0 text-white hover:opacity-70  hover:text-4xl focus:outline-none z-5"
+            className="absolute top-1/2 -left-12 transform -translate-y-1/2 h-full p-2 px-[0.9rem] rounded-s-s bg-black opacity-0 text-white hover:opacity-70  hover:text-4xl focus:outline-none z-50"
           >
             <i className="fas fa-chevron-left text-2xl hover:opacity-100"></i>
           </button>
