@@ -53,7 +53,7 @@ const ModalEpisode: FC<ModalEpisodeProps> = ({
 			<div className="absolute bottom-0 left-0 w-full h-px bg-neutral-800"></div>
 		</div>
 	) : (
-		<div className="relative flex items-center p-4 min-h-32 rounded-md bg-black">
+		<div className="relative flex items-center p-4 min-h-3 bg-black">
 			<p className="text-xl px-4">{episode.episodeNumber}</p>
 			<img
 				className="flex w-10 sm:w-14 md:w-24 lg:w-40 h-auto aspect-video rounded-md"
