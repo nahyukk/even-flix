@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <footer className="text-gray-500 mt-[20px] mx-auto max-w-[980px] px-[4%] bg-[#141414]">
+        <footer className="text-[#808080] mt-[20px] mx-auto max-w-[980px] px-[4%] bg-[#141414]">
             {/* 소셜 아이콘 */}
             <div className="flex mb-[1em]">
                 <a className="mr-[15px] text-white bg-transparent cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24" data-icon="FacebookStandard" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.987 13.162v8.822h-3.945v-8.822h-3.2v-3.65h3.205v-2.78c0-3.165 1.885-4.912 4.768-4.912q1.422.02 2.826.247v3.106h-1.596a1.825 1.825 0 0 0-2.058 1.972v2.367h3.5l-.559 3.65z" fill="currentColor" /></svg></a>
@@ -23,7 +23,8 @@ const Footer = () => {
                 <li className="basis-1/4 mb-[16px] pr-[22px]"><a href="/#"><span>회사 정보</span></a></li>
                 <li className="basis-1/4 mb-[16px] pr-[22px]"><a href="/#"><span>문의하기</span></a></li>
             </ul>
-            <div></div>
+            {/* 서비스 코드 버튼 */}
+            <div><button className="mb-[20px] p-[0.5em] border border-[#808080] text-[13px]">서비스 코드</button></div>
             <div></div>
         </footer>
     );
