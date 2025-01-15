@@ -15,6 +15,8 @@ import { mapMovie, mapTV, MediaType, Movie, Series } from "./Model/VideoDetail";
 import ModalInfoDetail from "./components/ModalInfoDetail";
 import { Credit, mapCredit } from "./Model/Credit";
 import { Keywords, mapKeywords } from "./Model/Keyword";
+import ModalEpisodes from "./components/ModalEpisodes";
+import { Episodes, mapEpisodes } from "./Model/Episodes";
 
 interface DetailModalProps {
 	// id: int,
@@ -25,6 +27,7 @@ interface DetailModalProps {
 const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 	const ref = useRef<HTMLDivElement | null>(null);
 	const [video, setVideo] = useState<Movie | Series | null>(null);
+	const [episodes, setEpisodes] = useState<Episodes | null>(null);
 	const [credit, setCredit] = useState<Credit | null>(null);
 	const [keyword, setKeyword] = useState<Keywords | null>(null);
 
@@ -38,6 +41,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 			fetchMovieJSON();
 		} else if (mediaType === MediaType.TV) {
 			fetchTVJSON();
+			fetchEpisodes();
 		}
 	}, []);
 
@@ -58,6 +62,17 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 			const data = await response.json();
 			const mappedMovie = mapTV(data);
 			setVideo(mappedMovie);
+		} catch (error) {
+			console.log("Error fetch data", error);
+		}
+	};
+
+	const fetchEpisodes = async () => {
+		try {
+			const response = await fetch("../json/season.json");
+			const data = await response.json();
+			const mappedSeason = mapEpisodes(data);
+			setEpisodes(mappedSeason);
 		} catch (error) {
 			console.log("Error fetch data", error);
 		}
@@ -87,7 +102,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 
 	return (
 		<div className="presenter z-10 absolute min-h-screen">
-			{video && credit && keyword ? (
+			{video && credit && keyword && episodes ? (
 				<div className="wrapper-model fixed inset-0 bg-black bg-opacity-70 flex items-start justify-center overflow-auto">
 					<div
 						className="modal relative bg-neutral-900 w-full max-w-6xl mt-8 mx-2 rounded-lg overflow-auto"
@@ -97,8 +112,21 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 						<ModalPoster video={video}>
 							<ModalPosterButtons />
 						</ModalPoster>
-						<ModalInfoSummary video={video} casts={credit.cast} keywords={keyword.keywords}/>
-						<ModalInfoDetail video={video} credit={credit} keywords={keyword.keywords}/>
+						<ModalInfoSummary
+							video={video}
+							casts={credit.cast}
+							keywords={keyword.keywords}
+						/>
+						<ModalEpisodes
+							backdropPath={video.backdropPath}
+							seasons={(video as Series).seasons}
+							episodes={episodes}
+						/>
+						<ModalInfoDetail
+							video={video}
+							credit={credit}
+							keywords={keyword.keywords}
+						/>
 					</div>
 				</div>
 			) : (
