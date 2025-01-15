@@ -3,7 +3,7 @@ import { Episode } from "../Model/Episodes";
 
 interface ModalEpisodeProps {
 	episode: Episode;
-  isFocus: boolean;
+	isFocus: boolean;
 }
 
 const ModalEpisode: FC<ModalEpisodeProps> = ({ episode, isFocus }) => {
@@ -14,7 +14,11 @@ const ModalEpisode: FC<ModalEpisodeProps> = ({ episode, isFocus }) => {
 	};
 
 	return (
-		<div className={`relative flex items-center p-4 min-h-32 rounded-md ${isFocus ? 'bg-neutral-800' : 'bg-transparent'}`}>
+		<div
+			className={`relative flex items-center p-4 min-h-32 rounded-md ${
+				isFocus ? "bg-neutral-800" : "bg-transparent"
+			}`}
+		>
 			<p className="text-xl px-4">{episode.episodeNumber}</p>
 			<img
 				className="flex w-10 sm:w-14 md:w-24 lg:w-40 h-auto aspect-video rounded-md"
@@ -28,7 +32,7 @@ const ModalEpisode: FC<ModalEpisodeProps> = ({ episode, isFocus }) => {
 				</div>
 				<p className="text-neutral-400 text-sm px-4 pb-4">{episode.overview}</p>
 			</div>
-      <div className="absolute bottom-0 left-0 w-full h-px bg-neutral-800"></div>
+			<div className="absolute bottom-0 left-0 w-full h-px bg-neutral-800"></div>
 		</div>
 	);
 };
