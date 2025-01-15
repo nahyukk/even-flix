@@ -1,5 +1,5 @@
 import React from 'react';
-import NavItem from './NavItem';
+import { NavItem, NavMenu } from './NavItem';
 
 const NavBar = () => {
     return (
@@ -36,34 +36,28 @@ const NavBar = () => {
                         <div className="absolute top-[52px] right-0 w-[220px] bg-[rgba(0,0,0,0.9)] text-white opacity-0 invisible transition-all duration-150 group-hover:opacity-100 group-hover:visible">
                             <ul className="p-2">
                             </ul>
-                            <ul>
-                                <li className='block py-[5px] px-[10px] w-full'>
-                                    <a className='flex'>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className='ml-[5px] mr-[13px]' fill="none" role="img" viewBox="0 0 24 24" width="24" height="24" data-icon="PencilStandard" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.1213 1.7071C17.9497 0.535532 16.0503 0.53553 14.8787 1.7071L13.2929 3.29289L12.5858 4L1.58579 15C1.21071 15.3751 1 15.8838 1 16.4142V21C1 22.1046 1.89543 23 3 23H7.58579C8.11622 23 8.62493 22.7893 9 22.4142L20 11.4142L20.7071 10.7071L22.2929 9.12132C23.4645 7.94975 23.4645 6.05025 22.2929 4.87868L19.1213 1.7071ZM15.5858 7L14 5.41421L3 16.4142L3 19C3.26264 19 3.52272 19.0517 3.76537 19.1522C4.00802 19.2527 4.2285 19.4001 4.41421 19.5858C4.59993 19.7715 4.74725 19.992 4.84776 20.2346C4.94827 20.4773 5 20.7374 5 21L7.58579 21L18.5858 10L17 8.41421L6.70711 18.7071L5.29289 17.2929L15.5858 7ZM16.2929 3.12132C16.6834 2.73079 17.3166 2.73079 17.7071 3.12132L20.8787 6.29289C21.2692 6.68341 21.2692 7.31658 20.8787 7.7071L20 8.58578L15.4142 4L16.2929 3.12132Z" fill="currentColor"></path></svg>
-                                        <span>프로필 관리</span>
-                                    </a>
-                                </li>
-                                <li className='block py-[5px] px-[10px] w-full'>
-                                    <a className='flex'>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className='ml-[5px] mr-[13px]' fill="none" viewBox="0 0 24 24" width="24" height="24" data-icon="ProfileArrowStandard" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 1a4 4 0 0 0-4 4v12a4 4 0 0 0 4 4h3.586l-1.293 1.293 1.414 1.414 3-3a1 1 0 0 0 0-1.414l-3-3-1.414 1.414L9.586 19H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3v2h3a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4zm1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M18 8.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m-1.598 3.698c-.605.452-1.644.802-2.902.802s-2.297-.35-2.902-.802l-1.196 1.604C10.43 14.568 11.919 15 13.5 15s3.07-.432 4.098-1.198z" fill="currentColor" /></svg>
-                                        <span>프로필 이전</span>
-                                    </a>
-                                </li>
-                                <li className='block py-[5px] px-[10px] w-full'>
-                                    <a className='flex'>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className='ml-[5px] mr-[13px]' fill="none" viewBox="0 0 24 24" width="24" height="24" data-icon="UserStandard" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M15 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0m2 0A5 5 0 1 1 7 5a5 5 0 0 1 10 0M4 21a8 8 0 1 1 16 0v.514A68 68 0 0 1 12 22a68 68 0 0 1-8-.486zm17.15 2.378-.15-.99.151.99a1 1 0 0 0 .849-.99V21c0-5.523-4.477-10-10-10S2 15.477 2 21v1.389a1 1 0 0 0 .849.988L3 22.39c-.151.988-.15.988-.15.989h.003l.01.002.038.005.142.02q.186.027.535.072A70 70 0 0 0 12 24a70 70 0 0 0 8.422-.523q.35-.045.535-.072l.142-.02.038-.005.01-.002z" fill="currentColor" /></svg>
-                                        <span>계정</span>
-                                    </a>
-                                </li>
-                                <li className='block py-[5px] px-[10px] w-full'>
-                                    <a className='flex text-'>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className='ml-[5px] mr-[13px]' fill="none" viewBox="0 0 24 24" width="24" height="24" data-icon="CircleQuestionMarkStandard" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0m0 8c-1.317 0-2 .743-2 1.5H8C8 7.257 10.003 6 12 6s4 1.257 4 3.5c0 1.349-1.08 2.268-2.178 2.68-.265.1-.49.25-.636.411-.14.156-.186.292-.186.409v1h-2v-1c0-1.435 1.168-2.335 2.119-2.692.729-.274.881-.66.881-.808 0-.757-.683-1.5-2-1.5m1.5 8.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" fill="currentColor" /></svg>
-                                        <span>고객 센터</span>
-                                    </a>
-                                </li>
+                            <ul className='pb-[10px]'>
+                                <NavMenu href='#'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className='ml-[5px] mr-[13px]' fill="none" role="img" viewBox="0 0 24 24" width="24" height="24" data-icon="PencilStandard" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.1213 1.7071C17.9497 0.535532 16.0503 0.53553 14.8787 1.7071L13.2929 3.29289L12.5858 4L1.58579 15C1.21071 15.3751 1 15.8838 1 16.4142V21C1 22.1046 1.89543 23 3 23H7.58579C8.11622 23 8.62493 22.7893 9 22.4142L20 11.4142L20.7071 10.7071L22.2929 9.12132C23.4645 7.94975 23.4645 6.05025 22.2929 4.87868L19.1213 1.7071ZM15.5858 7L14 5.41421L3 16.4142L3 19C3.26264 19 3.52272 19.0517 3.76537 19.1522C4.00802 19.2527 4.2285 19.4001 4.41421 19.5858C4.59993 19.7715 4.74725 19.992 4.84776 20.2346C4.94827 20.4773 5 20.7374 5 21L7.58579 21L18.5858 10L17 8.41421L6.70711 18.7071L5.29289 17.2929L15.5858 7ZM16.2929 3.12132C16.6834 2.73079 17.3166 2.73079 17.7071 3.12132L20.8787 6.29289C21.2692 6.68341 21.2692 7.31658 20.8787 7.7071L20 8.58578L15.4142 4L16.2929 3.12132Z" fill="currentColor"></path></svg>
+                                    <span className='group-hover:underline'>프로필 관리</span>
+                                </NavMenu>
+                                <NavMenu href='#'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className='ml-[5px] mr-[13px]' fill="none" viewBox="0 0 24 24" width="24" height="24" data-icon="ProfileArrowStandard" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 1a4 4 0 0 0-4 4v12a4 4 0 0 0 4 4h3.586l-1.293 1.293 1.414 1.414 3-3a1 1 0 0 0 0-1.414l-3-3-1.414 1.414L9.586 19H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3v2h3a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4zm1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M18 8.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m-1.598 3.698c-.605.452-1.644.802-2.902.802s-2.297-.35-2.902-.802l-1.196 1.604C10.43 14.568 11.919 15 13.5 15s3.07-.432 4.098-1.198z" fill="currentColor" /></svg>
+                                    <span>프로필 이전</span>
+                                </NavMenu>
+                                <NavMenu href='#'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className='ml-[5px] mr-[13px]' fill="none" viewBox="0 0 24 24" width="24" height="24" data-icon="UserStandard" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M15 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0m2 0A5 5 0 1 1 7 5a5 5 0 0 1 10 0M4 21a8 8 0 1 1 16 0v.514A68 68 0 0 1 12 22a68 68 0 0 1-8-.486zm17.15 2.378-.15-.99.151.99a1 1 0 0 0 .849-.99V21c0-5.523-4.477-10-10-10S2 15.477 2 21v1.389a1 1 0 0 0 .849.988L3 22.39c-.151.988-.15.988-.15.989h.003l.01.002.038.005.142.02q.186.027.535.072A70 70 0 0 0 12 24a70 70 0 0 0 8.422-.523q.35-.045.535-.072l.142-.02.038-.005.01-.002z" fill="currentColor" /></svg>
+                                    <span>계정</span>
+                                </NavMenu>
+                                <NavMenu href='#'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className='ml-[5px] mr-[13px]' fill="none" viewBox="0 0 24 24" width="24" height="24" data-icon="CircleQuestionMarkStandard" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0m0 8c-1.317 0-2 .743-2 1.5H8C8 7.257 10.003 6 12 6s4 1.257 4 3.5c0 1.349-1.08 2.268-2.178 2.68-.265.1-.49.25-.636.411-.14.156-.186.292-.186.409v1h-2v-1c0-1.435 1.168-2.335 2.119-2.692.729-.274.881-.66.881-.808 0-.757-.683-1.5-2-1.5m1.5 8.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" fill="currentColor" /></svg>
+                                    <span>고객 센터</span>
+                                </NavMenu>
                             </ul>
-                            <ul>
-                                <li></li>
+                            <ul className='py-[10px] border-t border-t-[rgba(255,255,255,0.25)]'>
+                                <li className='block text-[13px] leading-[16px] py-[5px] px-[10px] text-center'>
+                                    <a>넷플릭스에서 로그아웃</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
