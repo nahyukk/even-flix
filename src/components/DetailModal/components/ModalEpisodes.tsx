@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Season } from "../Model/VideoDetail";
 import { Episodes } from "../Model/Episodes";
+import ModalEpisode from "./ModalEpisode";
 
 interface ModalEpisodesProps {
 	seasons: Season[];
@@ -15,11 +16,13 @@ const ModalEpisodes: FC<ModalEpisodesProps> = ({ seasons, episodes }) => {
 				<p>시즌</p>
 			</div>
 			{seasons.length > 1 && (
-				<p className="text-sm">{`시즌 ${seasons.at(-1)?.seasonNumber}:`}</p>
+				<p className="text-sm pt-4">{`시즌 ${
+					seasons.at(-1)?.seasonNumber
+				}:`}</p>
 			)}
-			<div className="">
-				{episodes.episodes.map((episode) => (
-					<p>{episode.name}</p>
+			<div className="flex flex-col justify-start flex-wrap pt-3">
+				{episodes.episodes.map((episode, index) => (
+					<ModalEpisode episode={episode} isFocus={index === 0} />
 				))}
 			</div>
 		</div>
