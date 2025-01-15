@@ -18,10 +18,20 @@ const ModalEpisodes: FC<ModalEpisodesProps> = ({
 	selectedSeason,
 }) => {
 	const [season, setSeason] = useState(seasons[seasons.length - 1]);
+	const [showEpNumber, setShowEpNumber] = useState(5); // TODO: 10으로 늘려야함
 
 	const handleSeasonSelect = (season: Season) => {
 		setSeason(season);
 		selectedSeason(season);
+	};
+
+	const handleExpanded = () => {
+		if (showEpNumber < episodes.episodes.length) {
+			// 전체 에피소드보다 적은 경우 더 보기 동작
+			setShowEpNumber((prev) => Math.min(prev + 5, episodes.episodes.length));
+		} else {
+			setShowEpNumber((prev) => Math.max(prev - 5, 5));
+		}
 	};
 
 	return (
@@ -38,13 +48,37 @@ const ModalEpisodes: FC<ModalEpisodesProps> = ({
 				<p className="text-sm pt-4">{`${season.name}:`}</p>
 			)}
 			<div className="flex flex-col justify-start flex-wrap pt-3">
-				{episodes.episodes.map((episode, index) => (
+				{episodes.episodes.slice(0, showEpNumber).map((episode, index) => (
 					<ModalEpisode
 						backdropPath={backdropPath}
 						episode={episode}
 						isFocus={index === 0}
 					/>
 				))}
+			</div>
+			<div className="flex bottom-0 left-0 w-full h-1 bg-neutral-700 justify-center items-center ">
+				<button
+					className="w-8 h-8 flex items-center justify-center bg-neutral-800 border border-white rounded-full z-10"
+					onClick={() => {
+						handleExpanded();
+					}}
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						className={`h-4 w-4 transition-transform ${
+							showEpNumber >= episodes.episodes.length ? "rotate-180" : ""
+						}`}
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth="2"
+							d="M19 9l-7 7-7-7"
+						/>
+					</svg>
+				</button>
 			</div>
 		</div>
 	);
