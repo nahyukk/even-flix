@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <footer className="text-[#808080] mt-[20px] mx-auto max-w-[980px] px-[4%] bg-[#141414]">
+        <footer className="text-[#808080] mt-[20px] mx-auto max-w-[980px] px-[4%] bg-[#141414] leading-[1.4]">
             {/* 소셜 아이콘 */}
             <div className="flex mb-[1em]">
                 <a className="mr-[15px] text-white bg-transparent cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24" data-icon="FacebookStandard" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.987 13.162v8.822h-3.945v-8.822h-3.2v-3.65h3.205v-2.78c0-3.165 1.885-4.912 4.768-4.912q1.422.02 2.826.247v3.106h-1.596a1.825 1.825 0 0 0-2.058 1.972v2.367h3.5l-.559 3.65z" fill="currentColor" /></svg></a>
@@ -25,7 +25,16 @@ const Footer = () => {
             </ul>
             {/* 서비스 코드 버튼 */}
             <div><button className="mb-[20px] p-[0.5em] border border-[#808080] text-[13px]">서비스 코드</button></div>
-            <div></div>
+            {/* 푸터 텍스트 */}
+            <div className="text-[11px] text-[#808080] mb-[15px]">
+                <div className="mt-[4px]">넷플릭스서비시스코리아 유한회사 통신판매업신고번호: 제2018-서울종로-0426호 전화번호: 00-308-321-0161 (수신자 부담)</div>
+                <div className="mt-[4px]">대표: 레지널드 숀 톰프슨</div>
+                <div className="mt-[4px]">이메일 주소: korea@netflix.com</div>
+                <div className="mt-[4px]">주소: 대한민국 서울특별시 종로구 우정국로 26, 센트로폴리스 A동 20층 우편번호 03161</div>
+                <div className="mt-[4px]">사업자등록번호: 165-87-00119</div>
+                <div className="mt-[4px]">클라우드 호스팅: Amazon Web Services Inc.</div>
+                <div className="mt-[4px]"><a href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=1658700119">공정거래위원회 웹사이트</a></div>
+            </div>
         </footer>
     );
 };
