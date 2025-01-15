@@ -9,7 +9,11 @@ interface ModalEpisodesProps {
 	episodes: Episodes;
 }
 
-const ModalEpisodes: FC<ModalEpisodesProps> = ({ backdropPath, seasons, episodes }) => {
+const ModalEpisodes: FC<ModalEpisodesProps> = ({
+	backdropPath,
+	seasons,
+	episodes,
+}) => {
 	return (
 		<div className="px-12 py-8">
 			<div className="grid gap-8 grid-cols-[2fr_1fr]">
@@ -23,7 +27,11 @@ const ModalEpisodes: FC<ModalEpisodesProps> = ({ backdropPath, seasons, episodes
 			)}
 			<div className="flex flex-col justify-start flex-wrap pt-3">
 				{episodes.episodes.map((episode, index) => (
-					<ModalEpisode backdropPath={backdropPath} episode={episode} isFocus={index === 0} />
+					<ModalEpisode
+						backdropPath={backdropPath}
+						episode={episode}
+						isFocus={index === 0}
+					/>
 				))}
 			</div>
 		</div>
