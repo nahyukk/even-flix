@@ -16,9 +16,11 @@ const NavBar = () => {
                 </ul>
                 <div className='flex absolute top-0 right-[4%] h-full justify-end items-center grow'>
                     <div className='mr-[10px]'>
-                        <button>
+                        <div className='flex items-center bg-[rgba(0,0,0,0.75)] border border-[hsla(0,0%,100%,0.85)]'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.382 7.032a9 9 0 1 1 1.414-1.414l5.675 5.675-1.414 1.414z" fill="#fff" /></svg>
-                        </button>
+                            <input type='text'></input>
+                            <span role='button' className=''>X</span>
+                        </div>
                     </div>
                     <div className='mr-[10px]'>키즈</div>
                     <div className='mr-[10px]'>
@@ -26,17 +28,17 @@ const NavBar = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M13 4.07c3.392.486 6 3.404 6 6.93v4.254a91 91 0 0 1 3.107.28l-.214 1.99A93 93 0 0 0 12 17c-3.41 0-6.722.181-9.893.523l-.214-1.988A91 91 0 0 1 5 15.254V11a7 7 0 0 1 6-6.93V2h2zm4 11.059V11a5 5 0 0 0-10 0v4.129a97 97 0 0 1 10 0M8.626 19.37C8.662 20.517 10.15 22 12 22c1.848 0 3.337-1.483 3.373-2.629.007-.222-.197-.371-.42-.371H9.046c-.223 0-.427.149-.42.371" fill="#fff" /></svg>
                         </button>
                     </div>
-                    <div className='flex items-center cursor-pointer group'>
-                        <a>
+                    <div className='flex items-center group'>
+                        <a className='cursor-pointer'>
                             <span>
                                 <img className='rounded-[4px] w-[32px] h-[32px] align-middle' src='https://cdn.discordapp.com/attachments/1308994714183270403/1328673367921918023/profile_1.png?ex=67878f00&is=67863d80&hm=edcdaf06d1d97605707d436436263e32f8ee2ab21c2fbc8ef396a8519378bc9b&'></img>
                             </span>
                         </a>
-                        <span className="inline-block border-t-[5px] border-l-[5px] border-r-[5px] border-b-0 border-solid border-t-white border-l-transparent border-r-transparent h-0 w-0 ml-[10px] transition-transform duration-[367ms] ease-[cubic-bezier(0.21,0,0.07,1)] group-hover:rotate-180"></span>
+                        <span className="inline-block border-t-[5px] border-l-[5px] border-r-[5px] border-b-0 border-solid border-t-white border-l-transparent border-r-transparent h-0 w-0 ml-[10px] cursor-pointer transition-transform duration-[367ms] ease-[cubic-bezier(0.21,0,0.07,1)] group-hover:rotate-180"></span>
                         <div className="absolute top-[52px] right-0 w-[220px] bg-[rgba(0,0,0,0.9)] text-white opacity-0 invisible transition-all duration-150 group-hover:opacity-100 group-hover:visible">
                             <ul className="p-2">
                             </ul>
-                            <ul className='pb-[10px]'>
+                            <ul className='pb-[10px] text-[13px]'>
                                 <NavMenu href='#'>
                                     <svg xmlns="http://www.w3.org/2000/svg" className='ml-[5px] mr-[13px]' fill="none" role="img" viewBox="0 0 24 24" width="24" height="24" data-icon="PencilStandard" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.1213 1.7071C17.9497 0.535532 16.0503 0.53553 14.8787 1.7071L13.2929 3.29289L12.5858 4L1.58579 15C1.21071 15.3751 1 15.8838 1 16.4142V21C1 22.1046 1.89543 23 3 23H7.58579C8.11622 23 8.62493 22.7893 9 22.4142L20 11.4142L20.7071 10.7071L22.2929 9.12132C23.4645 7.94975 23.4645 6.05025 22.2929 4.87868L19.1213 1.7071ZM15.5858 7L14 5.41421L3 16.4142L3 19C3.26264 19 3.52272 19.0517 3.76537 19.1522C4.00802 19.2527 4.2285 19.4001 4.41421 19.5858C4.59993 19.7715 4.74725 19.992 4.84776 20.2346C4.94827 20.4773 5 20.7374 5 21L7.58579 21L18.5858 10L17 8.41421L6.70711 18.7071L5.29289 17.2929L15.5858 7ZM16.2929 3.12132C16.6834 2.73079 17.3166 2.73079 17.7071 3.12132L20.8787 6.29289C21.2692 6.68341 21.2692 7.31658 20.8787 7.7071L20 8.58578L15.4142 4L16.2929 3.12132Z" fill="currentColor"></path></svg>
                                     <span className='group-hover:underline'>프로필 관리</span>
