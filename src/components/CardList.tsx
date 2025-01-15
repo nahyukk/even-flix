@@ -35,9 +35,9 @@ const CardList: React.FC<CardListProps> = ({ title, moviesAndSeries }) => {
   };
 
   return (
-    <section className="cardList my-5 mx-12 overflow-visible">
-      <div className="title-and-pagination relative flex flex-row justify-between mb-3">
-        <h2 className="text-xl font-bold left-2">{title}</h2>
+    <section className="cardList my-6 mx-12 overflow-visible">
+      <div className="title-and-pagination relative flex flex-row justify-between mb-1">
+        <h2 className="text-l font-bold left-2">{title}</h2>
         <div className="swiper-pagination" ref={paginationRef}></div>
       </div>
 
