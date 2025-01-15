@@ -10,21 +10,21 @@ const Footer = () => {
             </div>
             {/* 서비스 관련 링크 */}
             <ul className="flex flex-row flex-wrap items-start text-[13px] mb-[14px] p-0">
-                <li className="basis-1/4 mb-[16px] pr-[22px]"><a href="/#"><span>화면 해설</span></a></li>
-                <li className="basis-1/4 mb-[16px] pr-[22px]"><a href="/#"><span>고객 센터</span></a></li>
-                <li className="basis-1/4 mb-[16px] pr-[22px]"><a href="/#"><span>기프트카드</span></a></li>
-                <li className="basis-1/4 mb-[16px] pr-[22px]"><a href="/#"><span>미디어 센터</span></a></li>
-                <li className="basis-1/4 mb-[16px] pr-[22px]"><a href="/#"><span>투자 정보(IR)</span></a></li>
-                <li className="basis-1/4 mb-[16px] pr-[22px]"><a href="/#"><span>입사 정보</span></a></li>
-                <li className="basis-1/4 mb-[16px] pr-[22px]"><a href="/#"><span>이용 약관</span></a></li>
-                <li className="basis-1/4 mb-[16px] pr-[22px]"><a href="/#"><span>개인정보</span></a></li>
-                <li className="basis-1/4 mb-[16px] pr-[22px]"><a href="/#"><span>법적 고지</span></a></li>
-                <li className="basis-1/4 mb-[16px] pr-[22px]"><a href="/#"><span>쿠키 설정</span></a></li>
-                <li className="basis-1/4 mb-[16px] pr-[22px]"><a href="/#"><span>회사 정보</span></a></li>
-                <li className="basis-1/4 mb-[16px] pr-[22px]"><a href="/#"><span>문의하기</span></a></li>
+                <li className="basis-1/4 mb-[16px] pr-[22px]"><a className="hover:underline" href="/#"><span>화면 해설</span></a></li>
+                <li className="basis-1/4 mb-[16px] pr-[22px]"><a className="hover:underline" href="/#"><span>고객 센터</span></a></li>
+                <li className="basis-1/4 mb-[16px] pr-[22px]"><a className="hover:underline" href="/#"><span>기프트카드</span></a></li>
+                <li className="basis-1/4 mb-[16px] pr-[22px]"><a className="hover:underline" href="/#"><span>미디어 센터</span></a></li>
+                <li className="basis-1/4 mb-[16px] pr-[22px]"><a className="hover:underline" href="/#"><span>투자 정보(IR)</span></a></li>
+                <li className="basis-1/4 mb-[16px] pr-[22px]"><a className="hover:underline" href="/#"><span>입사 정보</span></a></li>
+                <li className="basis-1/4 mb-[16px] pr-[22px]"><a className="hover:underline" href="/#"><span>이용 약관</span></a></li>
+                <li className="basis-1/4 mb-[16px] pr-[22px]"><a className="hover:underline" href="/#"><span>개인정보</span></a></li>
+                <li className="basis-1/4 mb-[16px] pr-[22px]"><a className="hover:underline" href="/#"><span>법적 고지</span></a></li>
+                <li className="basis-1/4 mb-[16px] pr-[22px]"><a className="hover:underline" href="/#"><span>쿠키 설정</span></a></li>
+                <li className="basis-1/4 mb-[16px] pr-[22px]"><a className="hover:underline" href="/#"><span>회사 정보</span></a></li>
+                <li className="basis-1/4 mb-[16px] pr-[22px]"><a className="hover:underline" href="/#"><span>문의하기</span></a></li>
             </ul>
             {/* 서비스 코드 버튼 */}
-            <div><button className="mb-[20px] p-[0.5em] border border-[#808080] text-[13px]">서비스 코드</button></div>
+            <div><button className="mb-[20px] p-[0.5em] border border-[#808080] text-[13px] hover:text-white">서비스 코드</button></div>
             {/* 푸터 텍스트 */}
             <div className="text-[11px] text-[#808080] mb-[15px]">
                 <div className="mt-[4px]">넷플릭스서비시스코리아 유한회사 통신판매업신고번호: 제2018-서울종로-0426호 전화번호: 00-308-321-0161 (수신자 부담)</div>
@@ -33,7 +33,7 @@ const Footer = () => {
                 <div className="mt-[4px]">주소: 대한민국 서울특별시 종로구 우정국로 26, 센트로폴리스 A동 20층 우편번호 03161</div>
                 <div className="mt-[4px]">사업자등록번호: 165-87-00119</div>
                 <div className="mt-[4px]">클라우드 호스팅: Amazon Web Services Inc.</div>
-                <div className="mt-[4px]"><a href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=1658700119">공정거래위원회 웹사이트</a></div>
+                <div className="mt-[4px] hover:underline"><a href="/#">공정거래위원회 웹사이트</a></div>
             </div>
         </footer>
     );
