@@ -1,36 +1,110 @@
-import React, { Dispatch, SetStateAction, useRef } from "react";
+import React, {
+	Dispatch,
+	FC,
+	SetStateAction,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import useOnClickOutside from "../../hooks/useOnclickOutside";
 import ModalHeader from "./components/ModalHeader";
 import ModalPoster from "./components/ModalPoster";
 import ModalPosterButtons from "./components/ModalPosterButtons";
+import ModalInfoSummary from "./components/ModalInfoSummary";
+import { mapMovie, mapTV, MediaType, Movie, Series } from "./Model/VideoDetail";
+import ModalInfoDetail from "./components/ModalInfoDetail";
+import { Credit, mapCredit } from "./Model/Credit";
+import { Keywords, mapKeywords } from "./Model/Keyword";
 
-const DetailModal = ({
-	setIsModalOpen,
-}: {
+interface DetailModalProps {
+	// id: int,
+	mediaType: MediaType;
 	setIsModalOpen: Dispatch<SetStateAction<boolean>>;
-}) => {
+}
+
+const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 	const ref = useRef<HTMLDivElement | null>(null);
+	const [video, setVideo] = useState<Movie | Series | null>(null);
+	const [credit, setCredit] = useState<Credit | null>(null);
+	const [keyword, setKeyword] = useState<Keywords | null>(null);
 
 	useOnClickOutside({ ref: ref, handler: () => setIsModalOpen(false) });
 
-	return (
-		<div className="presenter z-10 absolute">
-			<div className="wrapper-model fixed inset-0 bg-black bg-opacity-70 flex justify-center">
-				<div
-					className="modal relative bg-neutral-900 w-full max-w-6xl mt-8 mx-2 rounded-lg overflow-hidden"
-					ref={ref}
-				>
-					<ModalHeader setIsModalOpen={setIsModalOpen} />
-					<ModalPoster>
-						<ModalPosterButtons />
-					</ModalPoster>
+	useEffect(() => {
+		console.log("open");
+		fetchCredit();
+		fetchKeyword();
+		if (mediaType === MediaType.MOVIE) {
+			fetchMovieJSON();
+		} else if (mediaType === MediaType.TV) {
+			fetchTVJSON();
+		}
+	}, []);
 
-					<div className="modal__content px-12 text-white">
-						<h1 className="text-2xl font-bold">Movie Title</h1>
-						<p className="text-sm opacity-80">Some description goes here...</p>
+	const fetchMovieJSON = async () => {
+		try {
+			const response = await fetch("../json/movie.json");
+			const data = await response.json();
+			const mappedMovie = mapMovie(data);
+			setVideo(mappedMovie);
+		} catch (error) {
+			console.log("Error fetch data", error);
+		}
+	};
+
+	const fetchTVJSON = async () => {
+		try {
+			const response = await fetch("../json/series.json");
+			const data = await response.json();
+			const mappedMovie = mapTV(data);
+			setVideo(mappedMovie);
+		} catch (error) {
+			console.log("Error fetch data", error);
+		}
+	};
+
+	const fetchCredit = async () => {
+		try {
+			const response = await fetch("../json/credit.json");
+			const data = await response.json();
+			const mappedCredit = mapCredit(data);
+			setCredit(mappedCredit);
+		} catch (error) {
+			console.log("Error fetch data", error);
+		}
+	};
+
+	const fetchKeyword = async () => {
+		try {
+			const response = await fetch("../json/keywords.json");
+			const data = await response.json();
+			const mappedKeywords = mapKeywords(data);
+			setKeyword(mappedKeywords);
+		} catch (error) {
+			console.log("Error fetch data", error);
+		}
+	};
+
+	return (
+		<div className="presenter z-10 absolute min-h-screen">
+			{video && credit && keyword ? (
+				<div className="wrapper-model fixed inset-0 bg-black bg-opacity-70 flex items-start justify-center overflow-auto">
+					<div
+						className="modal relative bg-neutral-900 w-full max-w-6xl mt-8 mx-2 rounded-lg overflow-auto"
+						ref={ref}
+					>
+						(<ModalHeader setIsModalOpen={setIsModalOpen} />
+						<ModalPoster video={video}>
+							<ModalPosterButtons />
+						</ModalPoster>
+						<ModalInfoSummary video={video} casts={credit.cast} keywords={keyword.keywords}/>
+						<ModalInfoDetail video={video} credit={credit} keywords={keyword.keywords}/>
 					</div>
 				</div>
-			</div>
+			) : (
+				<div>loading...</div>
+			)}
+			;
 		</div>
 	);
 };
