@@ -11,7 +11,14 @@ import ModalHeader from "./components/ModalHeader";
 import ModalPoster from "./components/ModalPoster";
 import ModalPosterButtons from "./components/ModalPosterButtons";
 import ModalInfoSummary from "./components/ModalInfoSummary";
-import { mapMovie, mapTV, MediaType, Movie, Season, Series } from "./Model/VideoDetail";
+import {
+	mapMovie,
+	mapTV,
+	MediaType,
+	Movie,
+	Season,
+	Series,
+} from "./Model/VideoDetail";
 import ModalInfoDetail from "./components/ModalInfoDetail";
 import { Credit, mapCredit } from "./Model/Credit";
 import { Keywords, mapKeywords } from "./Model/Keyword";
@@ -107,7 +114,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 
 	return (
 		<div className="presenter z-10 absolute min-h-screen">
-			{video && credit && keyword && episodes ? (
+			{video && credit && keyword ? (
 				<div className="wrapper-model fixed inset-0 bg-black bg-opacity-70 flex items-start justify-center overflow-auto">
 					<div
 						className="modal relative bg-neutral-900 w-full max-w-6xl mt-8 mx-2 rounded-lg overflow-auto"
@@ -122,12 +129,14 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 							casts={credit.cast}
 							keywords={keyword.keywords}
 						/>
-						<ModalEpisodes
-							backdropPath={video.backdropPath}
-							seasons={(video as Series).seasons}
-							episodes={episodes}
-							selectedSeason={handleSeasonSelect}
-						/>
+						{episodes && (
+							<ModalEpisodes
+								backdropPath={video.backdropPath}
+								seasons={(video as Series).seasons}
+								episodes={episodes}
+								selectedSeason={handleSeasonSelect}
+							/>
+						)}
 						<ModalInfoDetail
 							video={video}
 							credit={credit}
