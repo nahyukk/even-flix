@@ -11,7 +11,7 @@ import ModalHeader from "./components/ModalHeader";
 import ModalPoster from "./components/ModalPoster";
 import ModalPosterButtons from "./components/ModalPosterButtons";
 import ModalInfoSummary from "./components/ModalInfoSummary";
-import { mapMovie, mapTV, MediaType, Movie, Series } from "./Model/VideoDetail";
+import { mapMovie, mapTV, MediaType, Movie, Season, Series } from "./Model/VideoDetail";
 import ModalInfoDetail from "./components/ModalInfoDetail";
 import { Credit, mapCredit } from "./Model/Credit";
 import { Keywords, mapKeywords } from "./Model/Keyword";
@@ -100,6 +100,11 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 		}
 	};
 
+	const handleSeasonSelect = (season: Season) => {
+		// API 연결 시 시즌 업데이트
+		console.log(season);
+	};
+
 	return (
 		<div className="presenter z-10 absolute min-h-screen">
 			{video && credit && keyword && episodes ? (
@@ -121,6 +126,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 							backdropPath={video.backdropPath}
 							seasons={(video as Series).seasons}
 							episodes={episodes}
+							selectedSeason={handleSeasonSelect}
 						/>
 						<ModalInfoDetail
 							video={video}
