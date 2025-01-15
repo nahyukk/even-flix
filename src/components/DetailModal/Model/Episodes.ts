@@ -1,4 +1,4 @@
-export interface Season {
+export interface Episodes {
 	id: string;
 	name: string;
 	airDate: string;
@@ -20,7 +20,7 @@ export interface Episode {
 
 // air_date가 현재보다 이전이면 active, 이후라면 inactive?
 
-export const mapSeason = (json: any): Season => ({
+export const mapEpisodes = (json: any): Episodes => ({
 	id: json.id,
 	name: json.name,
 	airDate: json.air_date,
