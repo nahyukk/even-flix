@@ -11,7 +11,7 @@ const ModalEpisode: FC<ModalEpisodeProps> = ({ backdropPath, episode, isFocus })
 	const convertMinutesToHoursAndMinutes = (totalMinutes: number): string => {
 		const hours = Math.floor(totalMinutes / 60); // 시간을 계산
 		const minutes = totalMinutes % 60; // 남은 분 계산
-		return `${hours}시간 ${minutes}분`;
+		return hours > 0 ? `${hours}시간 ${minutes}분` : `${minutes}분`;
 	};
 
 	const isPastDate = (dateString: string): boolean => {
