@@ -58,7 +58,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="homepage relative">
-      <div className="banner relative z-0 h-[700px]">
+      <div className="banner relative z-0 h-[630px]">
         <Banner />
       </div>
       <div className="mainbody relative z-20 pb-10">
