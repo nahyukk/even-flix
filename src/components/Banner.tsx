@@ -2,7 +2,7 @@ import axios from "../api/axios";
 import React, { useEffect, useState } from "react";
 import requests from "../api/requests";
 
-interface movie {
+interface Movie {
     backdrop_path: string;
     title?: string;
     name?: string;
@@ -14,7 +14,7 @@ interface movie {
 }
 
 export default function Banner() {
-    const [movie, setmovie] = useState<movie | null>(null);
+    const [movie, setmovie] = useState<Movie | null>(null);
     const [isClicked, setisClicked] = useState(false);
 
     useEffect(() => {
