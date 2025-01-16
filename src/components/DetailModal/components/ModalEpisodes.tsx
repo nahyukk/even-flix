@@ -57,7 +57,7 @@ const ModalEpisodes: FC<ModalEpisodesProps> = ({
 					/>
 				))}
 			</div>
-			<div className="flex bottom-0 left-0 w-full h-1 bg-neutral-700 justify-center items-center ">
+			<div className="flex bottom-0 left-0 w-full h-0.5 bg-neutral-700 justify-center items-center ">
 				<button
 					className="w-8 h-8 flex items-center justify-center bg-neutral-800 border border-white rounded-full z-10"
 					onClick={() => {
