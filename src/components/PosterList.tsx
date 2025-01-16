@@ -40,7 +40,7 @@ const PosterList: React.FC<PosterListProps> = ({ title, moviesAndSeries }) => {
         <div className="swiper-pagination" ref={paginationRef}></div>
       </div>
 
-      <div className="swiper-and-buttons relative overflow-visible z-30">
+      <div className="swiper-and-buttons relative overflow-visible z-5">
         <Swiper
           loop={true}
           loopAddBlankSlides={false}
