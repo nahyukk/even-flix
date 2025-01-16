@@ -50,6 +50,7 @@ const ModalEpisodes: FC<ModalEpisodesProps> = ({
 			<div className="flex flex-col justify-start flex-wrap pt-3">
 				{episodes.episodes.slice(0, showEpNumber).map((episode, index) => (
 					<ModalEpisode
+						key={episode.id}
 						backdropPath={backdropPath}
 						episode={episode}
 						isFocus={index === 0}
