@@ -9,7 +9,7 @@ export interface Recommend {
 	video: boolean;
 }
 
-const mapRecommend = (json: any): Recommend[] => {
+export const mapRecommend = (json: any): Recommend[] => {
 	return json.results.map((result: any) => ({
 		adult: result.adult,
 		backdropPath: result.backdrop_path || null,

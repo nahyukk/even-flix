@@ -2,6 +2,10 @@ import React, { FC } from "react";
 import { MediaType, Movie, Series } from "../Model/VideoDetail";
 import { Cast } from "../Model/Credit";
 import { Keyword } from "../Model/Keyword";
+import {
+	convertMinutesToHoursAndMinutes,
+	convertReleaseDate,
+} from "../../../util/calculate";
 
 interface ModalInfoSummaryProps {
 	video: Movie | Series;
@@ -15,18 +19,6 @@ const ModalInfoSummary: FC<ModalInfoSummaryProps> = ({
 	casts,
 	keywords,
 }) => {
-	const convertMinutesToHoursAndMinutes = (totalMinutes: number): string => {
-		const hours = Math.floor(totalMinutes / 60); // 시간을 계산
-		const minutes = totalMinutes % 60; // 남은 분 계산
-		return hours > 0 ? `${hours}시간 ${minutes}분` : `${minutes}분`;
-	};
-
-	const convertReleaseDate = (releaseDate: string): string => {
-		const dateStr = "2025-01-13";
-		const year = dateStr.split("-")[0];
-		return year;
-	};
-
 	const getRuntimeOrSesaons = (video: Movie | Series): string => {
 		switch (video.type) {
 			case MediaType.MOVIE:
@@ -43,7 +35,6 @@ const ModalInfoSummary: FC<ModalInfoSummaryProps> = ({
 	};
 
 	const scrollToBottom = () => {
-		console.log("scrollToBottom");
 		const modal: HTMLDivElement = document.querySelector(
 			".wrapper-model"
 		) as HTMLDivElement;
