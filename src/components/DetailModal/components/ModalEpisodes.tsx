@@ -37,7 +37,7 @@ const ModalEpisodes: FC<ModalEpisodesProps> = ({
 	return (
 		<div className="px-12 py-8">
 			<div className="grid gap-8 grid-cols-[2fr_1fr]">
-				<p className="text-xl">회차</p>
+				<p className="text-xl font-semibold">회차</p>
 				<ModalDropdown
 					seasons={seasons}
 					onSelect={handleSeasonSelect}
