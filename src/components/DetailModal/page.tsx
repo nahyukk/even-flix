@@ -11,10 +11,19 @@ import ModalHeader from "./components/ModalHeader";
 import ModalPoster from "./components/ModalPoster";
 import ModalPosterButtons from "./components/ModalPosterButtons";
 import ModalInfoSummary from "./components/ModalInfoSummary";
-import { mapMovie, mapTV, MediaType, Movie, Series } from "./Model/VideoDetail";
+import {
+	mapMovie,
+	mapTV,
+	MediaType,
+	Movie,
+	Season,
+	Series,
+} from "./Model/VideoDetail";
 import ModalInfoDetail from "./components/ModalInfoDetail";
 import { Credit, mapCredit } from "./Model/Credit";
 import { Keywords, mapKeywords } from "./Model/Keyword";
+import ModalEpisodes from "./components/ModalEpisodes";
+import { Episodes, mapEpisodes } from "./Model/Episodes";
 
 interface DetailModalProps {
 	// id: int,
@@ -25,6 +34,7 @@ interface DetailModalProps {
 const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 	const ref = useRef<HTMLDivElement | null>(null);
 	const [video, setVideo] = useState<Movie | Series | null>(null);
+	const [episodes, setEpisodes] = useState<Episodes | null>(null);
 	const [credit, setCredit] = useState<Credit | null>(null);
 	const [keyword, setKeyword] = useState<Keywords | null>(null);
 
@@ -38,6 +48,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 			fetchMovieJSON();
 		} else if (mediaType === MediaType.TV) {
 			fetchTVJSON();
+			fetchEpisodes();
 		}
 	}, []);
 
@@ -58,6 +69,17 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 			const data = await response.json();
 			const mappedMovie = mapTV(data);
 			setVideo(mappedMovie);
+		} catch (error) {
+			console.log("Error fetch data", error);
+		}
+	};
+
+	const fetchEpisodes = async () => {
+		try {
+			const response = await fetch("../json/season.json");
+			const data = await response.json();
+			const mappedSeason = mapEpisodes(data);
+			setEpisodes(mappedSeason);
 		} catch (error) {
 			console.log("Error fetch data", error);
 		}
@@ -85,6 +107,11 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 		}
 	};
 
+	const handleSeasonSelect = (season: Season) => {
+		// API 연결 시 시즌 업데이트
+		console.log(season);
+	};
+
 	return (
 		<div className="presenter z-10 absolute min-h-screen">
 			{video && credit && keyword ? (
@@ -93,12 +120,28 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 						className="modal relative bg-neutral-900 w-full max-w-6xl mt-8 mx-2 rounded-lg overflow-auto"
 						ref={ref}
 					>
-						(<ModalHeader setIsModalOpen={setIsModalOpen} />
+						<ModalHeader setIsModalOpen={setIsModalOpen} />
 						<ModalPoster video={video}>
 							<ModalPosterButtons />
 						</ModalPoster>
-						<ModalInfoSummary video={video} casts={credit.cast} keywords={keyword.keywords}/>
-						<ModalInfoDetail video={video} credit={credit} keywords={keyword.keywords}/>
+						<ModalInfoSummary
+							video={video}
+							casts={credit.cast}
+							keywords={keyword.keywords}
+						/>
+						{episodes && (
+							<ModalEpisodes
+								backdropPath={video.backdropPath}
+								seasons={(video as Series).seasons}
+								episodes={episodes}
+								selectedSeason={handleSeasonSelect}
+							/>
+						)}
+						<ModalInfoDetail
+							video={video}
+							credit={credit}
+							keywords={keyword.keywords}
+						/>
 					</div>
 				</div>
 			) : (
