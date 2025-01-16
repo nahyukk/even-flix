@@ -15,7 +15,7 @@ const ModalInfoDetail: FC<ModalInfoDetailProps> = ({
 	keywords,
 }) => {
 	return (
-		<div className="flex flex-col gap-y-1 px-12 py-6">
+		<div className="flex flex-col gap-y-1 px-12 pt-6 pb-12">
 			<p className="text-xl text-white py-2">{`${video.title} 상세 정보`}</p>
 			<p className="text-sm text-gray-500">
 				감독:{" "}
