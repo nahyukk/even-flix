@@ -11,6 +11,7 @@ import ModalHeader from "./components/ModalHeader";
 import ModalPoster from "./components/ModalPoster";
 import ModalPosterButtons from "./components/ModalPosterButtons";
 import ModalInfoSummary from "./components/ModalInfoSummary";
+import ModalRecommends from "./components/ModalRecommends";
 import {
 	mapMovie,
 	mapTV,
@@ -24,6 +25,7 @@ import { Credit, mapCredit } from "./Model/Credit";
 import { Keywords, mapKeywords } from "./Model/Keyword";
 import ModalEpisodes from "./components/ModalEpisodes";
 import { Episodes, mapEpisodes } from "./Model/Episodes";
+import { Recommend, mapRecommend } from "./Model/Recommend";
 
 interface DetailModalProps {
 	// id: int,
@@ -37,6 +39,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 	const [episodes, setEpisodes] = useState<Episodes | null>(null);
 	const [credit, setCredit] = useState<Credit | null>(null);
 	const [keyword, setKeyword] = useState<Keywords | null>(null);
+	const [recommends, setRecommends] = useState<Recommend[]>([]);
 
 	useOnClickOutside({ ref: ref, handler: () => setIsModalOpen(false) });
 
@@ -44,6 +47,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 		console.log("open");
 		fetchCredit();
 		fetchKeyword();
+		fetchRecommend();
 		if (mediaType === MediaType.MOVIE) {
 			fetchMovieJSON();
 		} else if (mediaType === MediaType.TV) {
@@ -107,6 +111,17 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 		}
 	};
 
+	const fetchRecommend = async () => {
+		try {
+			const response = await fetch("../json/recommdation.json");
+			const data = await response.json();
+			const mappedRecommend = mapRecommend(data);
+			setRecommends(mappedRecommend);
+		} catch (error) {
+			console.log("Error fetch data", error);
+		}
+	};
+
 	const handleSeasonSelect = (season: Season) => {
 		// API 연결 시 시즌 업데이트
 		console.log(season);
@@ -137,6 +152,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 								selectedSeason={handleSeasonSelect}
 							/>
 						)}
+						<ModalRecommends recommends={recommends} />
 						<ModalInfoDetail
 							video={video}
 							credit={credit}

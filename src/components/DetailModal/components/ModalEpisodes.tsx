@@ -37,7 +37,7 @@ const ModalEpisodes: FC<ModalEpisodesProps> = ({
 	return (
 		<div className="px-12 py-8">
 			<div className="grid gap-8 grid-cols-[2fr_1fr]">
-				<p className="text-xl">회차</p>
+				<p className="text-xl font-semibold">회차</p>
 				<ModalDropdown
 					seasons={seasons}
 					onSelect={handleSeasonSelect}
@@ -50,13 +50,14 @@ const ModalEpisodes: FC<ModalEpisodesProps> = ({
 			<div className="flex flex-col justify-start flex-wrap pt-3">
 				{episodes.episodes.slice(0, showEpNumber).map((episode, index) => (
 					<ModalEpisode
+						key={episode.id}
 						backdropPath={backdropPath}
 						episode={episode}
 						isFocus={index === 0}
 					/>
 				))}
 			</div>
-			<div className="flex bottom-0 left-0 w-full h-1 bg-neutral-700 justify-center items-center ">
+			<div className="flex bottom-0 left-0 w-full h-0.5 bg-neutral-700 justify-center items-center ">
 				<button
 					className="w-8 h-8 flex items-center justify-center bg-neutral-800 border border-white rounded-full z-10"
 					onClick={() => {
