@@ -5,7 +5,7 @@ export interface Recommend {
 	overview: string;
 	posterPath: string;
 	adult: boolean;
-	releaseDate: Date;
+	releaseDate: string;
 	video: boolean;
 }
 
