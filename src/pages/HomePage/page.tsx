@@ -36,6 +36,7 @@ const HomePage: React.FC = () => {
       const response = await instance.get(url);
       const results = response.data.results;
 
+			// backdrop_path가 없는 부분 filtering
       const filteredResults = results.filter(
         (item: any) => item.backdrop_path !== null
       );
