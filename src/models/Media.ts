@@ -61,11 +61,11 @@ export const mapMedia = (json: any): Media => ({
 		? json.type === "movie"
 			? MediaType.MOVIE
 			: MediaType.TV
-		: json.number_of_episodes
+		: json.release_date
 		? MediaType.TV
 		: MediaType.MOVIE,
 	id: json.id,
-	title: json.itlte,
+	title: json.title ? json.title : json.name,
 	backdropPath: json.backdrop_path,
 	overview: json.overview,
 	genres: json.genres.map((genre: any) => ({
@@ -137,15 +137,15 @@ export const mapSearch = (json: any): Media[] => {
 			? result.type === "movie"
 				? MediaType.MOVIE
 				: MediaType.TV
-			: result.number_of_episodes
-			? MediaType.TV
-			: MediaType.MOVIE,
+			: result.release_date
+			? MediaType.MOVIE
+			: MediaType.TV,
 		id: result.id,
-		title: result.itlte,
+		title: result.title ? result.title : result.name,
 		backdropPath: result.backdrop_path,
 		overview: result.overview,
 		genres: [],
-		releaseDate: result.release_date,
+		releaseDate: result.release_date ? result.release_date : result.last_air_date,
 		posterPath: result.poster_path,
 		tagline: result.tagline,
 		adult: result.adult,
