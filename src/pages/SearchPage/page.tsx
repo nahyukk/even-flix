@@ -33,6 +33,30 @@ const SearchPage = () => {
 	};
 
 	return (
+		<div>
+			{searchResults.length > 0 ? (
+				<div>YES</div>
+			) : (
+				<div className="flex flex-col pt-12 pb-96 justify-center items-center text-xs">
+					<div>
+						<p>{`입력하신 검색어 '${debouncedQuery}'(와)과 일치하는 결과가 없습니다.`}</p>
+						<p className="py-4">추쳔 검색어:</p>
+						<ul className="pl-8 list-disc">
+							<li>다른 키워드를 입력해보세요.</li>
+							<li>시리즈나 영화를 찾고 있으신가요?</li>
+							<li>
+								영화 제목, 시리즈 제목, 또는 배우나 감독의 이름으로 검색해
+								보세요.
+							</li>
+							<li>
+								코미디, 로맨스, 스포츠 또는 드라마와 같은 당르 명으로
+								검색해보세요
+							</li>
+						</ul>
+					</div>
+				</div>
+			)}
+		</div>
 	);
 };
 
