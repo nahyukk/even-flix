@@ -41,7 +41,7 @@ const CardList: React.FC<CardListProps> = ({ title, moviesAndSeries }) => {
         <div className="swiper-pagination" ref={paginationRef}></div>
       </div>
 
-      <div className="swiper-and-buttons relative overflow-visible w-full z-30">
+      <div className="swiper-and-buttons relative overflow-visible w-full z-5">
         <Swiper
           // allowTouchMove={true}
           loop={true}
