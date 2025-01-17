@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage/page";
 import DetailModal from "./components/DetailModal/page";
 import { MediaType } from "./models/Media";
+import SearchPage from "./pages/SearchPage/page";
 
 const Layout = () => {
 	return (
@@ -38,6 +39,7 @@ function App() {
 						path="tv/:id"
 						element={<DetailModal mediaType={MediaType.TV} />}
 					/>
+					<Route path="search" element={<SearchPage />} />
 				</Route>
 			</Routes>
 		</div>
