@@ -55,7 +55,7 @@ const ModalInfoSummary: FC<ModalInfoSummaryProps> = ({
 			</div>
 			<div className="flex flex-col gap-y-3 text-sm">
 				<p className="text-sm text-gray-500">
-					출연:
+					출연:{" "}
 					{casts.slice(0, 3).map((cast) => (
 						<a key={cast.id} className="text-white hover:underline" href="/">
 							{`${cast.name}, `}
