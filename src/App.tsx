@@ -35,7 +35,7 @@ function App() {
 						element={<DetailModal mediaType={MediaType.MOVIE} />}
 					/>
 					<Route
-						path="series/:id"
+						path="tv/:id"
 						element={<DetailModal mediaType={MediaType.TV} />}
 					/>
 				</Route>
