@@ -139,7 +139,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 			{video && credit && keyword ? (
 				<div className="wrapper-model fixed inset-0 bg-black bg-opacity-70 flex items-start justify-center overflow-auto">
 					<div
-						className="modal relative bg-neutral-900 w-full max-w-6xl mt-8 mx-2 rounded-lg overflow-auto"
+						className="modal relative bg-neutral-900 w-full max-w-5xl mt-8 mx-2 rounded-lg overflow-auto"
 						ref={ref}
 					>
 						<ModalHeader />
