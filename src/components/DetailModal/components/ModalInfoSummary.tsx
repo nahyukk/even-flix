@@ -81,15 +81,21 @@ const ModalInfoSummary: FC<ModalInfoSummaryProps> = ({
 						</a>
 					))}
 				</p>
-				<p className="text-sm text-gray-500">
-					영화 특징:{" "}
-					{keywords.slice(0, 3).map((keyword, index) => (
-						<a key={keyword.id} className="text-white hover:underline" href="/">
-							{keyword.name}
-							{index < 2 && ", "}
-						</a>
-					))}
-				</p>
+				{keywords.length > 0 && (
+					<p className="text-sm text-gray-500">
+						영화 특징:{" "}
+						{keywords.slice(0, 3).map((keyword, index) => (
+							<a
+								key={keyword.id}
+								className="text-white hover:underline"
+								href="/"
+							>
+								{keyword.name}
+								{index < 2 && ", "}
+							</a>
+						))}
+					</p>
+				)}
 			</div>
 		</div>
 	);
