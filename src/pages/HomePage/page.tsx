@@ -210,6 +210,7 @@ const HomePage: React.FC = () => {
           posterProps={todayTop10SeriesKR.map((item) => ({
             id: item.id,
             poster_path: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+            backdrop_path: `https://image.tmdb.org/t/p/w500${item.backdrop_path}`,
           }))}
         />
         <CardList
@@ -253,6 +254,7 @@ const HomePage: React.FC = () => {
           posterProps={popularMovies.map((item) => ({
             id: item.id,
             poster_path: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+            backdrop_path: `https://image.tmdb.org/t/p/w500${item.backdrop_path}`,
           }))}
         />
         <CardList
