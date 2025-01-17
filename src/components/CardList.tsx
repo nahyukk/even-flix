@@ -42,10 +42,13 @@ const CardList: React.FC<CardListProps> = ({ title, cardProps }) => {
   );
 
   const handleCardMouseEnter = (item: CardProps, rect: DOMRect) => {
+    console.log("Card BoundingClientRect:", rect);
+    console.log("scroll:", window.scrollY);
+
     setHoveredItem(item);
     setHoverPosition({
-      top: rect.top,
-      left: rect.left,
+      top: rect.top + window.scrollY,
+      left: rect.left + rect.width / 2,
     });
   };
 
@@ -60,12 +63,12 @@ const CardList: React.FC<CardListProps> = ({ title, cardProps }) => {
 
   return (
     <section className="cardList my-6 mx-12 overflow-visible">
-			{/* 타이틀, 페이지네이션*/}
+      {/* 타이틀, 페이지네이션*/}
       <div className="title-and-pagination relative flex flex-row justify-between mb-1">
         <h2 className="text-l font-bold left-2">{title}</h2>
         <div className="swiper-pagination" ref={paginationRef}></div>
       </div>
-			{/* 스와이퍼 */}
+      {/* 스와이퍼 */}
       <div className="swiper-and-buttons relative overflow-visible w-full z-5">
         <Swiper
           // allowTouchMove={true}
@@ -114,6 +117,8 @@ const CardList: React.FC<CardListProps> = ({ title, cardProps }) => {
         >
           {cardProps.map((item, index) => (
             <SwiperSlide
+              key={`${item.id}-${index}`}
+              style={{ position: "relative", zIndex: 1 }}
               onMouseEnter={(event) => {
                 const rect = (
                   event.currentTarget as HTMLElement
@@ -130,36 +135,36 @@ const CardList: React.FC<CardListProps> = ({ title, cardProps }) => {
             </SwiperSlide>
           ))}
         </Swiper>
-				{/* 양쪽 버튼 */}
+        {/* 디테일 카드 호버 */}
+        {hoveredItem && hoverPosition && (
+          <DummyDetailCard
+            id={hoveredItem.id}
+            backdrop_path={hoveredItem.backdrop_path}
+            style={{
+              position: "absolute",
+              top: "cal(hoverPosition.top - scrollY)",
+              left: hoverPosition.left,
+              transform: "translate(-75%, -60%)",
+              zIndex: 7,
+            }}
+            onMouseEnter={handleDetailMouseEnter}
+            onMouseLeave={handleDetailMouseLeave}
+          />
+        )}
+        {/* 양쪽 버튼 */}
         <button
           ref={prevRef}
-          className="absolute top-1/2 -left-12 transform -translate-y-1/2 h-full p-2 px-[0.9rem] rounded-s-s bg-black opacity-0 text-white hover:opacity-70  hover:text-4xl focus:outline-none z-50"
+          className="absolute top-1/2 -left-12 transform -translate-y-1/2 h-full p-2 px-[0.9rem] rounded-s-s bg-black opacity-0 text-white hover:opacity-70  hover:text-4xl focus:outline-none z-5"
         >
           <i className="fas fa-chevron-left text-2xl hover:opacity-100"></i>
         </button>
         <button
           ref={nextRef}
-          className="absolute top-1/2 -right-12 transform -translate-y-1/2 h-full p-2 px-[0.9rem] rounded-s-s bg-black opacity-0 text-white hover:opacity-70 hover:text-4xl  focus:outline-none z-50"
+          className="absolute top-1/2 -right-12 transform -translate-y-1/2 h-full p-2 px-[0.9rem] rounded-s-s bg-black opacity-0 text-white hover:opacity-70 hover:text-4xl  focus:outline-none z-5"
         >
           <i className="fas fa-chevron-right text-2xl hover:opacity-100"></i>
         </button>
       </div>
-			{/* 디테일 카드 호버 */}
-      {hoveredItem && hoverPosition && (
-        <DummyDetailCard
-          id={hoveredItem.id}
-          backdrop_path={hoveredItem.backdrop_path}
-          style={{
-            position: "absolute",
-            top: hoverPosition.top - 180,
-            left: hoverPosition.left - 20,
-
-            zIndex: 7,
-          }}
-          onMouseEnter={handleDetailMouseEnter}
-          onMouseLeave={handleDetailMouseLeave}
-        />
-      )}
     </section>
   );
 };
