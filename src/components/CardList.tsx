@@ -118,7 +118,7 @@ const CardList: React.FC<CardListProps> = ({ title, cardProps }) => {
           {cardProps.map((item, index) => (
             <SwiperSlide
               key={`${item.id}-${index}`}
-              style={{ position: "relative", zIndex: 1 }}
+              style={{ position: "relative" }}
               onMouseEnter={(event) => {
                 const rect = (
                   event.currentTarget as HTMLElement
@@ -145,7 +145,7 @@ const CardList: React.FC<CardListProps> = ({ title, cardProps }) => {
               top: "cal(hoverPosition.top - scrollY)",
               left: hoverPosition.left,
               transform: "translate(-75%, -60%)",
-              zIndex: 7,
+              zIndex: 10,
             }}
             onMouseEnter={handleDetailMouseEnter}
             onMouseLeave={handleDetailMouseLeave}
@@ -154,13 +154,13 @@ const CardList: React.FC<CardListProps> = ({ title, cardProps }) => {
         {/* 양쪽 버튼 */}
         <button
           ref={prevRef}
-          className="absolute top-1/2 -left-12 transform -translate-y-1/2 h-full p-2 px-[0.9rem] rounded-s-s bg-black opacity-0 text-white hover:opacity-70  hover:text-4xl focus:outline-none z-5"
+          className="absolute top-1/2 -left-12 transform -translate-y-1/2 h-full p-2 px-[0.9rem] rounded-s-s bg-black opacity-0 text-white hover:opacity-70  hover:text-4xl focus:outline-none z-20"
         >
           <i className="fas fa-chevron-left text-2xl hover:opacity-100"></i>
         </button>
         <button
           ref={nextRef}
-          className="absolute top-1/2 -right-12 transform -translate-y-1/2 h-full p-2 px-[0.9rem] rounded-s-s bg-black opacity-0 text-white hover:opacity-70 hover:text-4xl  focus:outline-none z-5"
+          className="absolute top-1/2 -right-12 transform -translate-y-1/2 h-full p-2 px-[0.9rem] rounded-s-s bg-black opacity-0 text-white hover:opacity-70 hover:text-4xl  focus:outline-none z-20"
         >
           <i className="fas fa-chevron-right text-2xl hover:opacity-100"></i>
         </button>
