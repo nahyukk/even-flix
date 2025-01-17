@@ -6,7 +6,7 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage/page";
 import DetailModal from "./components/DetailModal/page";
-import { MediaType } from "./components/DetailModal/Model/VideoDetail";
+import { MediaType } from "./models/VideoDetail";
 
 const Layout = () => {
 	return (

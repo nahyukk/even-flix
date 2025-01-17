@@ -12,13 +12,13 @@ import {
 	Movie,
 	Season,
 	Series,
-} from "./Model/VideoDetail";
+} from "../../models/VideoDetail";
 import ModalInfoDetail from "./components/ModalInfoDetail";
-import { Credit, mapCredit } from "./Model/Credit";
-import { Keywords, mapKeywords } from "./Model/Keyword";
+import { Credit, mapCredit } from "../../models/Credit";
+import { Keywords, mapKeywords } from "../../models/Keyword";
 import ModalEpisodes from "./components/ModalEpisodes";
-import { Episodes, mapEpisodes } from "./Model/Episodes";
-import { Recommend, mapRecommend } from "./Model/Recommend";
+import { Episodes, mapEpisodes } from "../../models/Episodes";
+import { Recommend, mapRecommend } from "../../models/Recommend";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "../../api/axios";
 

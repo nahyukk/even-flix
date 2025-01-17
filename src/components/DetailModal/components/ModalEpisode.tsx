@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Episode } from "../Model/Episodes";
+import { Episode } from "../../../models/Episodes";
 import { convertMinutesToHoursAndMinutes } from "../../../util/calculate";
 
 interface ModalEpisodeProps {

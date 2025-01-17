@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Movie, Series } from "../Model/VideoDetail";
+import { Movie, Series } from "../../../models/VideoDetail";
 
 interface ModalPosterProps {
 	children: React.ReactNode;

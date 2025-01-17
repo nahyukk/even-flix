@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { Recommend } from "../Model/Recommend";
+import { Recommend } from "../../../models/Recommend";
 import ModalRecommend from "./ModalRecommend";
 
 interface ModalSimilarsProps {

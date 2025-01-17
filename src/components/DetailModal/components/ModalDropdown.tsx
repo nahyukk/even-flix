@@ -1,5 +1,5 @@
 import React, { FC, useRef, useState } from "react";
-import { Season } from "../Model/VideoDetail";
+import { Season } from "../../../models/VideoDetail";
 import useOnClickOutside from "../../../hooks/useOnclickOutside";
 
 interface ModalDropdownProps {
