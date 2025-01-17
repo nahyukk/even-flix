@@ -1,9 +1,4 @@
-import React, {
-	FC,
-	useEffect,
-	useRef,
-	useState,
-} from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import useOnClickOutside from "../../hooks/useOnclickOutside";
 import ModalHeader from "./components/ModalHeader";
 import ModalPoster from "./components/ModalPoster";
@@ -24,16 +19,18 @@ import { Keywords, mapKeywords } from "./Model/Keyword";
 import ModalEpisodes from "./components/ModalEpisodes";
 import { Episodes, mapEpisodes } from "./Model/Episodes";
 import { Recommend, mapRecommend } from "./Model/Recommend";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "../../api/axios";
 
 interface DetailModalProps {
-	// id: int,
 	mediaType: MediaType;
 }
 
 const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 	const ref = useRef<HTMLDivElement | null>(null);
 	const navigate = useNavigate();
+	const { id } = useParams<{ id: string }>();
+
 	const [video, setVideo] = useState<Movie | Series | null>(null);
 	const [episodes, setEpisodes] = useState<Episodes | null>(null);
 	const [credit, setCredit] = useState<Credit | null>(null);
@@ -43,23 +40,24 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 	useOnClickOutside({ ref: ref, handler: () => navigate(-1) });
 
 	useEffect(() => {
-		console.log("open");
+		if (!id) {
+			throw new Error("ID is Missing!");
+		}
 		fetchCredit();
 		fetchKeyword();
 		fetchRecommend();
 		if (mediaType === MediaType.MOVIE) {
-			fetchMovieJSON();
+			fetchMovieJSON(id);
 		} else if (mediaType === MediaType.TV) {
 			fetchTVJSON();
 			fetchEpisodes();
 		}
 	}, []);
 
-	const fetchMovieJSON = async () => {
+	const fetchMovieJSON = async (id: string) => {
 		try {
-			const response = await fetch("../json/movie.json");
-			const data = await response.json();
-			const mappedMovie = mapMovie(data);
+			const request = await axios.get(`/movie/${id}`);
+			const mappedMovie = mapMovie(request.data);
 			setVideo(mappedMovie);
 		} catch (error) {
 			console.log("Error fetch data", error);
