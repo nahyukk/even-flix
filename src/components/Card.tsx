@@ -1,14 +1,15 @@
 import React from "react";
 
 interface CardProps {
-  backdropUrl: string;
+	id: number;
+	backdropPath: string;
 }
 
-const Card: React.FC<CardProps> = ({ backdropUrl }) => {
+const Card: React.FC<CardProps> = ({ backdropPath }) => {
   return (
     <div className="relative">
       <img
-        src={backdropUrl}
+        src={backdropPath}
         alt=""
         className="h-auto object-cover rounded-sm"
       />
