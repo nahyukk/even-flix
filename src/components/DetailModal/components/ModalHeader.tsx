@@ -1,14 +1,17 @@
-import React, { FC } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-interface ModalHeaderProps {
-	setIsModalOpen: (isOpen: boolean) => void;
-}
+const ModalHeader = () => {
+	const navigate = useNavigate();
 
-const ModalHeader: FC<ModalHeaderProps> = ({ setIsModalOpen }) => {
+	const handleClose = () => {
+		navigate(-1);
+	};
+
 	return (
 		<span
 			className="modal-close absolute top-4 right-4 bg-gray-950 p-2 rounded-full z-10 cursor-pointer"
-			onClick={() => setIsModalOpen(false)}
+			onClick={() => handleClose()}
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

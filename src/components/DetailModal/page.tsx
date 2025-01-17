@@ -1,7 +1,5 @@
 import React, {
-	Dispatch,
 	FC,
-	SetStateAction,
 	useEffect,
 	useRef,
 	useState,
@@ -26,22 +24,23 @@ import { Keywords, mapKeywords } from "./Model/Keyword";
 import ModalEpisodes from "./components/ModalEpisodes";
 import { Episodes, mapEpisodes } from "./Model/Episodes";
 import { Recommend, mapRecommend } from "./Model/Recommend";
+import { useNavigate } from "react-router-dom";
 
 interface DetailModalProps {
 	// id: int,
 	mediaType: MediaType;
-	setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
+const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 	const ref = useRef<HTMLDivElement | null>(null);
+	const navigate = useNavigate();
 	const [video, setVideo] = useState<Movie | Series | null>(null);
 	const [episodes, setEpisodes] = useState<Episodes | null>(null);
 	const [credit, setCredit] = useState<Credit | null>(null);
 	const [keyword, setKeyword] = useState<Keywords | null>(null);
 	const [recommends, setRecommends] = useState<Recommend[]>([]);
 
-	useOnClickOutside({ ref: ref, handler: () => setIsModalOpen(false) });
+	useOnClickOutside({ ref: ref, handler: () => navigate(-1) });
 
 	useEffect(() => {
 		console.log("open");
@@ -135,7 +134,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 						className="modal relative bg-neutral-900 w-full max-w-6xl mt-8 mx-2 rounded-lg overflow-auto"
 						ref={ref}
 					>
-						<ModalHeader setIsModalOpen={setIsModalOpen} />
+						<ModalHeader />
 						<ModalPoster video={video}>
 							<ModalPosterButtons />
 						</ModalPoster>
