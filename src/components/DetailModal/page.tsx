@@ -51,8 +51,9 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 		} else if (mediaType === MediaType.TV) {
 			fetchTVJSON(id);
 		}
-	}, []);
+	}, [id, mediaType]);
 
+	// 영화 호출
 	const fetchMovieJSON = async (id: string) => {
 		try {
 			const request = await axios.get(`/movie/${id}`);
@@ -63,6 +64,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 		}
 	};
 
+	// 시리즈 호출
 	const fetchTVJSON = async (id: string) => {
 		try {
 			const request = await axios.get(`/tv/${id}`);
@@ -74,6 +76,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 		}
 	};
 
+	// 시즌(TV일때만 호출)
 	const fetchEpisodes = async (id: string, seasonNumber: number) => {
 		try {
 			const request = await axios.get(
@@ -86,6 +89,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 		}
 	};
 
+	// 출연
 	const fetchCredit = async (id: string, movieType: MediaType) => {
 		const url =
 			mediaType === MediaType.MOVIE
@@ -100,6 +104,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 		}
 	};
 
+	// 영화 특징
 	const fetchKeyword = async (id: string, movieType: MediaType) => {
 		const url =
 			mediaType === MediaType.MOVIE
@@ -114,6 +119,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 		}
 	};
 
+	// 함께 시청된 콘텐츠
 	const fetchRecommend = async (id: string, movieType: MediaType) => {
 		const url =
 			mediaType === MediaType.MOVIE
@@ -128,9 +134,12 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 		}
 	};
 
+	// 시즌 변경 시 호출
 	const handleSeasonSelect = (season: Season) => {
-		// API 연결 시 시즌 업데이트
-		console.log(season);
+		if (!id) {
+			throw new Error("ID is Missing!");
+		}
+		fetchEpisodes(id, season.seasonNumber);
 	};
 
 	return (
