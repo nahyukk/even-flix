@@ -49,7 +49,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 		if (mediaType === MediaType.MOVIE) {
 			fetchMovieJSON(id);
 		} else if (mediaType === MediaType.TV) {
-			fetchTVJSON();
+			fetchTVJSON(id);
 			fetchEpisodes();
 		}
 	}, []);
@@ -64,12 +64,12 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 		}
 	};
 
-	const fetchTVJSON = async () => {
+	const fetchTVJSON = async (id: string) => {
 		try {
-			const response = await fetch("../json/series.json");
-			const data = await response.json();
-			const mappedMovie = mapTV(data);
-			setVideo(mappedMovie);
+			const request = await axios.get(`/tv/${id}`)
+			const mappedTV = mapTV(request.data);
+			setVideo(mappedTV);
+			console.log(mappedTV.numberOfSeasons);
 		} catch (error) {
 			console.log("Error fetch data", error);
 		}
