@@ -1,11 +1,17 @@
 import React from "react";
 import { Rank } from "../models/Media";
 
-interface PosterProps extends Rank {
-	poster_path: string;
+export interface PosterProps extends Rank {
+  id: number;
+  poster_path: string;
+  backdrop_path: string;
 }
 
-const Poster: React.FC<PosterProps> = ({ poster_path, rank }) => {
+const Poster: React.FC<PosterProps> = ({
+  poster_path,
+  backdrop_path,
+  rank,
+}) => {
   const renderRankSVG = () => {
     switch (rank) {
       case 1:
