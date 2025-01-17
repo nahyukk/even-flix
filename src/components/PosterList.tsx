@@ -156,6 +156,7 @@ const PosterList: React.FC<PosterListProps> = ({ title, posterProps }) => {
               transform: "translate(-75%, -70%)",
               zIndex: 10,
             }}
+						isActive={true}
             onMouseEnter={handleDetailMouseEnter}
             onMouseLeave={handleDetailMouseLeave}
           />

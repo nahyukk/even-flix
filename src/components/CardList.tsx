@@ -147,6 +147,7 @@ const CardList: React.FC<CardListProps> = ({ title, cardProps }) => {
               transform: "translate(-75%, -60%)",
               zIndex: 10,
             }}
+						isActive={true}
             onMouseEnter={handleDetailMouseEnter}
             onMouseLeave={handleDetailMouseLeave}
           />
