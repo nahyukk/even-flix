@@ -50,7 +50,6 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 			fetchMovieJSON(id);
 		} else if (mediaType === MediaType.TV) {
 			fetchTVJSON(id);
-			fetchEpisodes();
 		}
 	}, []);
 
@@ -66,20 +65,21 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 
 	const fetchTVJSON = async (id: string) => {
 		try {
-			const request = await axios.get(`/tv/${id}`)
+			const request = await axios.get(`/tv/${id}`);
 			const mappedTV = mapTV(request.data);
 			setVideo(mappedTV);
-			console.log(mappedTV.numberOfSeasons);
+			fetchEpisodes(id, mappedTV.numberOfSeasons);
 		} catch (error) {
 			console.log("Error fetch data", error);
 		}
 	};
 
-	const fetchEpisodes = async () => {
+	const fetchEpisodes = async (id: string, seasonNumber: number) => {
 		try {
-			const response = await fetch("../json/season.json");
-			const data = await response.json();
-			const mappedSeason = mapEpisodes(data);
+			const request = await axios.get(
+				`/tv/${id}/season/${seasonNumber.toString()}`
+			);
+			const mappedSeason = mapEpisodes(request.data);
 			setEpisodes(mappedSeason);
 		} catch (error) {
 			console.log("Error fetch data", error);
@@ -88,9 +88,9 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 
 	const fetchCredit = async (id: string, movieType: MediaType) => {
 		const url =
-		mediaType === MediaType.MOVIE
-			? `/movie/${id}/credits`
-			: `/tv/${id}/credits`;
+			mediaType === MediaType.MOVIE
+				? `/movie/${id}/credits`
+				: `/tv/${id}/credits`;
 		try {
 			const request = await axios.get(url);
 			const mappedCredit = mapCredit(request.data);
