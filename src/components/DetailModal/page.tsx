@@ -43,9 +43,9 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 		if (!id) {
 			throw new Error("ID is Missing!");
 		}
-		fetchCredit();
-		fetchKeyword();
-		fetchRecommend();
+		fetchCredit(id, mediaType);
+		fetchKeyword(id, mediaType);
+		fetchRecommend(id, mediaType);
 		if (mediaType === MediaType.MOVIE) {
 			fetchMovieJSON(id);
 		} else if (mediaType === MediaType.TV) {
@@ -87,33 +87,42 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 		}
 	};
 
-	const fetchCredit = async () => {
+	const fetchCredit = async (id: string, movieType: MediaType) => {
+		const url =
+		mediaType === MediaType.MOVIE
+			? `/movie/${id}/credits`
+			: `/tv/${id}/credits`;
 		try {
-			const response = await fetch("../json/credit.json");
-			const data = await response.json();
-			const mappedCredit = mapCredit(data);
+			const request = await axios.get(url);
+			const mappedCredit = mapCredit(request.data);
 			setCredit(mappedCredit);
 		} catch (error) {
 			console.log("Error fetch data", error);
 		}
 	};
 
-	const fetchKeyword = async () => {
+	const fetchKeyword = async (id: string, movieType: MediaType) => {
+		const url =
+			mediaType === MediaType.MOVIE
+				? `/movie/${id}/keywords`
+				: `/tv/${id}/keywords`;
 		try {
-			const response = await fetch("../json/keywords.json");
-			const data = await response.json();
-			const mappedKeywords = mapKeywords(data);
+			const request = await axios.get(url);
+			const mappedKeywords = mapKeywords(request.data);
 			setKeyword(mappedKeywords);
 		} catch (error) {
 			console.log("Error fetch data", error);
 		}
 	};
 
-	const fetchRecommend = async () => {
+	const fetchRecommend = async (id: string, movieType: MediaType) => {
+		const url =
+			mediaType === MediaType.MOVIE
+				? `/movie/${id}/recommendations`
+				: `/tv/${id}/recommendations`;
 		try {
-			const response = await fetch("../json/recommdation.json");
-			const data = await response.json();
-			const mappedRecommend = mapRecommend(data);
+			const request = await axios.get(url);
+			const mappedRecommend = mapRecommend(request.data);
 			setRecommends(mappedRecommend);
 		} catch (error) {
 			console.log("Error fetch data", error);
