@@ -6,18 +6,16 @@ import instance from "../../api/axios";
 import PosterList from "../../components/PosterList";
 
 interface HomeMedia {
-	id: number;
-	title: string;
-	backdrop_path: string;
-	poster_path: string;
-	origin_country: string[];
+  id: number;
+  title: string;
+  backdrop_path: string;
+  poster_path: string;
+  origin_country: string[];
 }
 
 const HomePage: React.FC = () => {
   const [forYou, setForYou] = useState<HomeMedia[]>([]);
-  const [todayTop10SeriesKR, setTodayTop10SeriesKR] = useState<HomeMedia[]>(
-    []
-  );
+  const [todayTop10SeriesKR, setTodayTop10SeriesKR] = useState<HomeMedia[]>([]);
   const [realitySeries, setRealitySeries] = useState<HomeMedia[]>([]);
   const [topRatedSeries, setTopRatedSeries] = useState<HomeMedia[]>([]);
   const [englishContents, setEnglishContents] = useState<HomeMedia[]>([]);
@@ -25,9 +23,7 @@ const HomePage: React.FC = () => {
   const [koreanSeries, setKoreanSeries] = useState<HomeMedia[]>([]);
   const [popularMovies, setPopularMovies] = useState<HomeMedia[]>([]);
   const [nowPlayingMovies, setNowPlayingMovies] = useState<HomeMedia[]>([]);
-  const [sFAndFantasySeries, setSFAndFantasySeries] = useState<HomeMedia[]>(
-    []
-  );
+  const [sFAndFantasySeries, setSFAndFantasySeries] = useState<HomeMedia[]>([]);
 
   // fetchDataHome 컴포넌트는 fetchData로 따로 컴포넌트화 시켜서 재사용할 수 있지만
   // 각 page에서 개인 api 연결 공부를 위해 page에 넣음
@@ -36,7 +32,7 @@ const HomePage: React.FC = () => {
       const response = await instance.get(url);
       const results = response.data.results;
 
-			// backdrop_path가 없는 부분 filtering
+      // backdrop_path가 없는 부분 filtering
       const filteredResults = results.filter(
         (item: any) => item.backdrop_path !== null
       );
