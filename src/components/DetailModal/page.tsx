@@ -58,7 +58,6 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 		try {
 			const request = await axios.get(`/movie/${id}`);
 			const mappedMovie = mapMovie(request.data);
-			console.log(mappedMovie);
 			setVideo(mappedMovie);
 		} catch (error) {
 			console.log("Error fetch data", error);
