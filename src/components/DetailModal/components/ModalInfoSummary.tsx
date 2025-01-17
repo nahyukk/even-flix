@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { MediaType, Movie, Series } from "../Model/VideoDetail";
-import { Cast } from "../Model/Credit";
-import { Keyword } from "../Model/Keyword";
+import { MediaType, Movie, Series } from "../../../models/Media";
+import { Cast } from "../../../models/Credit";
+import { Keyword } from "../../../models/Keyword";
 import {
 	convertMinutesToHoursAndMinutes,
 	convertReleaseDate,

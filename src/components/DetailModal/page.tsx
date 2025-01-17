@@ -1,11 +1,4 @@
-import React, {
-	Dispatch,
-	FC,
-	SetStateAction,
-	useEffect,
-	useRef,
-	useState,
-} from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import useOnClickOutside from "../../hooks/useOnclickOutside";
 import ModalHeader from "./components/ModalHeader";
 import ModalPoster from "./components/ModalPoster";
@@ -19,48 +12,53 @@ import {
 	Movie,
 	Season,
 	Series,
-} from "./Model/VideoDetail";
+} from "../../models/Media";
 import ModalInfoDetail from "./components/ModalInfoDetail";
-import { Credit, mapCredit } from "./Model/Credit";
-import { Keywords, mapKeywords } from "./Model/Keyword";
+import { Credit, mapCredit } from "../../models/Credit";
+import { Keywords, mapKeywords } from "../../models/Keyword";
 import ModalEpisodes from "./components/ModalEpisodes";
-import { Episodes, mapEpisodes } from "./Model/Episodes";
-import { Recommend, mapRecommend } from "./Model/Recommend";
+import { Episodes, mapEpisodes } from "../../models/Episodes";
+import { Recommend, mapRecommend } from "../../models/Recommend";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "../../api/axios";
 
 interface DetailModalProps {
-	// id: int,
 	mediaType: MediaType;
-	setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
+const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 	const ref = useRef<HTMLDivElement | null>(null);
+	const navigate = useNavigate();
+	const { id } = useParams<{ id: string }>();
+
 	const [video, setVideo] = useState<Movie | Series | null>(null);
 	const [episodes, setEpisodes] = useState<Episodes | null>(null);
 	const [credit, setCredit] = useState<Credit | null>(null);
 	const [keyword, setKeyword] = useState<Keywords | null>(null);
 	const [recommends, setRecommends] = useState<Recommend[]>([]);
 
-	useOnClickOutside({ ref: ref, handler: () => setIsModalOpen(false) });
+	useOnClickOutside({ ref: ref, handler: () => navigate(-1) });
 
 	useEffect(() => {
-		console.log("open");
+		if (!id) {
+			throw new Error("ID is Missing!");
+		}
 		fetchCredit();
 		fetchKeyword();
 		fetchRecommend();
 		if (mediaType === MediaType.MOVIE) {
-			fetchMovieJSON();
+			fetchMovieJSON(id);
 		} else if (mediaType === MediaType.TV) {
 			fetchTVJSON();
 			fetchEpisodes();
 		}
 	}, []);
 
-	const fetchMovieJSON = async () => {
+	const fetchMovieJSON = async (id: string) => {
 		try {
-			const response = await fetch("../json/movie.json");
-			const data = await response.json();
-			const mappedMovie = mapMovie(data);
+			const request = await axios.get(`/movie/${id}`);
+			const mappedMovie = mapMovie(request.data);
+			console.log(mappedMovie);
 			setVideo(mappedMovie);
 		} catch (error) {
 			console.log("Error fetch data", error);
@@ -135,7 +133,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType, setIsModalOpen }) => {
 						className="modal relative bg-neutral-900 w-full max-w-6xl mt-8 mx-2 rounded-lg overflow-auto"
 						ref={ref}
 					>
-						<ModalHeader setIsModalOpen={setIsModalOpen} />
+						<ModalHeader />
 						<ModalPoster video={video}>
 							<ModalPosterButtons />
 						</ModalPoster>

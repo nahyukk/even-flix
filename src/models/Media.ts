@@ -3,7 +3,7 @@ export enum MediaType {
 	TV = "tv",
 }
 
-export interface BaseMedia {
+export interface Media {
 	type: MediaType;
 	id: number;
 	title: string; // 제목
@@ -11,17 +11,18 @@ export interface BaseMedia {
 	overview: string; // 간단 설명
 	genres: Genre[]; // 장르
 	releaseDate: string; // 개봉일
-}
-
-export interface Movie extends BaseMedia {
-	runtime: number; // 상영시간
-	imdbID: string;
 	posterPath: string; // 포스터 이미지
+	originCountry: string[];
 	tagline: string; // ?
 	adult: boolean; // ?
 }
 
-export interface Series extends BaseMedia {
+export interface Movie extends Media {
+	runtime: number; // 상영시간
+	imdbID: string;
+}
+
+export interface Series extends Media {
 	createdBy: CreatedBy[];
 	numberOfEpisodes: number; // 에피소드 갯수
 	numberOfSeasons: number; // 시즌 갯수
@@ -64,6 +65,7 @@ export const mapMovie = (json: any): Movie => ({
 	posterPath: json.poster_path,
 	tagline: json.tagline,
 	adult: json.adult,
+	originCountry: json.origin_country,
 });
 
 export const mapTV = (json: any): Series => ({
@@ -72,6 +74,7 @@ export const mapTV = (json: any): Series => ({
 	title: json.name,
 	backdropPath: json.backdrop_path,
 	overview: json.overview,
+	posterPath: json.poster_path,
 	genres: json.genres.map((genre: any) => ({
 		id: genre.id,
 		name: genre.name,
@@ -93,4 +96,7 @@ export const mapTV = (json: any): Series => ({
 		overview: season.overview,
 		posterPath: season.poster_path,
 	})),
+	originCountry: json.origin_country,
+	tagline: json.tagline,
+	adult: json.adult,
 });

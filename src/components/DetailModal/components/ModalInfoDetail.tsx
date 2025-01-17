@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { Movie, Series } from "../Model/VideoDetail";
-import { Credit, Department } from "../Model/Credit";
-import { Keyword } from "../Model/Keyword";
+import { Movie, Series } from "../../../models/Media";
+import { Credit, Department } from "../../../models/Credit";
+import { Keyword } from "../../../models/Keyword";
 
 interface ModalInfoDetailProps {
 	video: Movie | Series;
@@ -15,7 +15,7 @@ const ModalInfoDetail: FC<ModalInfoDetailProps> = ({
 	keywords,
 }) => {
 	return (
-		<div className="flex flex-col gap-y-1 px-12 py-6">
+		<div className="flex flex-col gap-y-1 px-12 pt-6 pb-12">
 			<p className="text-xl text-white py-2">{`${video.title} 상세 정보`}</p>
 			<p className="text-sm text-gray-500">
 				감독:{" "}
