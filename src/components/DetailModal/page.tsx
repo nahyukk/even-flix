@@ -15,7 +15,7 @@ import {
 } from "../../models/Media";
 import ModalInfoDetail from "./components/ModalInfoDetail";
 import { Credit, mapCredit } from "../../models/Credit";
-import { Keywords, mapKeywords } from "../../models/Keyword";
+import { Keyword, mapKeywords } from "../../models/Keyword";
 import ModalEpisodes from "./components/ModalEpisodes";
 import { Episodes, mapEpisodes } from "../../models/Episodes";
 import { Recommend, mapRecommend } from "../../models/Recommend";
@@ -34,7 +34,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 	const [video, setVideo] = useState<Movie | Series | null>(null);
 	const [episodes, setEpisodes] = useState<Episodes | null>(null);
 	const [credit, setCredit] = useState<Credit | null>(null);
-	const [keyword, setKeyword] = useState<Keywords | null>(null);
+	const [keywords, setKeywords] = useState<Keyword[]>([]);
 	const [recommends, setRecommends] = useState<Recommend[]>([]);
 
 	useOnClickOutside({ ref: ref, handler: () => navigate(-1) });
@@ -108,7 +108,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 		try {
 			const request = await axios.get(url);
 			const mappedKeywords = mapKeywords(request.data);
-			setKeyword(mappedKeywords);
+			setKeywords(mappedKeywords);
 		} catch (error) {
 			console.log("Error fetch data", error);
 		}
@@ -135,7 +135,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 
 	return (
 		<div className="presenter z-10 absolute min-h-screen">
-			{video && credit && keyword ? (
+			{video && credit && keywords ? (
 				<div className="wrapper-model fixed inset-0 bg-black bg-opacity-70 flex items-start justify-center overflow-auto">
 					<div
 						className="modal relative bg-neutral-900 w-full max-w-5xl mt-8 mx-2 rounded-lg overflow-auto"
@@ -148,7 +148,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 						<ModalInfoSummary
 							video={video}
 							casts={credit.cast}
-							keywords={keyword.keywords}
+							keywords={keywords}
 						/>
 						{episodes && (
 							<ModalEpisodes
@@ -162,7 +162,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 						<ModalInfoDetail
 							video={video}
 							credit={credit}
-							keywords={keyword.keywords}
+							keywords={keywords}
 						/>
 					</div>
 				</div>
