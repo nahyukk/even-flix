@@ -12,7 +12,7 @@ import {
 	Movie,
 	Season,
 	Series,
-} from "../../models/Media";
+} from "../../models/Media";
 import ModalInfoDetail from "./components/ModalInfoDetail";
 import { Credit, mapCredit } from "../../models/Credit";
 import { Keywords, mapKeywords } from "../../models/Keyword";
