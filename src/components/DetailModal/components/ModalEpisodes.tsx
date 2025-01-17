@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { Season } from "../../../models/VideoDetail";
+import { Season } from "../../../models/Media";
 import { Episodes } from "../../../models/Episodes";
 import ModalEpisode from "./ModalEpisode";
 import ModalDropdown from "./ModalDropdown";

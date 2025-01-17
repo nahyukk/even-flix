@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { MediaType, Movie, Series } from "../../../models/VideoDetail";
+import { MediaType, Movie, Series } from "../../../models/Media";
 import { Cast } from "../../../models/Credit";
 import { Keyword } from "../../../models/Keyword";
 import {

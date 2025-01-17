@@ -12,7 +12,7 @@ import {
 	Movie,
 	Season,
 	Series,
-} from "../../models/VideoDetail";
+} from "../../models/Media";
 import ModalInfoDetail from "./components/ModalInfoDetail";
 import { Credit, mapCredit } from "../../models/Credit";
 import { Keywords, mapKeywords } from "../../models/Keyword";
@@ -58,6 +58,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 		try {
 			const request = await axios.get(`/movie/${id}`);
 			const mappedMovie = mapMovie(request.data);
+			console.log(mappedMovie);
 			setVideo(mappedMovie);
 		} catch (error) {
 			console.log("Error fetch data", error);
