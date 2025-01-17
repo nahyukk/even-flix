@@ -40,19 +40,6 @@ function App() {
 					/>
 				</Route>
 			</Routes>
-
-			{/* {background && (
-				<Routes>
-					<Route
-						path="movie/:id"
-						element={<DetailModal mediaType={MediaType.MOVIE} />}
-					/>
-					<Route
-						path="series/:id"
-						element={<DetailModal mediaType={MediaType.TV} />}
-					/>
-				</Routes>
-			)} */}
 		</div>
 	);
 }
