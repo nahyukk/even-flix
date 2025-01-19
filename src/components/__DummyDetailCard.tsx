@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFavorite } from "../context/FavoriteContext";
 
 interface DummyDetailCardProps {
   id: number;
@@ -12,6 +13,7 @@ interface DummyDetailCardProps {
 }
 
 const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
+  id,
   backdrop_path,
   style,
   isActive,
@@ -20,6 +22,8 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
   onClick,
 }) => {
   const [visible, setVisible] = useState(false);
+  const { addFavorite } = useFavorite();
+
   useEffect(() => {
     // id(backdrop_path) 변경 시 즉시 숨김
     setVisible(false);
@@ -41,7 +45,11 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
   const handleFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     console.log("Favorite button clicked!");
-    // 기능 추가 예정
+
+    addFavorite({
+      id,
+      backdrop_path,
+    });
   };
 
   return (
