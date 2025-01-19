@@ -3,6 +3,23 @@ import React from 'react'
 const SubHeader = () => {
     return (
         <div className='sub__header__main fixed top-[70px] w-full h-[68px] z-50 bg-[rgb(20,20,20)]'>
+            <style>
+                {`
+                .dropdownscroll::-webkit-scrollbar {
+                    width: 10px;
+                    background-color: #333;
+                }
+                
+                .dropdownscroll::-webkit-scrollbar-thumb {
+                    width: 6px;
+                    background-color: grey;
+                }
+                    
+                .dropdownscroll::-webkit-scrollbar-corner {
+                    background-color: #333;
+                }
+                `}
+            </style>
             <div>
                 <div className='flex h-[68px] px-[4%] items-center'>
                     <div className='flex flex-grow flex-wrap justify-between items-center'>
@@ -31,7 +48,7 @@ const SubHeader = () => {
                                             <span className='arrow absolute border-t-[5px] border-l-[5px] border-r-[5px] border-b-0 border-solid border-t-white border-l-transparent border-r-transparent top-[50%] right-[10px] cursor-pointer'></span>
                                         </div>
                                         {/* 언어 선택 드롭박스 */}
-                                        <div className='absolute left-0 top-[2.5rem] w-full max-h-[75vh] leading-[21px] bg-[rgba(0,0,0,0.9)] border border-[hsla(0,0%,100%,0.15)] text-white whitespace-nowrap z-50 overflow-x-hidden opacity-100 duration-150'>
+                                        <div className='dropdownscroll absolute left-0 top-[2.5rem] w-full max-h-[75vh] leading-[21px] bg-[rgba(0,0,0,0.9)] border border-[hsla(0,0%,100%,0.15)] text-white whitespace-nowrap z-50 overflow-x-hidden opacity-100 duration-150'>
                                             <ul className='py-[5px] h-auto'>
                                                 <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>인도네시아어</a></li>
                                                 <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>말레이어</a></li>
