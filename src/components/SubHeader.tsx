@@ -1,6 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 const SubHeader = () => {
+    const [viewModeOpen, setViewModeOpen] = useState(false);
+    const [selectedViewMode, setSelectedViewMode] = useState('원어');
+
+    const toggleDropdown = (dropdown: string) => {
+        if (dropdown === 'viewMode') setViewModeOpen(!viewModeOpen);
+    };
+
+    const handleSelection = (dropdown: string, value: string) => {
+        if (dropdown === 'viewMode') setSelectedViewMode(value);
+        setViewModeOpen(false);
+    };
+
     return (
         <div className='sub__header__main fixed top-[70px] w-full h-[68px] z-[1000] bg-[rgb(20,20,20)]'>
             <style>
@@ -29,17 +41,19 @@ const SubHeader = () => {
                             <div className='flex items-center my-[10px]'>
                                 <div className='Dropdown inline-block mr-[10px] align-top'>
                                     <div className='inline-block text-left relative'>
-                                        <div className='inline-block relative w-full bg-black border border-[hsla(0,0%,100%,0.9)] h-[1.5rem] tracking-[1px] leading-[1.5rem] pl-[10px] pr-[50px] cursor-pointer hover:bg-[hsla(0,0%,100%,0.1)]'>원어
+                                        <div onClick={() => toggleDropdown('viewMode')} className='inline-block relative w-full bg-black border border-[hsla(0,0%,100%,0.9)] h-[1.5rem] tracking-[1px] leading-[1.5rem] pl-[10px] pr-[50px] cursor-pointer hover:bg-[hsla(0,0%,100%,0.1)]'>{selectedViewMode}
                                             <span className='arrow absolute border-t-[5px] border-l-[5px] border-r-[5px] border-b-0 border-solid border-t-white border-l-transparent border-r-transparent top-[50%] right-[10px] cursor-pointer'></span>
                                         </div>
                                         {/* 시청 방식 드롭박스 */}
-                                        <div className='absolute left-0 w-full leading-[21px] bg-[rgba(0,0,0,0.9)] border border-[hsla(0,0%,100%,0.15)] text-white whitespace-nowrap z-50 overflow-x-hidden opacity-100 duration-150'>
-                                            <ul className='py-[5px]'>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>원어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>더빙</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>자막</a></li>
-                                            </ul>
-                                        </div>
+                                        {viewModeOpen && (
+                                            <div className='absolute left-0 w-full leading-[21px] bg-[rgba(0,0,0,0.9)] border border-[hsla(0,0%,100%,0.15)] text-white whitespace-nowrap z-50 overflow-x-hidden opacity-100 duration-150'>
+                                                <ul className='py-[5px]'>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('viewMode', '원어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>원어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('viewMode', '더빙')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>더빙</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('viewMode', '자막')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>자막</a></li>
+                                                </ul>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                                 <div className='Dropdown inline-block mr-[10px] align-top'>
