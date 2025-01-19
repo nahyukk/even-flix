@@ -16,11 +16,11 @@ const SubHeader = () => {
                                             <span className='arrow absolute border-t-[5px] border-l-[5px] border-r-[5px] border-b-0 border-solid border-t-white border-l-transparent border-r-transparent top-[50%] right-[10px] cursor-pointer'></span>
                                         </div>
                                         {/* 원어, 자막, 더빙 드롭박스 */}
-                                        <div>
-                                            <ul>
-                                                <li><a href='#'>원어</a></li>
-                                                <li><a href='#'>더빙</a></li>
-                                                <li><a href='#'>자막</a></li>
+                                        <div className='absolute left-0 top-[2.5rem] w-full leading-[21px] bg-[rgba(0,0,0,0.9)] border border-[hsla(0,0%,100%,0.15)] text-white whitespace-nowrap z-50 overflow-x-hidden opacity-100 duration-150'>
+                                            <ul className='py-[5px]'>
+                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>원어</a></li>
+                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>더빙</a></li>
+                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>자막</a></li>
                                             </ul>
                                         </div>
                                     </div>
