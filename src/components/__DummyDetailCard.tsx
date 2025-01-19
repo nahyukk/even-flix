@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { MediaType } from "../models/Media";
 
 interface DummyDetailCardProps {
+  type: MediaType;
   id: number;
   backdrop_path: string;
   style: React.CSSProperties;
@@ -12,6 +14,7 @@ interface DummyDetailCardProps {
 }
 
 const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
+  type,
   backdrop_path,
   style,
   isActive,
