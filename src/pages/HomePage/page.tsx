@@ -4,20 +4,20 @@ import requests from "../../api/requests";
 import CardList from "../../components/CardList";
 import instance from "../../api/axios";
 import PosterList from "../../components/PosterList";
+import { MediaType } from "../../models/Media";
 
 interface HomeMedia {
-	id: number;
-	title: string;
-	backdrop_path: string;
-	poster_path: string;
-	origin_country: string[];
+  type: MediaType;
+  id: number;
+  title: string;
+  backdrop_path: string;
+  poster_path: string;
+  origin_country: string[];
 }
 
 const HomePage: React.FC = () => {
   const [forYou, setForYou] = useState<HomeMedia[]>([]);
-  const [todayTop10SeriesKR, setTodayTop10SeriesKR] = useState<HomeMedia[]>(
-    []
-  );
+  const [todayTop10SeriesKR, setTodayTop10SeriesKR] = useState<HomeMedia[]>([]);
   const [realitySeries, setRealitySeries] = useState<HomeMedia[]>([]);
   const [topRatedSeries, setTopRatedSeries] = useState<HomeMedia[]>([]);
   const [englishContents, setEnglishContents] = useState<HomeMedia[]>([]);
@@ -25,9 +25,7 @@ const HomePage: React.FC = () => {
   const [koreanSeries, setKoreanSeries] = useState<HomeMedia[]>([]);
   const [popularMovies, setPopularMovies] = useState<HomeMedia[]>([]);
   const [nowPlayingMovies, setNowPlayingMovies] = useState<HomeMedia[]>([]);
-  const [sFAndFantasySeries, setSFAndFantasySeries] = useState<HomeMedia[]>(
-    []
-  );
+  const [sFAndFantasySeries, setSFAndFantasySeries] = useState<HomeMedia[]>([]);
 
   // fetchDataHome 컴포넌트는 fetchData로 따로 컴포넌트화 시켜서 재사용할 수 있지만
   // 각 page에서 개인 api 연결 공부를 위해 page에 넣음
@@ -36,7 +34,7 @@ const HomePage: React.FC = () => {
       const response = await instance.get(url);
       const results = response.data.results;
 
-			// backdrop_path가 없는 부분 filtering
+      // backdrop_path가 없는 부분 filtering
       const filteredResults = results.filter(
         (item: any) => item.backdrop_path !== null
       );
@@ -207,13 +205,17 @@ const HomePage: React.FC = () => {
           cardProps={forYou.map((item) => ({
             id: item.id,
             backdrop_path: `https://image.tmdb.org/t/p/w500${item.backdrop_path}`,
+            type: MediaType.TV,
           }))}
         />
         <PosterList
           title="오늘 대한민국의 TOP 10 시리즈"
-          posterProps={todayTop10SeriesKR.map((item) => ({
+          posterProps={todayTop10SeriesKR.map((item, index) => ({
             id: item.id,
             poster_path: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+            backdrop_path: `https://image.tmdb.org/t/p/w500${item.backdrop_path}`,
+            type: MediaType.TV,
+            rank: index + 1,
           }))}
         />
         <CardList
@@ -221,6 +223,7 @@ const HomePage: React.FC = () => {
           cardProps={realitySeries.map((item) => ({
             id: item.id,
             backdrop_path: `https://image.tmdb.org/t/p/w500${item.backdrop_path}`,
+            type: MediaType.TV,
           }))}
         />
         <CardList
@@ -228,6 +231,7 @@ const HomePage: React.FC = () => {
           cardProps={topRatedSeries.map((item) => ({
             id: item.id,
             backdrop_path: `https://image.tmdb.org/t/p/w500${item.backdrop_path}`,
+            type: MediaType.TV,
           }))}
         />
         <CardList
@@ -235,6 +239,7 @@ const HomePage: React.FC = () => {
           cardProps={englishContents.map((item) => ({
             id: item.id,
             backdrop_path: `https://image.tmdb.org/t/p/w500${item.backdrop_path}`,
+            type: MediaType.TV,
           }))}
         />
         <CardList
@@ -242,6 +247,7 @@ const HomePage: React.FC = () => {
           cardProps={uSMovies.map((item) => ({
             id: item.id,
             backdrop_path: `https://image.tmdb.org/t/p/w500${item.backdrop_path}`,
+            type: MediaType.MOVIE,
           }))}
         />
 
@@ -250,13 +256,17 @@ const HomePage: React.FC = () => {
           cardProps={koreanSeries.map((item) => ({
             id: item.id,
             backdrop_path: `https://image.tmdb.org/t/p/w500${item.backdrop_path}`,
+            type: MediaType.TV,
           }))}
         />
         <PosterList
           title="오늘 전세계의 TOP 10 영화"
-          posterProps={popularMovies.map((item) => ({
+          posterProps={popularMovies.map((item, index) => ({
             id: item.id,
             poster_path: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+            backdrop_path: `https://image.tmdb.org/t/p/w500${item.backdrop_path}`,
+            type: MediaType.MOVIE,
+            rank: index + 1,
           }))}
         />
         <CardList
@@ -264,6 +274,7 @@ const HomePage: React.FC = () => {
           cardProps={nowPlayingMovies.map((item) => ({
             id: item.id,
             backdrop_path: `https://image.tmdb.org/t/p/w500${item.backdrop_path}`,
+            type: MediaType.MOVIE,
           }))}
         />
         <CardList
@@ -271,6 +282,7 @@ const HomePage: React.FC = () => {
           cardProps={sFAndFantasySeries.map((item) => ({
             id: item.id,
             backdrop_path: `https://image.tmdb.org/t/p/w500${item.backdrop_path}`,
+            type: MediaType.TV,
           }))}
         />
       </div>
