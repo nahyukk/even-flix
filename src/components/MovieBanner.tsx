@@ -25,8 +25,13 @@ export default function MovieBanner() {
 
     useEffect(() => {
         fetchData();
-        
+        fetchGenres();
     }, []);
+
+    const fetchGenres = async () => {
+        const { data } = await axios.get(requests.fetchGenres)
+        setgenres(data.genres || []);
+    };
 
     const fetchData = async () => {
         const request = await axios.get(requests.fetchMovies);
