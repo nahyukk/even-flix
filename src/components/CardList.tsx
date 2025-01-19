@@ -131,13 +131,14 @@ const CardList: React.FC<CardListProps> = ({ title, cardProps }) => {
                 }
               }}
             >
-              <Card id={item.id} backdrop_path={item.backdrop_path} />
+              <Card id={item.id} backdrop_path={item.backdrop_path} type={item.type}/>
             </SwiperSlide>
           ))}
         </Swiper>
         {/* 디테일 카드 호버 */}
         {hoveredItem && hoverPosition && (
           <DummyDetailCard
+						type={hoveredItem.type}
             id={hoveredItem.id}
             backdrop_path={hoveredItem.backdrop_path}
             style={{
