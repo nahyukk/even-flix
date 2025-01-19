@@ -3,14 +3,19 @@ import React, { useState } from 'react';
 const SubHeader = () => {
     const [viewModeOpen, setViewModeOpen] = useState(false);
     const [selectedViewMode, setSelectedViewMode] = useState('원어');
+    const [langListOpen, setLangListOpen] = useState(false);
+    const [selectedLanguage, setSelectedLanguage] = useState('언어 선택');
 
     const toggleDropdown = (dropdown: string) => {
         if (dropdown === 'viewMode') setViewModeOpen(!viewModeOpen);
+        if (dropdown === 'language') setLangListOpen(!langListOpen);
     };
 
     const handleSelection = (dropdown: string, value: string) => {
         if (dropdown === 'viewMode') setSelectedViewMode(value);
+        if (dropdown === 'language') setSelectedLanguage(value);
         setViewModeOpen(false);
+        setLangListOpen(false);
     };
 
     return (
@@ -58,39 +63,41 @@ const SubHeader = () => {
                                 </div>
                                 <div className='Dropdown inline-block mr-[10px] align-top'>
                                     <div className='inline-block text-left relative min-w-[240px]'>
-                                        <div className='inline-block relative w-full bg-black border border-[hsla(0,0%,100%,0.9)] h-[1.5rem] tracking-[1px] leading-[1.5rem] pl-[10px] pr-[50px] cursor-pointer hover:bg-[hsla(0,0%,100%,0.1)]'>영어
+                                        <div onClick={() => toggleDropdown('language')} className='inline-block relative w-full bg-black border border-[hsla(0,0%,100%,0.9)] h-[1.5rem] tracking-[1px] leading-[1.5rem] pl-[10px] pr-[50px] cursor-pointer hover:bg-[hsla(0,0%,100%,0.1)]'>{selectedLanguage}
                                             <span className='arrow absolute border-t-[5px] border-l-[5px] border-r-[5px] border-b-0 border-solid border-t-white border-l-transparent border-r-transparent top-[50%] right-[10px] cursor-pointer'></span>
                                         </div>
                                         {/* 언어 선택 드롭박스 */}
-                                        <div className='dropdownscroll absolute left-0 w-full max-h-[75vh] leading-[21px] bg-[rgba(0,0,0,0.9)] border border-[hsla(0,0%,100%,0.15)] text-white whitespace-nowrap z-50 overflow-x-hidden opacity-100 duration-150'>
-                                            <ul className='py-[5px] h-auto'>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>인도네시아어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>말레이어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>터키어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>영어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>일본어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>스페인어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>프랑스어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>힌디어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>한국어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>독일어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>북경어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>이탈리아어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>포르투갈어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>광둥어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>네덜란드어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>필리핀어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>폴란드어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>스웨덴어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>아랍어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>러시아어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>덴마크어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>태국어</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>플랑드르</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>노르웨어이</a></li>
-                                                <li className='leading-[24px] group'><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>베트남어</a></li>
-                                            </ul>
-                                        </div>
+                                        {langListOpen && (
+                                            <div className='dropdownscroll absolute left-0 w-full max-h-[75vh] leading-[21px] bg-[rgba(0,0,0,0.9)] border border-[hsla(0,0%,100%,0.15)] text-white whitespace-nowrap z-50 overflow-x-hidden opacity-100 duration-150'>
+                                                <ul className='py-[5px] h-auto'>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '인도네시아어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>인도네시아어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '말레이어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>말레이어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '터키어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>터키어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '영어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>영어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '일본어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>일본어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '스페인어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>스페인어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '프랑스어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>프랑스어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '힌디어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>힌디어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '한국어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>한국어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '독일어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>독일어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '북경어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>북경어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '이탈리아어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>이탈리아어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '포르투갈어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>포르투갈어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '광둥어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>광둥어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '네덜란드어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>네덜란드어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '필리핀어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>필리핀어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '폴란드어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>폴란드어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '스웨덴어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>스웨덴어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '아랍어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>아랍어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '러시아어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>러시아어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '덴마크어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>덴마크어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '태국어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>태국어</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '플랑드르')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>플랑드르</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '노르웨이어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>노르웨어이</a></li>
+                                                    <li className='leading-[24px] group' onClick={() => handleSelection('language', '베트남어')}><a href='#' className='inline-block w-full py-[1px] pl-[10px] pr-[20px] group-hover:underline'>베트남어</a></li>
+                                                </ul>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
