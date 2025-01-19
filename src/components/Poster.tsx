@@ -1,10 +1,11 @@
 import React from "react";
-import { Rank } from "../models/Media";
+import { MediaType, Rank } from "../models/Media";
 
 export interface PosterProps extends Rank {
   id: number;
   poster_path: string;
   backdrop_path: string;
+	type: MediaType;
 }
 
 const Poster: React.FC<PosterProps> = ({

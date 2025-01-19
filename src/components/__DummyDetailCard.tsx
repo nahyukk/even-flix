@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFavorite } from "../context/FavoriteContext";
+import { MediaType } from "../models/Media";
 
 interface DummyDetailCardProps {
+  type: MediaType;
   id: number;
   backdrop_path: string;
   style: React.CSSProperties;
@@ -14,6 +16,7 @@ interface DummyDetailCardProps {
 
 const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
   id,
+  type,
   backdrop_path,
   style,
   isActive,

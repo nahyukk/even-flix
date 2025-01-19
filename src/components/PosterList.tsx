@@ -9,17 +9,11 @@ import { Swiper as SwiperType } from "swiper";
 import "../styles/swiper.css";
 import { CardProps } from "./Card";
 import DummyDetailCard from "./__DummyDetailCard";
-import Poster from "./Poster";
+import Poster, { PosterProps } from "./Poster";
 
 interface HoverPosition {
   top: number;
   left: number;
-}
-
-export interface PosterProps {
-  id: number;
-  poster_path: string;
-  backdrop_path: string;
 }
 
 interface PosterListProps {
@@ -134,6 +128,7 @@ const PosterList: React.FC<PosterListProps> = ({ title, posterProps }) => {
             >
               <Poster
                 id={item.id}
+								type={item.type}
                 poster_path={item.poster_path}
                 backdrop_path={item.backdrop_path}
                 rank={index + 1}
@@ -144,6 +139,7 @@ const PosterList: React.FC<PosterListProps> = ({ title, posterProps }) => {
         {/* 디테일 카드 호버 */}
         {hoveredItem && hoverPosition && (
           <DummyDetailCard
+						type={hoveredItem.type}
             id={hoveredItem.id}
             backdrop_path={hoveredItem.backdrop_path}
             style={{

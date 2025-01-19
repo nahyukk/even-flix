@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { MediaType } from "../models/Media";
 
 export interface CardProps {
 	id: number;
 	backdrop_path: string;
+	type: MediaType;
 }
 
 
