@@ -42,7 +42,6 @@ export const FavoriteProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // 로컬 스토리지에 저장
   useEffect(() => {
-    console.log("찜 목록 업데이트 되고 있나?: ", favorites);
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
@@ -54,7 +53,6 @@ export const FavoriteProvider: React.FC<{ children: React.ReactNode }> = ({
       }
       const updatedFavorites = [...prev, item];
 
-      console.log("찜에 들어갔나?: ", updatedFavorites);
       return updatedFavorites;
     });
   };
