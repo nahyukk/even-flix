@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface FavoriteItem {
   id: number;
@@ -25,7 +25,25 @@ export const useFavorite = () => {
 export const FavoriteProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
+	// 상태 변경 해주는 것 + 원래 있던 거 불러오기
+  const [favorites, setFavorites] = useState<FavoriteItem[]>(() => {
+    const storedFavorites = localStorage.getItem("favorites");
+    if (storedFavorites) {
+      try {
+        return JSON.parse(storedFavorites);
+      } catch (e) {
+        console.error("로컬 스토리지에서 찜 목록을 불러오지 못했어요.", e);
+        return [];
+      }
+    }
+    return [];
+  });
+
+  // 로컬 스토리지에 저장
+  useEffect(() => {
+    console.log("찜 목록 업데이트 되고 있나?: ", favorites);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   // 아이템 추가
   const addFavorite = (item: FavoriteItem) => {
@@ -33,19 +51,17 @@ export const FavoriteProvider: React.FC<{ children: React.ReactNode }> = ({
       if (prev.some((fav) => fav.id === item.id)) {
         return prev;
       }
-			const updatedFavorites = [...prev, item];
+      const updatedFavorites = [...prev, item];
 
-      console.log("찜에 들어갔나?: ", updatedFavorites); // 업데이트된 favorites 로그
-    	return updatedFavorites;
+      console.log("찜에 들어갔나?: ", updatedFavorites);
+      return updatedFavorites;
     });
   };
 
-	// 아이템 삭제 추가 부분
+  // 아이템 삭제 추가 부분
 
   return (
-    <FavoriteContext.Provider
-      value={{ favorites, addFavorite }}
-    >
+    <FavoriteContext.Provider value={{ favorites, addFavorite }}>
       {children}
     </FavoriteContext.Provider>
   );
