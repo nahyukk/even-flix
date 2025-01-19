@@ -15,6 +15,14 @@ const SubHeader = () => {
                                         <div className='inline-block relative w-full bg-black border border-[hsla(0,0%,100%,0.9)] h-[1.5rem] tracking-[1px] leading-[1.5rem] pl-[10px] pr-[50px] cursor-pointer hover:bg-[hsla(0,0%,100%,0.1)]'>원어
                                             <span className='arrow absolute border-t-[5px] border-l-[5px] border-r-[5px] border-b-0 border-solid border-t-white border-l-transparent border-r-transparent top-[50%] right-[10px] cursor-pointer'></span>
                                         </div>
+                                        {/* 원어, 자막, 더빙 드롭박스 */}
+                                        <div>
+                                            <ul>
+                                                <li><a href='#'>원어</a></li>
+                                                <li><a href='#'>더빙</a></li>
+                                                <li><a href='#'>자막</a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='Dropdown inline-block mr-[10px] align-top'>
