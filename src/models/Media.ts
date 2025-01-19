@@ -105,3 +105,26 @@ export const mapTV = (json: any): Series => ({
 	tagline: json.tagline,
 	adult: json.adult,
 });
+
+// TODO: Search 합치기 전 제거 필요
+export const mapMediaList = (json: any): Media[] => {
+	return json.results.map((result: any) => ({
+		type: result.type
+			? result.type === "movie"
+				? MediaType.MOVIE
+				: MediaType.TV
+			: result.number_of_episodes
+			? MediaType.TV
+			: MediaType.MOVIE,
+		id: result.id,
+		title: result.itlte,
+		backdropPath: result.backdrop_path,
+		overview: result.overview,
+		genres: [],
+		releaseDate: result.release_date,
+		posterPath: result.poster_path,
+		tagline: result.tagline,
+		adult: result.adult,
+		originCountry: result.origin_country,
+	}));
+};
