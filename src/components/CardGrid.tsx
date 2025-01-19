@@ -19,9 +19,6 @@ const CardGrid: React.FC<CardGridProps> = ({ cardProps }) => {
   );
 
   const handleCardMouseEnter = (item: CardProps, rect: DOMRect) => {
-    console.log("Card BoundingClientRect:", rect);
-    console.log("scroll:", window.scrollY);
-
     setHoveredItem(item);
     setHoverPosition({
       top: rect.top + window.scrollY,
@@ -29,8 +26,7 @@ const CardGrid: React.FC<CardGridProps> = ({ cardProps }) => {
     });
   };
 
-  const handleDetailMouseEnter = () => {
-  };
+  const handleDetailMouseEnter = () => {};
 
   const handleDetailMouseLeave = () => {
     setHoveredItem(null);
