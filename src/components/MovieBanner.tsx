@@ -57,7 +57,35 @@ export default function MovieBanner() {
                     backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
                 }}
             >
-                
+                <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent z-1">
+                    <div className="absolute h-16 flex items-center px-[4%]">
+                        <span className="text-xl font-medium md:text-4xl">
+                            영화
+                        </span>
+                        <div className="ml-10 block font-sans align-top relative overflow-visible">
+                            <button
+                                onClick={() => setisDropdownOpen(!isDropdownOpen)}
+                                className="w-full border border-white text-base bg-black hover:bg-black/15 flex pl-2.5 pr-2 p-1 relative items-center"
+                            >
+                                장르
+                                <svg
+                                    className="-mr-1 ml-5 h-5 w-5"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.44l3.71-4.21a.75.75 0 111.14.98l-4 4.5a.75.75 0 01-1.14 0l-4-4.5a.75.75 0 01.02-1.06z"
+                                        clipRule="evenodd"
+                                    />
+                                </svg>
+                            </button>
+                            
+                        </div>
+                    </div>
+                </div>
                 <div className="absolute top-64 inset-x-14 space-y-4 text-white">
                     <h1 className="text-4xl font-bold md:text-6xl mb-4">
                         {movie?.title || movie?.original_title}
