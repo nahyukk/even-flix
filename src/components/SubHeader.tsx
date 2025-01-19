@@ -12,128 +12,24 @@ const SubHeader = () => {
                             <div>
                                 <div>
                                     <div>
-                                        <div>
-                                            <div>
-                                                <span></span>
-                                            </div>
-                                            <div>
-                                                <ul>
-                                                    <li>
-                                                        <a></a>
-                                                    </li>
-                                                    <li>
-                                                        <a></a>
-                                                    </li>
-                                                    <li>
-                                                        <a></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                        <div>원어
+                                            <span className='arrow'></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div>
                                     <div>
-                                        <div>
-                                            <span></span>
-                                        </div>
-                                        <div>
-                                            <ul>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                                <li>
-                                                    <a></a>
-                                                </li>
-                                            </ul>
+                                        <div>영어
+                                            <span className='arrow'></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div>
-                                <span></span>
+                                <span>정렬 기준</span>
                                 <div>
-                                    <div>
-                                        <span></span>
-                                    </div>
-                                    <div>
-                                        <ul>
-                                            <li>
-                                                <a></a>
-                                            </li>
-                                            <li>
-                                                <a></a>
-                                            </li>
-                                            <li>
-                                                <a></a>
-                                            </li>
-                                            <li>
-                                                <a></a>
-                                            </li>
-                                        </ul>
+                                    <div>추천 콘텐츠
+                                        <span className='arrow'></span>
                                     </div>
                                 </div>
                             </div>
