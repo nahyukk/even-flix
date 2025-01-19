@@ -25,11 +25,11 @@ const SubHeader = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <div className='float-right text-[14px] text-right'>
                                 <span>정렬 기준</span>
-                                <div>
-                                    <div>
-                                        <span className='arrow'></span>
+                                <div className='inline-block relative min-w-[240px] ml-[10px] text-left'>
+                                    <div className='inline-block w-full bg-black border border-[hsla(0,0%,100%,0.9)] h-[1.5rem] tracking-[1px] leading-[1.5rem] pl-[10px] pr-[50px]'>추천 콘텐츠
+                                        <span className='arrow inline-block sticky border-t-[5px] border-l-[5px] border-r-[5px] border-b-0 border-solid border-t-white border-l-transparent border-r-transparent h-0 w-0 ml-[8px] right-4 cursor-pointer'></span>
                                     </div>
                                 </div>
                             </div>
