@@ -47,7 +47,7 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
   return (
     // 기존 w=256 h=318px
     <div
-      className={`dummy-detail-card w-64 h-80 rounded-md bg-[#181818] text-white shadow-lg overflow-hidden absolute z-10 transition-all duration-500  
+      className={`dummy-detail-card w-64 h-80 rounded-md bg-[#181818] text-white shadow-lg overflow-hidden absolute z-50 transition-all duration-500  
         ${visible ? "opacity-100 scale-100" : "opacity-0 scale-0"}`}
       style={style}
       onMouseEnter={onMouseEnter} // 디테일 카드 유지
