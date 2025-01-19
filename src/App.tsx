@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage/page";
 import DetailModal from "./components/DetailModal/page";
+import OriginalAudio from "./pages/OriginalAudio/page";
 import { MediaType } from "./models/Media";
 
 const Layout = () => {
@@ -38,6 +39,7 @@ function App() {
 						path="tv/:id"
 						element={<DetailModal mediaType={MediaType.TV} />}
 					/>
+					<Route path="browse/original-audio" element={<OriginalAudio />} />
 				</Route>
 			</Routes>
 		</div>
