@@ -42,14 +42,17 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
     navigate("/tv/1408");
   };
 
+  // 찜 목록 추가, 삭제 부분
+  const isFavorite = favorites.some((fav) => fav.id === id);
+
   const handleFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    console.log("Favorite button clicked!");
 
-    addFavorite({
-      id,
-      backdrop_path,
-    });
+    if (isFavorite) {
+      removeFavorite(id);
+    } else {
+      addFavorite({ id, backdrop_path });
+    }
   };
 
   return (
