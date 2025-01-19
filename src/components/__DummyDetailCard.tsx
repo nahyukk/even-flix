@@ -38,6 +38,12 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
     navigate("/tv/1408");
   };
 
+  const handleFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    console.log("Favorite button clicked!");
+    // 기능 추가 예정
+  };
+
   return (
     // 기존 w=256 h=318px
     <div
@@ -59,8 +65,11 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
         />
       </div>
       {/* 원래 h=174px */}
-      <div className="dummy-detail-card-contents w-64 h-44 p-4">
-        <button className="w-6 h-6 flex items-center justify-center rounded-full border-2 border-gray-300 hover:bg-gray-100">
+      <div className="dummy-detail-card-contents w-64 h-44 p-5">
+        <button
+          className="favorite-button w-7 h-7 flex items-center justify-center rounded-full border-2 border-gray-300 hover:border-white z-30"
+          onClick={handleFavoriteClick}
+        >
           <svg
             width="80px"
             height="80px"
