@@ -22,21 +22,20 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
   onClick,
 }) => {
   const [visible, setVisible] = useState(false);
-  const { addFavorite } = useFavorite();
+  const navigate = useNavigate();
+  const { favorites, addFavorite, removeFavorite } = useFavorite();
 
+	// 디테일 카드 호버 부분
   useEffect(() => {
-    // id(backdrop_path) 변경 시 즉시 숨김
     setVisible(false);
 
-    // isActive가 true일 때 약간의 딜레이 후 보이도록 설정
     if (isActive) {
       const timeout = setTimeout(() => setVisible(true), 1000);
       return () => clearTimeout(timeout);
     }
   }, [backdrop_path, isActive]);
 
-  const navigate = useNavigate();
-
+  // 클릭해서 모달 띄우는 부분
   const handleClickCard = () => {
     // navigate("/movie/1241982");
     navigate("/tv/1408");
