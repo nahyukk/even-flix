@@ -131,7 +131,7 @@ export const mapTV = (json: any): Series => ({
 	adult: json.adult,
 });
 
-export const mapSearch = (json: any): Media[] => {
+export const mapMediaList = (json: any): Media[] => {
 	return json.results.map((result: any) => ({
 		type: result.type
 			? result.type === "movie"
@@ -145,7 +145,9 @@ export const mapSearch = (json: any): Media[] => {
 		backdropPath: result.backdrop_path,
 		overview: result.overview,
 		genres: [],
-		releaseDate: result.release_date ? result.release_date : result.last_air_date,
+		releaseDate: result.release_date
+			? result.release_date
+			: result.last_air_date,
 		posterPath: result.poster_path,
 		tagline: result.tagline,
 		adult: result.adult,

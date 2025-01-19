@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import useDebounce from "../../hooks/useDebounce";
 import axios from "../../api/axios";
-import { mapSearch, Media } from "../../models/Media";
+import { mapMediaList, Media } from "../../models/Media";
 import Card from "../../components/Card";
 
 const SearchPage = () => {
@@ -25,7 +25,7 @@ const SearchPage = () => {
 			const request = await axios.get(
 				`/search/multi?include_adult=false&query=${query}`
 			);
-			const mappedResult = mapSearch(request.data);
+			const mappedResult = mapMediaList(request.data);
 			setSearchResults(mappedResult);
 		} catch (error) {
 			console.log("Error: ", error);
