@@ -53,7 +53,7 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
     if (isFavorite) {
       removeFavorite(id);
     } else {
-      addFavorite({ id, backdrop_path });
+      addFavorite({ id, backdrop_path, type });
     }
   };
 

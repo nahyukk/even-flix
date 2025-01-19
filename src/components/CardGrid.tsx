@@ -56,13 +56,18 @@ const CardGrid: React.FC<CardGridProps> = ({ cardProps }) => {
               }
             }}
           >
-            <Card id={item.id} backdrop_path={item.backdrop_path} />
+            <Card
+              id={item.id}
+              backdrop_path={item.backdrop_path}
+              type={item.type}
+            />
           </div>
         ))}
       </div>
       {hoveredItem && hoverPosition && (
         <DummyDetailCard
           id={hoveredItem.id}
+          type={hoveredItem.type}
           backdrop_path={hoveredItem.backdrop_path}
           style={{
             position: "absolute",

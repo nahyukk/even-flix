@@ -1,14 +1,16 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { MediaType } from "../models/Media";
 
 interface FavoriteItem {
   id: number;
+  type: MediaType;
   backdrop_path: string;
 }
 
 interface FavoriteContextProps {
   favorites: FavoriteItem[];
   addFavorite: (item: FavoriteItem) => void;
-	removeFavorite: (id: number) => void;
+  removeFavorite: (id: number) => void;
 }
 
 const FavoriteContext = createContext<FavoriteContextProps | undefined>(
@@ -26,7 +28,7 @@ export const useFavorite = () => {
 export const FavoriteProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-	// 상태 변경 해주는 것 + 원래 있던 거 불러오기
+  // 상태 변경 해주는 것 + 원래 있던 거 불러오기
   const [favorites, setFavorites] = useState<FavoriteItem[]>(() => {
     const storedFavorites = localStorage.getItem("favorites");
     if (storedFavorites) {
@@ -58,12 +60,14 @@ export const FavoriteProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   // 아이템 삭제
-	const removeFavorite = (id: number) => {
+  const removeFavorite = (id: number) => {
     setFavorites((prev) => prev.filter((item) => item.id !== id));
   };
 
   return (
-    <FavoriteContext.Provider value={{ favorites, addFavorite, removeFavorite }}>
+    <FavoriteContext.Provider
+      value={{ favorites, addFavorite, removeFavorite }}
+    >
       {children}
     </FavoriteContext.Provider>
   );
