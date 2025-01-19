@@ -8,6 +8,7 @@ interface FavoriteItem {
 interface FavoriteContextProps {
   favorites: FavoriteItem[];
   addFavorite: (item: FavoriteItem) => void;
+	removeFavorite: (id: number) => void;
 }
 
 const FavoriteContext = createContext<FavoriteContextProps | undefined>(
@@ -58,10 +59,13 @@ export const FavoriteProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
-  // 아이템 삭제 추가 부분
+  // 아이템 삭제
+	const removeFavorite = (id: number) => {
+    setFavorites((prev) => prev.filter((item) => item.id !== id));
+  };
 
   return (
-    <FavoriteContext.Provider value={{ favorites, addFavorite }}>
+    <FavoriteContext.Provider value={{ favorites, addFavorite, removeFavorite }}>
       {children}
     </FavoriteContext.Provider>
   );
