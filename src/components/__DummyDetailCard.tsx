@@ -81,27 +81,47 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
           className="favorite-button w-7 h-7 flex items-center justify-center rounded-full border-2 border-gray-300 hover:border-white z-30"
           onClick={handleFavoriteClick}
         >
-          <svg
-            width="80px"
-            height="80px"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect width="24" height="24" fill="none" />
-            <path
-              d="M12 6V18"
-              stroke="#ffffff"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M6 12H18"
-              stroke="#ffffff"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          {isFavorite ? (
+            <svg
+              className="checked-button"
+              width="80px"
+              height="80px"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5 12L10 17L20 7"
+                stroke="#ffffff"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          ) : (
+            <svg
+              className="plus-button"
+              width="80px"
+              height="80px"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="24" height="24" fill="none" />
+              <path
+                d="M12 6V18"
+                stroke="#ffffff"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M6 12H18"
+                stroke="#ffffff"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          )}
         </button>
       </div>
     </div>
