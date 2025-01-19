@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const SubHeader = () => {
     const [viewModeOpen, setViewModeOpen] = useState(false);
@@ -22,6 +22,23 @@ const SubHeader = () => {
         setLangListOpen(false);
         setSortCriteriaOpen(false);
     };
+
+    // 드롭박스 외 클릭 시 리스트 전부 닫기 처리
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            const target = event.target as HTMLElement;
+            if (!target.closest('.Dropdown')) {
+                setViewModeOpen(false);
+                setLangListOpen(false);
+                setSortCriteriaOpen(false);
+            }
+        };
+
+        document.addEventListener('click', handleClickOutside);
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
 
     return (
         <div className='sub__header__main fixed top-[70px] w-full h-[68px] z-[1000] bg-[rgb(20,20,20)]'>
@@ -106,7 +123,7 @@ const SubHeader = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='float-right text-[14px] text-right'>
+                            <div className='Dropdown float-right text-[14px] text-right'>
                                 <span>정렬 기준</span>
                                 <div className='inline-block relative min-w-[240px] ml-[10px] text-left'>
                                     <div onClick={() => toggleDropdown('sortCriteria')} className='inline-block w-full bg-black border border-[hsla(0,0%,100%,0.9)] h-[1.5rem] tracking-[1px] leading-[1.5rem] pl-[10px] pr-[50px] cursor-pointer hover:bg-[hsla(0,0%,100%,0.1)]'>{selectedSortCriteria}
