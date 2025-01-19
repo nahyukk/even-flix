@@ -2,7 +2,7 @@ import React from 'react'
 
 const SubHeader = () => {
     return (
-        <div className='sub__header__main fixed top-[70px] w-full h-[68px] z-50 bg-[rgb(20,20,20)]'>
+        <div className='sub__header__main fixed top-[70px] w-full h-[68px] z-[1000] bg-[rgb(20,20,20)]'>
             <style>
                 {`
                 .dropdownscroll::-webkit-scrollbar {
