@@ -42,6 +42,11 @@ function App() {
 							path="browse/genre/34399"
 							element={<MoviePage type={MediaType.MOVIE} />}
 						/>
+						<Route path="browse/original-audio" element={<OriginalAudio />} />
+					</Route>
+				</Routes>
+				{background && (
+					<Routes>
 						<Route
 							path="movie/:id"
 							element={<DetailModal mediaType={MediaType.MOVIE} />}
@@ -50,9 +55,8 @@ function App() {
 							path="tv/:id"
 							element={<DetailModal mediaType={MediaType.TV} />}
 						/>
-            <Route path="browse/original-audio" element={<OriginalAudio />} />
-					</Route>
-				</Routes>
+					</Routes>
+				)}
 			</div>
 		</FavoriteProvider>
 	);
