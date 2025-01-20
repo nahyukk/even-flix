@@ -14,7 +14,6 @@ interface MoviePageProps {
   backdrop_path?: string;
   poster_path?: string;
   origin_country?: string[];
-//   mediaType: MediaType;
 }
 
 const MoviePage: React.FC<MoviePageProps> = ({type}) => {
