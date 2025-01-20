@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import useDebounce from "../../hooks/useDebounce";
 import axios from "../../api/axios";
 import { mapMediaList, Media } from "../../models/Media";
-import Card from "../../components/Card";
+import CardGrid from "../../components/CardGrid";
 
 const SearchPage = () => {
 	const useQuery = () => {
@@ -37,15 +37,13 @@ const SearchPage = () => {
 		<div>
 			{searchResults.length > 0 ? (
 				<div className="px-12 py-8">
-					<div className="grid gap-x-2 gap-y-8 grid-cols-2 sm:grid-cols-3 md:grid-col-3 xl:grid-cols-5">
-						{searchResults.map((result) => (
-							<Card
-								key={result.id}
-								id={result.id}
-								backdropPath={`https://image.tmdb.org/t/p/original/${result.backdropPath}`}
-							/>
-						))}
-					</div>
+					<CardGrid
+						cardProps={searchResults.map((result) => ({
+							id: result.id,
+							backdrop_path: `https://image.tmdb.org/t/p/original/${result.backdropPath}`,
+							type: result.type,
+						}))}
+					/>
 				</div>
 			) : (
 				<div className="flex flex-col pt-12 pb-96 justify-center items-center text-xs">
