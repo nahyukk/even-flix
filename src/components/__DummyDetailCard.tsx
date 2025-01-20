@@ -44,13 +44,11 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
 		switch (type) {
 			case MediaType.MOVIE:
 				navigate(`/movie/${id}`, {
-					replace: true,
 					state: { backgroundLocation: location },
 				});
 				break;
 			case MediaType.TV:
 				navigate(`/tv/${id}`, {
-					replace: true,
 					state: { backgroundLocation: location },
 				});
 				break;
