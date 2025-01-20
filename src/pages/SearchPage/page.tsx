@@ -32,7 +32,6 @@ const SearchPage = () => {
 		}
 	};
 
-	//
 	return (
 		<div>
 			{searchResults.length > 0 ? (
