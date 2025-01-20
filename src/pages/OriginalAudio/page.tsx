@@ -2,22 +2,27 @@ import React, { useState, useEffect } from 'react';
 import axios from '../../api/axios';
 import requests from '../../api/requests';
 import SubHeader from '../../components/SubHeader';
+import CardGrid from '../../components/CardGrid';
+import { Media, MediaType } from '../../models/Media'; // MediaType 추가
 
 interface Movie {
   id: number;
   backdrop_path: string;
   title: string;
+  overview: string;
+  genre_ids: number[];
+  release_date: string;
 }
 
 const OriginalAudio = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [page, setPage] = useState(1); // 현재 페이지
-  const [loading, setLoading] = useState(false); // 로딩 상태
-  const [hasMore, setHasMore] = useState(true); // 더 가져올 데이터 여부
-  const loadedPages = new Set<number>(); // 로드된 페이지 추적
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const loadedPages = new Set<number>();
 
   const fetchMovies = async (currentPage: number) => {
-    if (loading || !hasMore || loadedPages.has(currentPage)) return; // 중복 요청 방지
+    if (loading || !hasMore || loadedPages.has(currentPage)) return;
     setLoading(true);
 
     try {
@@ -26,9 +31,9 @@ const OriginalAudio = () => {
       });
       const newMovies = response.data.results;
 
-      setMovies((prevMovies) => [...prevMovies, ...newMovies]); // 데이터 추가
-      setHasMore(newMovies.length > 0); // 더 이상 데이터가 없으면 종료
-      loadedPages.add(currentPage); // 현재 페이지 기록
+      setMovies((prevMovies) => [...prevMovies, ...newMovies]);
+      setHasMore(newMovies.length > 0);
+      loadedPages.add(currentPage);
     } catch (error) {
       console.error('Failed to fetch movies:', error);
     } finally {
@@ -37,7 +42,7 @@ const OriginalAudio = () => {
   };
 
   useEffect(() => {
-    fetchMovies(1); // 초기 데이터 로드
+    fetchMovies(1);
   }, []);
 
   useEffect(() => {
@@ -56,28 +61,31 @@ const OriginalAudio = () => {
 
   useEffect(() => {
     if (page > 1) {
-      fetchMovies(page); // 무한 스크롤 데이터 로드
+      fetchMovies(page);
     }
   }, [page]);
+
+  // Media 형식으로 데이터 변환
+  const mediaList: Media[] = movies.map((movie) => ({
+    id: movie.id,
+    title: movie.title,
+    type: MediaType.MOVIE, // 열거형 사용
+    backdropPath: `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`,
+    posterPath: `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`,
+    overview: movie.overview,
+    genres: movie.genre_ids.map((id) => ({ id, name: `Genre ${id}` })), // 기본 매핑
+    releaseDate: movie.release_date,
+    originCountry: ['US'], // 기본값
+    tagline: '', // 기본값
+    adult: false, // 기본값
+  }));
 
   return (
     <div>
       <SubHeader />
       <div className="main__view relative min-h-[1000px]">
         <div className="mt-[4.2%] pt-[4rem]">
-          <div className="grid grid-cols-5 gap-4">
-            {/* api 이미지 */}
-            {movies.map((movie) => (
-              <div key={movie.id} className="p-2">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-                  alt={movie.title}
-                  className="rounded-[2px]"
-                />
-                <p className="text-center mt-2">{movie.title}</p>
-              </div>
-            ))}
-          </div>
+          <CardGrid mediaList={mediaList} />
           {loading && <p className="text-center mt-4">Loading more movies...</p>}
         </div>
       </div>
