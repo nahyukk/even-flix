@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFavorite } from "../context/FavoriteContext";
-import { MediaType } from "../models/Media";
+import { Media, MediaType } from "../models/Media";
 
 interface DummyDetailCardProps {
-  type: MediaType;
-  id: number;
-  backdrop_path: string;
+  media: Media;
   style: React.CSSProperties;
   isActive: boolean;
   onMouseEnter?: () => void;
@@ -15,9 +13,7 @@ interface DummyDetailCardProps {
 }
 
 const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
-  id,
-  type,
-  backdrop_path,
+  media,
   style,
   isActive,
   onMouseEnter,
@@ -36,16 +32,16 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
       const timeout = setTimeout(() => setVisible(true), 1000);
       return () => clearTimeout(timeout);
     }
-  }, [backdrop_path, isActive]);
+  }, [media.backdropPath, isActive]);
 
   // 클릭해서 모달 띄우는 부분
   const handleClickCard = () => {
-    switch (type) {
+    switch (media.type) {
       case MediaType.MOVIE:
-        navigate(`/movie/${id}`, { replace: true });
+        navigate(`/movie/${media.id}`, { replace: true });
         break;
       case MediaType.TV:
-        navigate(`/tv/${id}`, { replace: true });
+        navigate(`/tv/${media.id}`, { replace: true });
         break;
       default:
         console.error("Unknown Media type");
@@ -53,15 +49,15 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
   };
 
   // 찜 목록 추가, 삭제 부분
-  const isFavorite = favorites.some((fav) => fav.id === id);
+  const isFavorite = favorites.some((fav) => fav.id === media.id);
 
   const handleFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
     if (isFavorite) {
-      removeFavorite(id);
+      removeFavorite(media.id);
     } else {
-      addFavorite({ id, backdrop_path, type });
+      addFavorite(media);
     }
   };
 
@@ -83,7 +79,7 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
       <div className="dummy-detail-card-backdrop w-full h-auto">
         <img
           className="w-full h-full object-cover"
-          src={backdrop_path}
+          src={media.backdropPath}
           alt=""
         />
       </div>
