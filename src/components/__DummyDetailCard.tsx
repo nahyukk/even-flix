@@ -113,7 +113,7 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
 									stroke="none"
 									stroke-width="1"
 									fill="none"
-									fill-rule="evenodd"
+									fillRule="evenodd"
 								>
 									<g
 										id="Dribbble-Light-Preview"
