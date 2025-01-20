@@ -1,12 +1,14 @@
-import React from "react";
+import React, { FC } from "react";
 
-const ModalPosterButtons = () => {
+interface ModalPosterButtonsProps {
+	favoriteOnClick: () => void;
+}
+
+const ModalPosterButtons: FC<ModalPosterButtonsProps> = ({
+	favoriteOnClick,
+}) => {
 	const handlePlayAction = () => {
 		console.log("tapPlay");
-	};
-
-	const handleMyListAction = () => {
-		console.log("tapMyList");
 	};
 
 	const handleThumbUpAction = () => {
@@ -33,7 +35,7 @@ const ModalPosterButtons = () => {
 				</button>
 				<button
 					className="modal__mylist-button text-white border-gray-400 bg-neutral-900 border-2 rounded-full w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center hover:border-white"
-					onClick={() => handleMyListAction()}
+					onClick={favoriteOnClick}
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
