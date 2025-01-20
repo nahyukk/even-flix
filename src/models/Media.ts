@@ -54,6 +54,31 @@ export interface Season {
 	posterPath: string;
 }
 
+// type이 없는 경우가 있음.
+// 에피소드 키가 있으면 TV로 판단
+export const mapMedia = (json: any): Media => ({
+	type: json.type
+		? json.type === "movie"
+			? MediaType.MOVIE
+			: MediaType.TV
+		: json.release_date
+		? MediaType.TV
+		: MediaType.MOVIE,
+	id: json.id,
+	title: json.title ? json.title : json.name,
+	backdropPath: json.backdrop_path,
+	overview: json.overview,
+	genres: json.genres.map((genre: any) => ({
+		id: genre.id,
+		name: genre.name,
+	})),
+	releaseDate: json.release_date,
+	posterPath: json.poster_path,
+	tagline: json.tagline,
+	adult: json.adult,
+	originCountry: json.origin_country,
+});
+
 export const mapMovie = (json: any): Movie => ({
 	type: MediaType.MOVIE,
 	id: json.id,
@@ -105,3 +130,27 @@ export const mapTV = (json: any): Series => ({
 	tagline: json.tagline,
 	adult: json.adult,
 });
+
+export const mapMediaList = (json: any): Media[] => {
+	return json.results.map((result: any) => ({
+		type: result.type
+			? result.type === "movie"
+				? MediaType.MOVIE
+				: MediaType.TV
+			: result.release_date
+			? MediaType.MOVIE
+			: MediaType.TV,
+		id: result.id,
+		title: result.title ? result.title : result.name,
+		backdropPath: result.backdrop_path,
+		overview: result.overview,
+		genres: [],
+		releaseDate: result.release_date
+			? result.release_date
+			: result.last_air_date,
+		posterPath: result.poster_path,
+		tagline: result.tagline,
+		adult: result.adult,
+		originCountry: result.origin_country,
+	}));
+};
