@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { replace, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useFavorite } from "../context/FavoriteContext";
 import { MediaType } from "../models/Media";
 
