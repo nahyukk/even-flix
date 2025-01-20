@@ -19,7 +19,6 @@ const NewContentsPage = () => {
 		fetchUpComingSeries();
 	}, []);
 
-	// TODO: 알맞는 API찾기.
 	const fetchNewContents = async () => {
 		try {
 			const request = await axios.get("movie/top_rated");
