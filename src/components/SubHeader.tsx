@@ -4,7 +4,7 @@ const SubHeader = () => {
     const [viewModeOpen, setViewModeOpen] = useState(false);
     const [selectedViewMode, setSelectedViewMode] = useState('원어');
     const [langListOpen, setLangListOpen] = useState(false);
-    const [selectedLanguage, setSelectedLanguage] = useState('언어 선택');
+    const [selectedLanguage, setSelectedLanguage] = useState('영어');
     const [sortCriteriaOpen, setSortCriteriaOpen] = useState(false);
     const [selectedSortCriteria, setSelectedSortCriteria] = useState('추천 콘텐츠');
 
