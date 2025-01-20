@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { mapMediaList, Media } from "../../models/Media";
+import { mapMediaList, Media, MediaType } from "../../models/Media";
 import axios from "../../api/axios";
 import CardList from "../../components/CardList";
 import PosterList from "../../components/PosterList";
@@ -13,7 +13,7 @@ const NewContentsPage = () => {
 		koreaTop10Movie();
 	}, []);
 
-  // TODO: 알맞는 API찾기.
+	// TODO: 알맞는 API찾기.
 	const fetchNewContents = async () => {
 		try {
 			const request = await axios.get("movie/top_rated");
@@ -42,38 +42,47 @@ const NewContentsPage = () => {
 					key: item.id,
 					id: item.id,
 					backdrop_path: `https://image.tmdb.org/t/p/original/${item.backdropPath}`,
+					type: item.type,
 				}))}
 			/>
 			<PosterList
 				title="오늘 대한민국의 TOP 10 영화"
-				posterProps={koreaTop10Movies.slice(0, 10).map((item) => ({
+				posterProps={koreaTop10Movies.slice(0, 10).map((item, index) => ({
 					key: item.id,
 					id: item.id,
 					poster_path: `https://image.tmdb.org/t/p/original/${item.posterPath}`,
+					backdrop_path: `https://image.tmdb.org/t/p/original/${item.backdropPath}`,
+					type: MediaType.MOVIE,
+					rank: index,
 				}))}
 			/>
 			<PosterList
 				title="오늘 대한민국의 TOP 10 시리즈"
-				posterProps={koreaTop10Movies.slice(0, 10).map((item) => ({
+				posterProps={koreaTop10Movies.slice(0, 10).map((item, index) => ({
 					key: item.id,
 					id: item.id,
 					poster_path: `https://image.tmdb.org/t/p/original/${item.posterPath}`,
+					backdrop_path: `https://image.tmdb.org/t/p/original/${item.backdropPath}`,
+					type: MediaType.TV,
+					rank: index,
 				}))}
 			/>
-      	<CardList
+			<CardList
 				title="이번 주 공개 콘텐츠"
 				cardProps={newContents.map((item) => ({
 					key: item.id,
 					id: item.id,
 					backdrop_path: `https://image.tmdb.org/t/p/original/${item.backdropPath}`,
+					type: item.type,
 				}))}
 			/>
-      	<CardList
+			<CardList
 				title="다음 주 공개 콘텐츠"
 				cardProps={newContents.map((item) => ({
 					key: item.id,
 					id: item.id,
 					backdrop_path: `https://image.tmdb.org/t/p/original/${item.backdropPath}`,
+					type: item.type,
 				}))}
 			/>
 		</div>

@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import useOnClickOutside from "../../hooks/useOnclickOutside";
-import ModalHeader from "./components/ModalHeader";
-import ModalPoster from "./components/ModalPoster";
-import ModalPosterButtons from "./components/ModalPosterButtons";
-import ModalInfoSummary from "./components/ModalInfoSummary";
-import ModalRecommends from "./components/ModalRecommends";
+import ModalHeader from "../../components/Detail/ModalHeader";
+import ModalPoster from "../../components/Detail/ModalPoster";
+import ModalPosterButtons from "../../components/Detail/ModalPosterButtons";
+import ModalInfoSummary from "../../components/Detail/ModalInfoSummary";
+import ModalRecommends from "../../components/Detail/ModalRecommends";
 import {
 	mapMovie,
 	mapTV,
@@ -13,10 +13,10 @@ import {
 	Season,
 	Series,
 } from "../../models/Media";
-import ModalInfoDetail from "./components/ModalInfoDetail";
+import ModalInfoDetail from "../../components/Detail/ModalInfoDetail";
 import { Credit, mapCredit } from "../../models/Credit";
 import { Keyword, mapKeywords } from "../../models/Keyword";
-import ModalEpisodes from "./components/ModalEpisodes";
+import ModalEpisodes from "../../components/Detail/ModalEpisodes";
 import { Episodes, mapEpisodes } from "../../models/Episodes";
 import { Recommend, mapRecommend } from "../../models/Recommend";
 import { useNavigate, useParams } from "react-router-dom";
@@ -143,11 +143,11 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 	};
 
 	return (
-		<div className="presenter z-10 absolute min-h-screen">
+		<div className="presenter z-[10000] absolute min-h-screen">
 			{video && credit && keywords ? (
-				<div className="wrapper-model fixed inset-0 bg-black bg-opacity-70 flex items-start justify-center overflow-auto">
+				<div className="wrapper-model fixed inset-0 bg-black bg-opacity-70 flex items-start justify-center overflow-y-auto">
 					<div
-						className="modal relative bg-neutral-900 w-full max-w-5xl mt-8 mx-2 rounded-lg overflow-auto"
+						className="modal relative bg-neutral-900 w-full max-w-5xl mt-8 mx-2 rounded-lg overflow-y-auto"
 						ref={ref}
 					>
 						<ModalHeader />

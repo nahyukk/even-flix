@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { Episode } from "../../../models/Episodes";
-import { convertMinutesToHoursAndMinutes } from "../../../util/calculate";
+import { Episode } from "../../models/Episodes";
+import { convertMinutesToHoursAndMinutes } from "../../util/calculate";
 
 interface ModalEpisodeProps {
 	backdropPath: string;
