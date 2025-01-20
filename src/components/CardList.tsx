@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import Card, { CardProps } from "./Card";
+import Card from "./Card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -10,6 +10,7 @@ import { Swiper as SwiperType } from "swiper";
 
 import "../styles/swiper.css";
 import DummyDetailCard from "./__DummyDetailCard";
+import { Media } from "../models/Media";
 
 interface HoverPosition {
   top: number;
@@ -18,10 +19,10 @@ interface HoverPosition {
 
 interface CardListProps {
   title: string;
-  cardProps: CardProps[];
+  mediaList: Media[];
 }
 
-const CardList: React.FC<CardListProps> = ({ title, cardProps }) => {
+const CardList: React.FC<CardListProps> = ({ title, mediaList }) => {
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
@@ -36,13 +37,13 @@ const CardList: React.FC<CardListProps> = ({ title, cardProps }) => {
   };
 
   // 디테일 카드 호버 부분
-  const [hoveredItem, setHoveredItem] = useState<CardProps | null>(null);
+  const [hoveredItem, setHoveredItem] = useState<Media | null>(null);
   const [hoverPosition, setHoverPosition] = useState<HoverPosition | null>(
     null
   );
 
-  const handleCardMouseEnter = (item: CardProps, rect: DOMRect) => {
-    setHoveredItem(item);
+  const handleCardMouseEnter = (media: Media, rect: DOMRect) => {
+    setHoveredItem(media);
     setHoverPosition({
       top: rect.top + window.scrollY,
       left: rect.left + rect.width / 2,
@@ -112,15 +113,15 @@ const CardList: React.FC<CardListProps> = ({ title, cardProps }) => {
             },
           }}
         >
-          {cardProps.map((item, index) => (
+          {mediaList.map((media, index) => (
             <SwiperSlide
-              key={`${item.id}-${index}`}
+              key={`${media.id}-${index}`}
               style={{ position: "relative" }}
               onMouseEnter={(event) => {
                 const rect = (
                   event.currentTarget as HTMLElement
                 ).getBoundingClientRect();
-                handleCardMouseEnter(item, rect);
+                handleCardMouseEnter(media, rect);
               }}
               onMouseLeave={() => {
                 if (!hoveredItem) {
@@ -128,16 +129,14 @@ const CardList: React.FC<CardListProps> = ({ title, cardProps }) => {
                 }
               }}
             >
-              <Card id={item.id} backdrop_path={item.backdrop_path} type={item.type}/>
+              <Card media={media} />
             </SwiperSlide>
           ))}
         </Swiper>
         {/* 디테일 카드 호버 */}
         {hoveredItem && hoverPosition && (
           <DummyDetailCard
-						type={hoveredItem.type}
-            id={hoveredItem.id}
-            backdrop_path={hoveredItem.backdrop_path}
+            media={hoveredItem}
             style={{
               position: "absolute",
               top: "cal(hoverPosition.top - scrollY)",
@@ -145,7 +144,7 @@ const CardList: React.FC<CardListProps> = ({ title, cardProps }) => {
               transform: "translate(-75%, -60%)",
               zIndex: 10,
             }}
-						isActive={true}
+            isActive={true}
             onMouseEnter={handleDetailMouseEnter}
             onMouseLeave={handleDetailMouseLeave}
           />
