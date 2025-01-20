@@ -2,7 +2,7 @@ import React from "react";
 
 const Profile = () => {
     return (
-        <div className="fixed inset-0 bg-[#141414] text-center z-0 max-w-none sm:max-w-full">
+        <div className="fixed inset-0 bg-[#141414] text-center z-[1002] max-w-none sm:max-w-full">
             <div className="absolute inset-0 z-[100] flex flex-col items-center justify-center animate-[animateProfileGate_.45s_forwards]">
                 <div className="max-w-[80%]">
                     <h1 className="text-white text-[3.5vw] font-normal w-full opacity-100 transition-opacity duration-[400ms] ease-out sm:text-[30px]">
