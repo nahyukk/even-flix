@@ -42,7 +42,7 @@ function App() {
 						<Route path="search" element={<SearchPage />} />
 						<Route
 							path="browse/genre/34399"
-							element={<MoviePage type={MediaType.MOVIE} />}
+							element={<MoviePage />}
 						/>
 						<Route path="browse/original-audio" element={<OriginalAudio />} />
 					</Route>
