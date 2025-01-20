@@ -7,7 +7,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Swiper as SwiperType } from "swiper";
 
 import "../styles/swiper.css";
-import DummyDetailCard from "./__DummyDetailCard";
+import DummyDetailCard from "./DetailCard";
 import Poster from "./Poster";
 import { Media } from "../models/Media";
 

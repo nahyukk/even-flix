@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Card from "./Card";
-import DummyDetailCard from "./__DummyDetailCard";
+import DummyDetailCard from "./DetailCard";
 import { Media } from "../models/Media";
 
 interface HoverPosition {
