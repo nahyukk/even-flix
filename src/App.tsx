@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage/page";
 import DetailModal from "./components/DetailModal/page";
 import { MediaType } from "./models/Media";
+import SearchPage from "./pages/SearchPage/page";
 import MyList from "./pages/MyList/page";
 import { FavoriteProvider } from "./context/FavoriteContext";
 import MoviePage from "./pages/MoviePage/page";
@@ -35,6 +36,7 @@ function App() {
 						<Route index element={<HomePage />} />
 						<Route path="browse" element={<HomePage />} />
 						<Route path="browse/my-list" element={<MyList />} />
+						<Route path="search" element={<SearchPage />} />
 						<Route
 							path="browse/genre/34399"
 							element={<MoviePage type={MediaType.MOVIE} />}
