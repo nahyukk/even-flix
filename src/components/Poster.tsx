@@ -1,18 +1,12 @@
 import React from "react";
-import { MediaType, Rank } from "../models/Media";
+import { Media } from "../models/Media";
 
-export interface PosterProps extends Rank {
-  id: number;
-  poster_path: string;
-  backdrop_path: string;
-	type: MediaType;
+export interface PosterProps {
+  media: Media;
+  rank: number;
 }
 
-const Poster: React.FC<PosterProps> = ({
-  poster_path,
-  backdrop_path,
-  rank,
-}) => {
+const Poster: React.FC<PosterProps> = ({ media, rank }) => {
   const renderRankSVG = () => {
     switch (rank) {
       case 1:
@@ -185,7 +179,7 @@ const Poster: React.FC<PosterProps> = ({
       <div className="flex-shrink-0 flex-1">{renderRankSVG()}</div>
       <div className="flex-1">
         <img
-          src={poster_path}
+          src={media.posterPath}
           alt={`Poster rank ${rank}`}
           className="object-cover w-full h-full"
         />

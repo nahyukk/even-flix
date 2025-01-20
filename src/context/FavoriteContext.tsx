@@ -1,15 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { MediaType } from "../models/Media";
-
-interface FavoriteItem {
-  id: number;
-  type: MediaType;
-  backdrop_path: string;
-}
+import { Media } from "../models/Media";
 
 interface FavoriteContextProps {
-  favorites: FavoriteItem[];
-  addFavorite: (item: FavoriteItem) => void;
+  favorites: Media[];
+  addFavorite: (item: Media) => void;
   removeFavorite: (id: number) => void;
 }
 
@@ -29,7 +23,7 @@ export const FavoriteProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   // 상태 변경 해주는 것 + 원래 있던 거 불러오기
-  const [favorites, setFavorites] = useState<FavoriteItem[]>(() => {
+  const [favorites, setFavorites] = useState<Media[]>(() => {
     const storedFavorites = localStorage.getItem("favorites");
     if (storedFavorites) {
       try {
@@ -48,12 +42,12 @@ export const FavoriteProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [favorites]);
 
   // 아이템 추가
-  const addFavorite = (item: FavoriteItem) => {
+  const addFavorite = (media: Media) => {
     setFavorites((prev) => {
-      if (prev.some((fav) => fav.id === item.id)) {
+      if (prev.some((fav) => fav.id === media.id)) {
         return prev;
       }
-      const updatedFavorites = [...prev, item];
+      const updatedFavorites = [...prev, media];
 
       return updatedFavorites;
     });

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Card, { CardProps } from "./Card";
+import Card from "./Card";
 import DummyDetailCard from "./__DummyDetailCard";
+import { Media } from "../models/Media";
 
 interface HoverPosition {
   top: number;
@@ -8,18 +9,18 @@ interface HoverPosition {
 }
 
 interface CardGridProps {
-  cardProps: CardProps[];
+  mediaList: Media[];
 }
 
-const CardGrid: React.FC<CardGridProps> = ({ cardProps }) => {
+const CardGrid: React.FC<CardGridProps> = ({ mediaList }) => {
   // 디테일 카드 호버 부분
-  const [hoveredItem, setHoveredItem] = useState<CardProps | null>(null);
+  const [hoveredItem, setHoveredItem] = useState<Media | null>(null);
   const [hoverPosition, setHoverPosition] = useState<HoverPosition | null>(
     null
   );
 
-  const handleCardMouseEnter = (item: CardProps, rect: DOMRect) => {
-    setHoveredItem(item);
+  const handleCardMouseEnter = (media: Media, rect: DOMRect) => {
+    setHoveredItem(media);
     setHoverPosition({
       top: rect.top + window.scrollY,
       left: rect.left + rect.width / 2,
@@ -36,19 +37,20 @@ const CardGrid: React.FC<CardGridProps> = ({ cardProps }) => {
   return (
     <>
       <div
-        className="CardGrid grid gap-x-1 gap-y-10
+        className="CardGrid grid grid-cols-3 gap-x-1 gap-y-10
         sm:grid-cols-3 
         md:grid-cols-4 
         lg:grid-cols-5
         xl:grid-cols-6"
       >
-        {cardProps.map((item) => (
+        {mediaList.map((media) => (
           <div
+						key={media.id}
             onMouseEnter={(event) => {
               const rect = (
                 event.currentTarget as HTMLElement
               ).getBoundingClientRect();
-              handleCardMouseEnter(item, rect);
+              handleCardMouseEnter(media, rect);
             }}
             onMouseLeave={() => {
               if (!hoveredItem) {
@@ -56,19 +58,13 @@ const CardGrid: React.FC<CardGridProps> = ({ cardProps }) => {
               }
             }}
           >
-            <Card
-              id={item.id}
-              backdrop_path={item.backdrop_path}
-              type={item.type}
-            />
+            <Card media={media} />
           </div>
         ))}
       </div>
       {hoveredItem && hoverPosition && (
         <DummyDetailCard
-          id={hoveredItem.id}
-          type={hoveredItem.type}
-          backdrop_path={hoveredItem.backdrop_path}
+          media={hoveredItem}
           style={{
             position: "absolute",
             top: hoverPosition.top,
