@@ -1,6 +1,7 @@
 .swiper {
 	overflow: visible;
 	position: relative;
+	z-index: 1;
 }
 
 .swiper-slide-prev {
@@ -12,6 +13,7 @@
 	display: flex;
 	justify-content: flex-end;
 	gap: 2px;
+	z-index: 3;
 }
 
 .swiper-pagination-bullet {

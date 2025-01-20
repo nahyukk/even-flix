@@ -1,12 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { MediaType } from "../models/Media";
 
-interface CardProps {
+export interface CardProps {
 	id: number;
-	backdropPath: string;
+	backdrop_path: string;
+	type: MediaType;
 }
 
-const Card: React.FC<CardProps> = ({ backdropPath }) => {
+
+const Card: React.FC<CardProps> = ({ backdrop_path }) => {
 	const navigate = useNavigate();
 
 	const handleClickCard = () => {
@@ -18,7 +21,7 @@ const Card: React.FC<CardProps> = ({ backdropPath }) => {
 		<div className="relative">
 			<button onClick={handleClickCard}>
 				<img
-					src={backdropPath}
+					src={backdrop_path}
 					alt=""
 					className="h-auto object-cover rounded-sm"
 				/>

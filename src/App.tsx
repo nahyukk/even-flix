@@ -8,6 +8,8 @@ import HomePage from "./pages/HomePage/page";
 import DetailModal from "./components/DetailModal/page";
 import { MediaType } from "./models/Media";
 import SearchPage from "./pages/SearchPage/page";
+import MyList from "./pages/MyList/page";
+import { FavoriteProvider } from "./context/FavoriteContext";
 
 const Layout = () => {
 	return (
@@ -26,23 +28,26 @@ function App() {
 	const state = location.state as { backgroundLocation?: Location };
 	const background = state?.backgroundLocation;
 	return (
-		<div className="app">
-			<Routes location={background || location}>
-				<Route path="/" element={<Layout />}>
-					<Route index element={<HomePage />} />
-					<Route path="browse" element={<HomePage />} />
-					<Route
-						path="movie/:id"
-						element={<DetailModal mediaType={MediaType.MOVIE} />}
-					/>
-					<Route
-						path="tv/:id"
-						element={<DetailModal mediaType={MediaType.TV} />}
-					/>
-					<Route path="search" element={<SearchPage />} />
-				</Route>
-			</Routes>
-		</div>
+		<FavoriteProvider>
+			<div className="app">
+				<Routes location={background || location}>
+					<Route path="/" element={<Layout />}>
+						<Route index element={<HomePage />} />
+						<Route path="browse" element={<HomePage />} />
+						<Route path="browse/my-list" element={<MyList />} />
+						<Route path="search" element={<SearchPage />} />
+						<Route
+							path="movie/:id"
+							element={<DetailModal mediaType={MediaType.MOVIE} />}
+						/>
+						<Route
+							path="tv/:id"
+							element={<DetailModal mediaType={MediaType.TV} />}
+						/>
+					</Route>
+				</Routes>
+			</div>
+		</FavoriteProvider>
 	);
 }
 
