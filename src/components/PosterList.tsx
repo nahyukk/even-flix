@@ -42,10 +42,7 @@ const PosterList: React.FC<PosterListProps> = ({ title, posterProps }) => {
   );
 
   const handleCardMouseEnter = (item: CardProps, rect: DOMRect) => {
-    console.log("Card BoundingClientRect:", rect);
-    console.log("scroll:", window.scrollY);
-
-    setHoveredItem(item);
+   	setHoveredItem(item);
     setHoverPosition({
       top: rect.top + window.scrollY,
       left: rect.left + rect.width / 2,
