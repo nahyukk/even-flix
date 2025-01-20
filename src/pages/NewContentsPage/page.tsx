@@ -71,55 +71,17 @@ const NewContentsPage = () => {
 
 	return (
 		<div className="py-10">
-			<CardList
-				title="넷플릭스의 새로운 콘텐츠"
-				cardProps={newContents.map((item) => ({
-					key: item.id,
-					id: item.id,
-					backdrop_path: `https://image.tmdb.org/t/p/original/${item.backdropPath}`,
-					type: item.type,
-				}))}
-			/>
+			<CardList title="넷플릭스의 새로운 콘텐츠" mediaList={newContents} />
 			<PosterList
 				title="오늘 대한민국의 TOP 10 영화"
-				posterProps={koreaTop10Movies.slice(0, 10).map((item, index) => ({
-					key: item.id,
-					id: item.id,
-					poster_path: `https://image.tmdb.org/t/p/original/${item.posterPath}`,
-					backdrop_path: `https://image.tmdb.org/t/p/original/${item.backdropPath}`,
-					type: MediaType.MOVIE,
-					rank: index,
-				}))}
+				mediaList={koreaTop10Movies.slice(0, 10)}
 			/>
 			<PosterList
 				title="오늘 대한민국의 TOP 10 시리즈"
-				posterProps={koreaTop10Series.slice(0, 10).map((item, index) => ({
-					key: item.id,
-					id: item.id,
-					poster_path: `https://image.tmdb.org/t/p/original/${item.posterPath}`,
-					backdrop_path: `https://image.tmdb.org/t/p/original/${item.backdropPath}`,
-					type: MediaType.TV,
-					rank: index,
-				}))}
+				mediaList={koreaTop10Series.slice(0, 10)}
 			/>
-			<CardList
-				title="이번 주 공개 영화"
-				cardProps={upComingMovies.map((item) => ({
-					key: item.id,
-					id: item.id,
-					backdrop_path: `https://image.tmdb.org/t/p/original/${item.backdropPath}`,
-					type: item.type,
-				}))}
-			/>
-			<CardList
-				title="방영 예정 콘텐츠"
-				cardProps={upComingSeries.map((item) => ({
-					key: item.id,
-					id: item.id,
-					backdrop_path: `https://image.tmdb.org/t/p/original/${item.backdropPath}`,
-					type: item.type,
-				}))}
-			/>
+			<CardList title="이번 주 공개 영화" mediaList={upComingMovies} />
+			<CardList title="방영 예정 콘텐츠" mediaList={upComingSeries} />
 		</div>
 	);
 };
