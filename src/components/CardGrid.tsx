@@ -36,7 +36,7 @@ const CardGrid: React.FC<CardGridProps> = ({ cardProps }) => {
   return (
     <>
       <div
-        className="CardGrid grid gap-x-1 gap-y-10
+        className="CardGrid grid grid-cols-3 gap-x-1 gap-y-10
         sm:grid-cols-3 
         md:grid-cols-4 
         lg:grid-cols-5
