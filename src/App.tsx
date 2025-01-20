@@ -5,7 +5,7 @@ import { Outlet, Route, Routes, useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage/page";
-import DetailModal from "./components/DetailModal/page";
+import DetailModal from "./pages/DetailPage/page";
 import OriginalAudio from "./pages/OriginalAudio/page";
 import { MediaType } from "./models/Media";
 import SearchPage from "./pages/SearchPage/page";
@@ -42,6 +42,11 @@ function App() {
 							path="browse/genre/34399"
 							element={<MoviePage />}
 						/>
+						<Route path="browse/original-audio" element={<OriginalAudio />} />
+					</Route>
+				</Routes>
+				{background && (
+					<Routes>
 						<Route
 							path="movie/:id"
 							element={<DetailModal mediaType={MediaType.MOVIE} />}
@@ -50,9 +55,8 @@ function App() {
 							path="tv/:id"
 							element={<DetailModal mediaType={MediaType.TV} />}
 						/>
-            <Route path="browse/original-audio" element={<OriginalAudio />} />
-					</Route>
-				</Routes>
+					</Routes>
+				)}
 			</div>
 		</FavoriteProvider>
 	);

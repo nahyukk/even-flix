@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
-import { Season } from "../../../models/Media";
-import { Episodes } from "../../../models/Episodes";
 import ModalEpisode from "./ModalEpisode";
 import ModalDropdown from "./ModalDropdown";
+import { Season } from "../../models/Media";
+import { Episodes } from "../../models/Episodes";
 
 interface ModalEpisodesProps {
 	backdropPath: string;

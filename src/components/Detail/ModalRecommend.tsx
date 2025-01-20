@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { Recommend } from "../../../models/Recommend";
-import { convertReleaseDate } from "../../../util/calculate";
+import { Recommend } from "../../models/Recommend";
+import { convertReleaseDate } from "../../util/calculate";
 
 interface ModalRecommendProps {
 	recommend: Recommend;
