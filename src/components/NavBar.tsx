@@ -45,9 +45,9 @@ const NavBar = () => {
 	};
 
 	return (
-		<nav className="nav__container sticky top-0 h-auto min-h-[70px] z-10 bg-[rgb(20,20,20)] text-[#e5e5e5]">
-			<div className="nav__main flex h-[68px] p-[0_4%] items-center text-[0.7rem]">
-				<a className="nav__logo w-[92.5px]">
+		<nav className='nav__container sticky top-0 h-auto min-h-[70px] z-[1001] bg-[rgb(20,20,20)] text-[#e5e5e5]'>
+			<div className='nav__main flex h-[68px] p-[0_4%] items-center text-[0.7rem]'>
+				<a className='nav__logo w-[92.5px]'>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 276.742">
 						<path
 							fill="#d81f26"
@@ -55,7 +55,7 @@ const NavBar = () => {
 						/>
 					</svg>
 				</a>
-				<ul className="nav__list flex items-center m-0 p-0">
+				<ul className='nav__list flex items-center m-0 p-0'>
 					<NavItem href="/browse">홈</NavItem>
 					<NavItem href="/browse/genre/83">시리즈</NavItem>
 					<NavItem href="/browse/genre/34399">영화</NavItem>
