@@ -84,7 +84,7 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
 			<div className="dummy-detail-card-backdrop w-full h-auto">
 				<img
 					className="w-full h-full object-cover"
-					src={media.backdropPath}
+					src={`https://image.tmdb.org/t/p/original/${media.backdropPath}`}
 					alt=""
 				/>
 			</div>

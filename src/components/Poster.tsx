@@ -179,7 +179,7 @@ const Poster: React.FC<PosterProps> = ({ media, rank }) => {
       <div className="flex-shrink-0 flex-1">{renderRankSVG()}</div>
       <div className="flex-1">
         <img
-          src={media.posterPath}
+          src={`https://image.tmdb.org/t/p/original/${media.posterPath}`}
           alt={`Poster rank ${rank}`}
           className="object-cover w-full h-full"
         />
