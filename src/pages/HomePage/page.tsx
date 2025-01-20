@@ -23,9 +23,8 @@ const HomePage: React.FC = () => {
   const fetchDataHome = async (url: string) => {
     try {
       const response = await instance.get(url);
-			console.log("API 응답:", response.data);
       const results = mapMediaList(response.data);
-			console.log("맵핑:", results);
+			
       // backdrop_path가 없는 부분 filtering
       const filteredResults = results
         .filter((media: any) => media.backdropPath !== null)
