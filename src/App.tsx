@@ -5,6 +5,7 @@ import { Outlet, Route, Routes, useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage/page";
+import Profile from "./pages/Profile/page";
 import DetailModal from "./components/DetailModal/page";
 import { MediaType } from "./models/Media";
 
@@ -37,6 +38,10 @@ function App() {
 					<Route
 						path="tv/:id"
 						element={<DetailModal mediaType={MediaType.TV} />}
+					/>
+					<Route
+						path="account/profiles"
+						element={<Profile />}
 					/>
 				</Route>
 			</Routes>
