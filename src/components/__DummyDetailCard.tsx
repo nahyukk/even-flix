@@ -10,7 +10,7 @@ import {
   Series,
 } from "../models/Media";
 import { convertMinutesToHoursAndMinutes } from "../util/calculate";
-
+import instance from "../api/axios";
 
 interface DummyDetailCardProps {
   media: Media;
@@ -29,11 +29,32 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
   onMouseLeave,
   onClick,
 }) => {
+  const [newMedia, setNewMedia] = useState<Media | null>(null);
+  const [visible, setVisible] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { favorites, addFavorite, removeFavorite } = useFavorite();
 
-	const [visible, setVisible] = useState(false);
-	const navigate = useNavigate();
-	const location = useLocation();
-	const { favorites, addFavorite, removeFavorite } = useFavorite();
+  // 디테일 카드 활성화 시 데이터 호출
+  useEffect(() => {
+    if (!isActive) return;
+    const fetchMediaNew = async () => {
+      try {
+        let response;
+        if (media.type === MediaType.MOVIE) {
+          response = await instance.get(`/movie/${media.id}`);
+          setNewMedia(mapMovie(response.data));
+        } else if (media.type === MediaType.TV) {
+          response = await instance.get(`/tv/${media.id}`);
+          setNewMedia(mapTV(response.data));
+        }
+      } catch (error) {
+        console.error("데이터 못 불러왔습니다.", error);
+      }
+    };
+
+    fetchMediaNew();
+  }, [isActive, media]);
 
   // 디테일 카드 호버 부분
   useEffect(() => {
