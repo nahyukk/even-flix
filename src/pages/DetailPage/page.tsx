@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import useOnClickOutside from "../../hooks/useOnclickOutside";
-import ModalHeader from "./components/ModalHeader";
-import ModalPoster from "./components/ModalPoster";
-import ModalPosterButtons from "./components/ModalPosterButtons";
-import ModalInfoSummary from "./components/ModalInfoSummary";
-import ModalRecommends from "./components/ModalRecommends";
+import ModalHeader from "../../components/Detail/ModalHeader";
+import ModalPoster from "../../components/Detail/ModalPoster";
+import ModalPosterButtons from "../../components/Detail/ModalPosterButtons";
+import ModalInfoSummary from "../../components/Detail/ModalInfoSummary";
+import ModalRecommends from "../../components/Detail/ModalRecommends";
 import {
 	mapMovie,
 	mapTV,
@@ -13,10 +13,10 @@ import {
 	Season,
 	Series,
 } from "../../models/Media";
-import ModalInfoDetail from "./components/ModalInfoDetail";
+import ModalInfoDetail from "../../components/Detail/ModalInfoDetail";
 import { Credit, mapCredit } from "../../models/Credit";
 import { Keyword, mapKeywords } from "../../models/Keyword";
-import ModalEpisodes from "./components/ModalEpisodes";
+import ModalEpisodes from "../../components/Detail/ModalEpisodes";
 import { Episodes, mapEpisodes } from "../../models/Episodes";
 import { Recommend, mapRecommend } from "../../models/Recommend";
 import { useNavigate, useParams } from "react-router-dom";

@@ -5,7 +5,7 @@ import { Outlet, Route, Routes, useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage/page";
-import DetailModal from "./components/DetailModal/page";
+import DetailModal from "./pages/DetailPage/page";
 import OriginalAudio from "./pages/OriginalAudio/page";
 import { MediaType } from "./models/Media";
 import SearchPage from "./pages/SearchPage/page";
