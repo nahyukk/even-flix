@@ -188,7 +188,7 @@ const HomePage: React.FC = () => {
         setNowPlayingMovies(nowPlayingMovieData);
         setSFAndFantasySeries(sFAndFantasySeriesData.slice(0, 36));
       } catch (error) {
-        console.log("데이터 못 가져왔지롱~", error);
+        console.log("데이터를 못 가져왔습니다.", error);
       }
     };
     fetchHome();

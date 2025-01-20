@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFavorite } from "../context/FavoriteContext";
 import { MediaType } from "../models/Media";
 
 interface DummyDetailCardProps {
@@ -14,6 +15,7 @@ interface DummyDetailCardProps {
 }
 
 const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
+  id,
   type,
   backdrop_path,
   style,
@@ -23,28 +25,42 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
   onClick,
 }) => {
   const [visible, setVisible] = useState(false);
+  const navigate = useNavigate();
+  const { favorites, addFavorite, removeFavorite } = useFavorite();
+
+	// 디테일 카드 호버 부분
   useEffect(() => {
-    // id(backdrop_path) 변경 시 즉시 숨김
     setVisible(false);
 
-    // isActive가 true일 때 약간의 딜레이 후 보이도록 설정
     if (isActive) {
       const timeout = setTimeout(() => setVisible(true), 1000);
       return () => clearTimeout(timeout);
     }
   }, [backdrop_path, isActive]);
 
-  const navigate = useNavigate();
-
+  // 클릭해서 모달 띄우는 부분
   const handleClickCard = () => {
     // navigate("/movie/1241982");
     navigate("/tv/1408");
   };
 
+  // 찜 목록 추가, 삭제 부분
+  const isFavorite = favorites.some((fav) => fav.id === id);
+
+  const handleFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    if (isFavorite) {
+      removeFavorite(id);
+    } else {
+      addFavorite({ id, backdrop_path, type });
+    }
+  };
+
   return (
     // 기존 w=256 h=318px
     <div
-      className={`dummy-detail-card w-64 h-80 rounded-md bg-white text-black overflow-hidden absolute z-10 transition-all duration-500  
+      className={`dummy-detail-card w-64 h-80 rounded-md bg-[#181818] text-white shadow-lg overflow-hidden absolute z-50 transition-all duration-500  
         ${visible ? "opacity-100 scale-100" : "opacity-0 scale-0"}`}
       style={style}
       onMouseEnter={onMouseEnter} // 디테일 카드 유지
@@ -62,29 +78,52 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
         />
       </div>
       {/* 원래 h=174px */}
-      <div className="dummy-detail-card-contents w-64 h-44 p-4">
-        <button className="w-6 h-6 flex items-center justify-center rounded-full border-2 border-gray-300 hover:bg-gray-100">
-          <svg
-            width="80px"
-            height="80px"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect width="24" height="24" fill="none" />
-            <path
-              d="M12 6V18"
-              stroke="#000000"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M6 12H18"
-              stroke="#000000"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+      <div className="dummy-detail-card-contents w-64 h-44 p-5">
+        <button
+          className="favorite-button w-7 h-7 flex items-center justify-center rounded-full border-2 border-gray-300 hover:border-white z-30"
+          onClick={handleFavoriteClick}
+        >
+          {isFavorite ? (
+            <svg
+              className="checked-button"
+              width="80px"
+              height="80px"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5 12L10 17L20 7"
+                stroke="#ffffff"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          ) : (
+            <svg
+              className="plus-button"
+              width="80px"
+              height="80px"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="24" height="24" fill="none" />
+              <path
+                d="M12 6V18"
+                stroke="#ffffff"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M6 12H18"
+                stroke="#ffffff"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          )}
         </button>
       </div>
     </div>
