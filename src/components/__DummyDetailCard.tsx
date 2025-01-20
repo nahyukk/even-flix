@@ -143,7 +143,7 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
         <div className="buttons flex flex-row justify-between">
           <div className="left-buttons flex flex-row justify-start items-center gap-3">
             <button
-              className="play-button relative w-[21px] h-[21px] flex items-center justify-center rounded-full bg-white hover:bg-slate-200 active:slate-200 active:ring-2 active:ring-offset-[#181818] active:ring-offset-2 active:ring-white z-30"
+              className="play-button relative w-[21px] h-[21px] flex items-center justify-center rounded-full bg-gray-50 hover:bg-slate-200 active:slate-200 active:ring-2 active:ring-offset-[#181818] active:ring-offset-2 active:ring-white z-30"
               onClick={(e) => {
                 e.stopPropagation();
                 console.log("play button clicked!");
@@ -161,7 +161,7 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
                 <g
                   id="Page-1"
                   stroke="none"
-                  stroke-width="1"
+                  strokeWidth="1"
                   fill="none"
                   fill-rule="evenodd"
                 >
@@ -283,20 +283,29 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
         </div>
         <div className="px-2 flex flex-row gap-3 items-center">
           <span
-            className={`rounded ${
+            className={`flex items-center justify-center w-8 h-8 rounded text-[#181818] text-xl font-extrabold ${
               media.adult ? "bg-red-700" : "bg-green-700"
             }  p-2`}
           >
-            {media.adult ? "19" : "PG"}
+            <span
+              className="font-sans"
+              style={{
+                transform: "scaleY(1.5)",
+                transformOrigin: "center",
+                letterSpacing: "-0.07rem",
+              }}
+            >
+              {media.adult ? "19" : "PG"}
+            </span>
           </span>
-          <p>{getRuntimeOrSesaons()}</p>
+          <p className="text-gray-400">{getRuntimeOrSesaons()}</p>
           <p className="rounded border-[0.5px] px-2 text-xs">HD</p>
         </div>
         <div>
           <div className="detail-card-genres">
             {newMedia?.genres.length ? (
               newMedia.genres.map((genre, index) => (
-                <span key={genre.id} className="text-white">
+                <span key={genre.id} className="text-gray-50">
                   {genre.name}
                   {index < newMedia.genres.length - 1 && ", "}
                 </span>
