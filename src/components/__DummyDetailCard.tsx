@@ -69,6 +69,25 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
     }
   };
 
+  // 런타임 또는 시즌 정보 계산
+  const getRuntimeOrSesaons = () => {
+    if (!newMedia) return "정보 없음";
+    switch (newMedia.type) {
+      case MediaType.MOVIE:
+        const movie = newMedia as Movie;
+        return convertMinutesToHoursAndMinutes(movie.runtime);
+      case MediaType.TV:
+        const series = newMedia as Series;
+        if (series.numberOfSeasons > 1) {
+          return `시즌 ${series.numberOfSeasons}개`;
+        } else {
+          return `에피소드 ${series.numberOfEpisodes}개`;
+        }
+      default:
+        return "정보 없음";
+    }
+  };
+
   return (
     <div
       className={`dummy-detail-card w-full h-auto max-w-64 max-h-96 rounded-md bg-[#181818] text-white shadow-lg overflow-hidden absolute z-50 transition-all duration-500  
