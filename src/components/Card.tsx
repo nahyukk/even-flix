@@ -1,17 +1,15 @@
 import React from "react";
-import { MediaType } from "../models/Media";
+import { Media } from "../models/Media";
 
 export interface CardProps {
-	id: number;
-	backdrop_path: string;
-	type: MediaType;
+	media: Media;
 }
 
-const Card: React.FC<CardProps> = ({ backdrop_path }) => {
+const Card: React.FC<CardProps> = ({ media }) => {
 	return (
 		<div className="relative">
 			<img
-				src={backdrop_path}
+				src={media.backdropPath}
 				alt=""
 				className="h-auto object-cover rounded-sm"
 			/>
