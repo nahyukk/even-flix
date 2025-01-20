@@ -252,6 +252,32 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
             </button>
           </div>
         </div>
+        <div className="px-2 flex flex-row gap-3 items-center">
+          <span
+            className={`rounded ${
+              media.adult ? "bg-red-700" : "bg-green-700"
+            }  p-2`}
+          >
+            {media.adult ? "19" : "PG"}
+          </span>
+          <p>{getRuntimeOrSesaons()}</p>
+          <p className="rounded border-[0.5px] px-2 text-xs">HD</p>
+        </div>
+        <div>
+          <div className="detail-card-genres">
+            {newMedia?.genres.length ? (
+              newMedia.genres.map((genre, index) => (
+                <span key={genre.id} className="text-white">
+                  {genre.name}
+                  {index < newMedia.genres.length - 1 && ", "}
+                </span>
+              ))
+            ) : (
+              <span></span>
+              // 아무 표시 안함
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
