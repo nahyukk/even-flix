@@ -1,5 +1,5 @@
 export enum MediaType {
-  MOVIE = "moive",
+  MOVIE = "movie",
   TV = "tv",
 }
 
