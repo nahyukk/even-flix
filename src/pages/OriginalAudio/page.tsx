@@ -21,44 +21,52 @@ const OriginalAudio = () => {
   const [hasMore, setHasMore] = useState(true);
   const loadedPages = new Set<number>();
 
-  const fetchMovies = async (currentPage: number) => {
-    if (loading || !hasMore || loadedPages.has(currentPage)) return;
+  const fetchMovies = async (startPage: number, pagesToLoad: number = 1) => {
+    if (loading) return;
     setLoading(true);
-
+  
     try {
-      const response = await axios.get(requests.fetchMovies, {
-        params: { page: currentPage },
-      });
-      const newMovies = response.data.results;
-
+      // 여러 페이지를 한꺼번에 요청
+      const promises = Array.from({ length: pagesToLoad }, (_, index) =>
+        axios.get(requests.fetchMovies, {
+          params: { page: startPage + index },
+        })
+      );
+      const responses = await Promise.all(promises);
+  
+      // 각 페이지 데이터에서 영화 리스트 추출 및 병합
+      const newMovies = responses.flatMap((response) => response.data.results);
+  
+      // 중복 제거 후 상태 업데이트
       setMovies((prevMovies) => {
         const uniqueMovies = [
           ...prevMovies,
           ...newMovies.filter(
-            (movie: { id: number; }) => !prevMovies.some((prevMovie) => prevMovie.id === movie.id)
+            (movie) => !prevMovies.some((prevMovie) => prevMovie.id === movie.id)
           ),
         ];
         return uniqueMovies;
       });
-
+  
+      // 더 이상 데이터가 없으면 중단
       setHasMore(newMovies.length > 0);
-      loadedPages.add(currentPage);
     } catch (error) {
       console.error('Failed to fetch movies:', error);
     } finally {
       setLoading(false);
     }
   };
-
+  
+  // 초기 로드 시 여러 페이지 요청
   useEffect(() => {
-    fetchMovies(1);
+    fetchMovies(1, 3); // 3페이지를 한꺼번에 요청하여 60개 로드
   }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       if (
         window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight - 300
+        document.documentElement.offsetHeight - 400
       ) {
         setPage((prevPage) => prevPage + 1);
       }
@@ -93,7 +101,7 @@ const OriginalAudio = () => {
     <div>
       <SubHeader />
       <div className="main__view relative min-h-[1000px]">
-        <div className="mt-[4.2%] pt-[4rem]">
+        <div className="mt-[4.2%] pt-[5rem] p-[0_4%]">
           <CardGrid mediaList={mediaList} />
           {loading && <p className="text-center mt-4">Loading more movies...</p>}
         </div>
