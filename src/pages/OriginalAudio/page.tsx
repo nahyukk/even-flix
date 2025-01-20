@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../api/axios';
+import requests from '../../api/requests';
 import SubHeader from '../../components/SubHeader';
 
 interface Movie {
@@ -20,7 +21,7 @@ const OriginalAudio = () => {
     setLoading(true);
 
     try {
-      const response = await axios.get('/discover/movie', {
+      const response = await axios.get(requests.fetchMovies, {
         params: { page: currentPage },
       });
       const newMovies = response.data.results;
@@ -65,6 +66,7 @@ const OriginalAudio = () => {
       <div className="main__view relative min-h-[1000px]">
         <div className="mt-[4.2%] pt-[4rem]">
           <div className="grid grid-cols-5 gap-4">
+            {/* api 이미지 */}
             {movies.map((movie) => (
               <div key={movie.id} className="p-2">
                 <img
