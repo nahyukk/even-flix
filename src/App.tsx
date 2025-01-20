@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage/page";
 import DetailModal from "./components/DetailModal/page";
+import MoviePage from "./pages/MoviePage/page";
 import { MediaType } from "./models/Media";
 
 const Layout = () => {
@@ -31,8 +32,8 @@ function App() {
 					<Route index element={<HomePage />} />
 					<Route path="browse" element={<HomePage />} />
 					<Route
-						path="movie/:id"
-						element={<DetailModal mediaType={MediaType.MOVIE} />}
+						path="browse/genre/34399"
+						element={<MoviePage type={MediaType.MOVIE} />}
 					/>
 					<Route
 						path="tv/:id"
