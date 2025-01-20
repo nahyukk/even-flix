@@ -70,14 +70,13 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
   };
 
   return (
-    // 기존 w=256 h=318px
     <div
       className={`dummy-detail-card w-full h-auto max-w-64 max-h-96 rounded-md bg-[#181818] text-white shadow-lg overflow-hidden absolute z-50 transition-all duration-500  
         ${
           visible ? "opacity-100 scale-100" : "opacity-0 scale-0"
         } sm:max-w-64 md:max-w-72 lg:max-w-80`}
       style={style}
-      onMouseEnter={onMouseEnter} // 디테일 카드 유지
+      onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={(e) => {
         e.stopPropagation();
