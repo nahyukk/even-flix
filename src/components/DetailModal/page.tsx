@@ -143,7 +143,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 	};
 
 	return (
-		<div className="presenter z-10 absolute min-h-screen">
+		<div className="presenter z-[10000] absolute min-h-screen">
 			{video && credit && keywords ? (
 				<div className="wrapper-model fixed inset-0 bg-black bg-opacity-70 flex items-start justify-center overflow-auto">
 					<div
