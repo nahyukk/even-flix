@@ -68,8 +68,8 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
 	return (
 		// 기존 w=256 h=318px
 		<div
-			className={`dummy-detail-card w-64 h-80 rounded-md bg-[#181818] text-white shadow-lg overflow-hidden absolute z-50 transition-all duration-500  
-        ${visible ? "opacity-100 scale-100" : "opacity-0 scale-0"}`}
+			className={`dummy-detail-card w-full h-auto max-w-64 max-h-96 rounded-md bg-[#181818] text-white shadow-lg overflow-hidden absolute z-50 transition-all duration-500  
+        ${visible ? "opacity-100 scale-100" : "opacity-0 scale-0"} sm:max-w-64 md:max-w-72 lg:max-w-80`}
 			style={style}
 			onMouseEnter={onMouseEnter} // 디테일 카드 유지
 			onMouseLeave={onMouseLeave}
@@ -78,7 +78,7 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
 				handleClickCard();
 			}}
 		>
-			<div className="dummy-detail-card-backdrop w-64 h-36">
+			<div className="dummy-detail-card-backdrop w-full h-auto">
 				<img
 					className="w-full h-full object-cover"
 					src={backdrop_path}
@@ -86,9 +86,9 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
 				/>
 			</div>
 			{/* 원래 h=174px */}
-			<div className="dummy-detail-card-contents w-64 h-44 p-5">
+			<div className="dummy-detail-card-contents w-full h-44 p-5">
 				<button
-					className="favorite-button w-7 h-7 flex items-center justify-center rounded-full border-2 border-gray-300 hover:border-white z-30"
+					className="favorite-button w-7 h-7 flex items-center justify-center rounded-full border-2 border-gray-500 hover:border-white z-30"
 					onClick={handleFavoriteClick}
 				>
 					{isFavorite ? (
@@ -103,7 +103,7 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
 							<path
 								d="M5 12L10 17L20 7"
 								stroke="#ffffff"
-								strokeWidth="2"
+								strokeWidth="1.5"
 								strokeLinecap="round"
 								strokeLinejoin="round"
 							/>
@@ -121,12 +121,14 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
 							<path
 								d="M12 6V18"
 								stroke="#ffffff"
+								strokeWidth="1.5"
 								strokeLinecap="round"
 								strokeLinejoin="round"
 							/>
 							<path
 								d="M6 12H18"
 								stroke="#ffffff"
+								strokeWidth="1.5"
 								strokeLinecap="round"
 								strokeLinejoin="round"
 							/>
