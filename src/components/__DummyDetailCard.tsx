@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link, replace, useLocation, useNavigate } from "react-router-dom";
 import { useFavorite } from "../context/FavoriteContext";
-import { Media, MediaType } from "../models/Media";
+import {
+  mapMovie,
+  mapTV,
+  Media,
+  MediaType,
+  Movie,
+  Series,
+} from "../models/Media";
+import { convertMinutesToHoursAndMinutes } from "../util/calculate";
+
 
 interface DummyDetailCardProps {
   media: Media;
