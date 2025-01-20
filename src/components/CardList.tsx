@@ -9,7 +9,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Swiper as SwiperType } from "swiper";
 
 import "../styles/swiper.css";
-import DummyDetailCard from "./DetailCard";
+import DetailCard from "./DetailCard";
 import { Media } from "../models/Media";
 
 interface HoverPosition {
@@ -135,7 +135,7 @@ const CardList: React.FC<CardListProps> = ({ title, mediaList }) => {
         </Swiper>
         {/* 디테일 카드 호버 */}
         {hoveredItem && hoverPosition && (
-          <DummyDetailCard
+          <DetailCard
             media={hoveredItem}
             style={{
               position: "absolute",

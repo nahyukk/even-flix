@@ -12,7 +12,7 @@ import {
 import { convertMinutesToHoursAndMinutes } from "../util/calculate";
 import instance from "../api/axios";
 
-interface DummyDetailCardProps {
+interface DetailCardProps {
   media: Media;
   style: React.CSSProperties;
   isActive: boolean;
@@ -21,7 +21,7 @@ interface DummyDetailCardProps {
   onClick?: () => void;
 }
 
-const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
+const DetailCard: React.FC<DetailCardProps> = ({
   media,
   style,
   isActive,
@@ -120,7 +120,7 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
 
   return (
     <div
-      className={`dummy-detail-card w-full h-auto max-w-64 max-h-96 rounded-md bg-[#181818] text-white shadow-lg overflow-hidden absolute z-50 transition-all duration-500  
+      className={`ddetail-card w-full h-auto max-w-64 max-h-96 rounded-md bg-[#181818] text-white shadow-lg overflow-hidden absolute z-50 transition-all duration-500  
         ${
           visible ? "opacity-100 scale-100" : "opacity-0 scale-0"
         } sm:max-w-64 md:max-w-72 lg:max-w-80`}
@@ -132,14 +132,14 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
         console.log("play");
       }}
     >
-      <div className="dummy-detail-card-backdrop w-full h-auto">
+      <div className="detail-card-backdrop w-full h-auto">
         <img
           className="w-full h-full object-cover"
           src={media.backdropPath}
           alt=""
         />
       </div>
-      <div className="dummy-detail-card-contents flex flex-col gap-5 w-full h-auto p-5">
+      <div className="ddetail-card-contents flex flex-col gap-5 w-full h-auto p-5">
         <div className="buttons flex flex-row justify-between">
           <div className="left-buttons flex flex-row justify-start items-center gap-3">
             <button
@@ -321,4 +321,4 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
   );
 };
 
-export default DummyDetailCard;
+export default DetailCard;
