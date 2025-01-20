@@ -34,27 +34,27 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
       const timeout = setTimeout(() => setVisible(true), 1000);
       return () => clearTimeout(timeout);
     }
-  }, [media.backdropPath, isActive]);
+  }, [media, isActive]);
 
-	// 클릭해서 모달 띄우는 부분
-	const handleClickCard = () => {
-		switch (media.type) {
-			case MediaType.MOVIE:
-				navigate(`/movie/${media.id}`, {
-					replace: true,
-					state: { backgroundLocation: location },
-				});
-				break;
-			case MediaType.TV:
-				navigate(`/tv/${media.id}`, {
-					replace: true,
-					state: { backgroundLocation: location },
-				});
-				break;
-			default:
-				console.error("Unknown Media type");
-		}
-	};
+  // 클릭해서 모달 띄우는 부분
+  const handleClickCard = () => {
+    switch (media.type) {
+      case MediaType.MOVIE:
+        navigate(`/movie/${media.id}`, {
+          replace: true,
+          state: { backgroundLocation: location },
+        });
+        break;
+      case MediaType.TV:
+        navigate(`/tv/${media.id}`, {
+          replace: true,
+          state: { backgroundLocation: location },
+        });
+        break;
+      default:
+        console.error("Unknown Media type");
+    }
+  };
 
   // 찜 목록 추가, 삭제 부분
   const isFavorite = favorites.some((fav) => fav.id === media.id);
