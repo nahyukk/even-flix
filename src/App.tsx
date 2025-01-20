@@ -10,6 +10,7 @@ import { MediaType } from "./models/Media";
 import SearchPage from "./pages/SearchPage/page";
 import MyList from "./pages/MyList/page";
 import { FavoriteProvider } from "./context/FavoriteContext";
+import MoviePage from "./pages/MoviePage/page";
 
 const Layout = () => {
 	return (
@@ -36,6 +37,10 @@ function App() {
 						<Route path="browse" element={<HomePage />} />
 						<Route path="browse/my-list" element={<MyList />} />
 						<Route path="search" element={<SearchPage />} />
+						<Route
+							path="browse/genre/34399"
+							element={<MoviePage type={MediaType.MOVIE} />}
+						/>
 						<Route
 							path="movie/:id"
 							element={<DetailModal mediaType={MediaType.MOVIE} />}
