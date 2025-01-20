@@ -109,8 +109,7 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
           alt=""
         />
       </div>
-      {/* 원래 h=174px */}
-      <div className="dummy-detail-card-contents w-full h-44 p-5">
+      <div className="dummy-detail-card-contents flex flex-col gap-5 w-full h-auto p-5">
         <div className="buttons flex flex-row justify-between">
           <div className="left-buttons flex flex-row justify-start items-center gap-3">
             <button
