@@ -4,7 +4,7 @@ import requests from "../../api/requests";
 import CardList from "../../components/CardList";
 import instance from "../../api/axios";
 import PosterList from "../../components/PosterList";
-import { mapMedia, Media } from "../../models/Media";
+import { mapMedia, mapMediaList, Media } from "../../models/Media";
 import { useParams } from "react-router-dom";
 
 
@@ -25,14 +25,13 @@ const MoviePage: React.FC = () => {
   const fetchDataHome = async (url: string) => {
     try {
       const response = await instance.get(url);
-      const results = response.data.results;
+      const results = mapMediaList(response.data);
 
       // backdrop_path가 없는 부분 filtering
       const filteredResults = results
 			.filter(
         (item: any) => item.backdrop_path !== null
       )
-			.map(mapMedia);
 
       return filteredResults;
     } catch (error) {
