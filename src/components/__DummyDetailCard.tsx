@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { replace, useNavigate } from "react-router-dom";
+import { Link, replace, useLocation, useNavigate } from "react-router-dom";
 import { useFavorite } from "../context/FavoriteContext";
 import { MediaType } from "../models/Media";
 
@@ -26,6 +26,7 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
 }) => {
 	const [visible, setVisible] = useState(false);
 	const navigate = useNavigate();
+	const location = useLocation();
 	const { favorites, addFavorite, removeFavorite } = useFavorite();
 
 	// 디테일 카드 호버 부분
@@ -42,10 +43,16 @@ const DummyDetailCard: React.FC<DummyDetailCardProps> = ({
 	const handleClickCard = () => {
 		switch (type) {
 			case MediaType.MOVIE:
-				navigate(`/movie/${id}`, { replace: true });
+				navigate(`/movie/${id}`, {
+					replace: true,
+					state: { backgroundLocation: location },
+				});
 				break;
 			case MediaType.TV:
-				navigate(`/tv/${id}`, { replace: true });
+				navigate(`/tv/${id}`, {
+					replace: true,
+					state: { backgroundLocation: location },
+				});
 				break;
 			default:
 				console.error("Unknown Media type");

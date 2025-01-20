@@ -4,14 +4,15 @@ import { useNavigate } from "react-router-dom";
 const ModalHeader = () => {
 	const navigate = useNavigate();
 
-	const handleClose = () => {
+	const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
+		e.stopPropagation();
 		navigate(-1);
 	};
 
 	return (
 		<span
 			className="modal-close absolute top-4 right-4 bg-gray-950 p-2 rounded-full z-10 cursor-pointer"
-			onClick={() => handleClose()}
+			onClick={handleClose}
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

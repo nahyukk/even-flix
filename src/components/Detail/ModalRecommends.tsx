@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { Recommend } from "../../../models/Recommend";
+import { Recommend } from "../../models/Recommend";
 import ModalRecommend from "./ModalRecommend";
 
 interface ModalSimilarsProps {
@@ -21,7 +21,7 @@ const ModalSimilars: FC<ModalSimilarsProps> = ({ recommends }) => {
 					isShowAll ? "pb-28" : ""
 				}`}
 			>
-				{(isShowAll ? recommends : recommends.slice(0, 5)).map((recommend) => (
+				{(isShowAll ? recommends : recommends.slice(0, 6)).map((recommend) => (
 					<ModalRecommend key={recommend.id} recommend={recommend} />
 				))}
 			</div>
