@@ -168,7 +168,10 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 					>
 						<ModalHeader />
 						<ModalPoster video={video}>
-							<ModalPosterButtons favoriteOnClick={handleAddFavorite} />
+							<ModalPosterButtons
+								id={video.id}
+								favoriteOnClick={handleAddFavorite}
+							/>
 						</ModalPoster>
 						<ModalInfoSummary
 							video={video}

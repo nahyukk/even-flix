@@ -1,12 +1,17 @@
 import React, { FC } from "react";
+import { useFavorite } from "../../context/FavoriteContext";
 
 interface ModalPosterButtonsProps {
+	id: number;
 	favoriteOnClick: () => void;
 }
 
 const ModalPosterButtons: FC<ModalPosterButtonsProps> = ({
+	id,
 	favoriteOnClick,
 }) => {
+	const { favorites } = useFavorite();
+	const isFavorite = favorites.some((fav) => fav.id === id);
 	const handlePlayAction = () => {
 		console.log("tapPlay");
 	};
@@ -37,22 +42,53 @@ const ModalPosterButtons: FC<ModalPosterButtonsProps> = ({
 					className="modal__mylist-button text-white border-gray-400 bg-neutral-900 border-2 rounded-full w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center hover:border-white"
 					onClick={favoriteOnClick}
 				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						role="img"
-						viewBox="0 0 24 24"
-						width="24"
-						height="24"
-						data-icon="PlusStandard"
-						aria-hidden="true"
-					>
-						<path
-							fillRule="evenodd"
-							d="M11 11V2H13V11H22V13H13V22H11V13H2V11H11Z"
-							fill="currentColor"
-						></path>
-					</svg>
+					{isFavorite ? (
+						<svg
+							className="checked-button"
+							width="50px"
+							height="50px"
+							viewBox="0 0 24 24"
+							fill="none"
+							transform="scale(0.8)"
+							transform-origin="center"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M5 12L10 17L20 7"
+								stroke="#ffffff"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+						</svg>
+					) : (
+						<svg
+							className="plus-button"
+							width="80px"
+							height="80px"
+							viewBox="0 0 24 24"
+							fill="none"
+							transform="scale(0.8)"
+							transform-origin="center"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<rect width="20" height="20" fill="none" />
+							<path
+								d="M12 6V18"
+								stroke="#ffffff"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+							<path
+								d="M6 12H18"
+								stroke="#ffffff"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							/>
+						</svg>
+					)}
 				</button>
 				<button
 					className="modal__thumbup-button text-white border-gray-400 bg-neutral-900 border-2 rounded-full w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center hover:border-white"
