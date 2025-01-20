@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, replace, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useFavorite } from "../context/FavoriteContext";
 import {
   mapMovie,
