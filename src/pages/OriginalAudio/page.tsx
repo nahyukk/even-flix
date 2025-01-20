@@ -31,7 +31,16 @@ const OriginalAudio = () => {
       });
       const newMovies = response.data.results;
 
-      setMovies((prevMovies) => [...prevMovies, ...newMovies]);
+      setMovies((prevMovies) => {
+        const uniqueMovies = [
+          ...prevMovies,
+          ...newMovies.filter(
+            (movie: { id: number; }) => !prevMovies.some((prevMovie) => prevMovie.id === movie.id)
+          ),
+        ];
+        return uniqueMovies;
+      });
+
       setHasMore(newMovies.length > 0);
       loadedPages.add(currentPage);
     } catch (error) {
