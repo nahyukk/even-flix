@@ -58,8 +58,6 @@ const DetailCard: React.FC<DetailCardProps> = ({
     fetchMediaNew();
   }, [isActive, media]);
 
-  console.log("데이터:", newMedia);
-
   // "새로운 시즌" 또는 "최신 등록" 배너 표시 여부 확인
   useEffect(() => {
     if (!newMedia) return;
