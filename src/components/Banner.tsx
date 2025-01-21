@@ -23,8 +23,17 @@ export default function Banner() {
 
     const fetchData = async () => {
         const request = await axios.get(requests.fetchNowPlaying);
-        const movieId = request.data.results[Math.floor(Math.random() * request.data.results.length)].id;
 
+        const filterMovies = request.data.results.filter(
+            (movie: Movie) => movie.overview && movie.overview.trim() !== ""
+        );
+
+        if (filterMovies.length === 0) {
+            return;
+        }
+        const randomMovie = filterMovies[Math.floor(Math.random() * filterMovies.length)];
+        const movieId = randomMovie.id;
+        // const movieId = request.data.results[Math.floor(Math.random() * request.data.results.length)].id;
         const { data: movieDetail } = await axios.get(`movie/${movieId}`, {
             params: {
                 append_to_response: "videos",
@@ -55,11 +64,11 @@ export default function Banner() {
                         <img src="/top10.png" className="w-9 h-9 mr-3"/>
                         <span className="text-2xl">오늘의 추천 작품</span>       
                     </div>
-
+                    {movie?.overview && movie?.overview.trim() !== "" && (
                     <h1 className="w-720px leading-snug pt-4 font-medium text-lg max-w-md h-80px">
                         {truncate(movie?.overview, 120)}
                     </h1>
-
+                    )}
                     <div className="flex space-x-4 pt-4">
                         <button className="px-7 py-2 text-black bg-white rounded hover:bg-gray-300 font-medium flex items-center"
                             onClick={() => setisClicked(true)}>
