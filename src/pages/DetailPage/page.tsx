@@ -8,6 +8,7 @@ import ModalRecommends from "../../components/Detail/ModalRecommends";
 import {
 	mapMovie,
 	mapTV,
+	Media,
 	MediaType,
 	Movie,
 	Season,
@@ -21,6 +22,7 @@ import { Episodes, mapEpisodes } from "../../models/Episodes";
 import { Recommend, mapRecommend } from "../../models/Recommend";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "../../api/axios";
+import { useFavorite } from "../../context/FavoriteContext";
 
 interface DetailModalProps {
 	mediaType: MediaType;
@@ -30,6 +32,7 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 	const ref = useRef<HTMLDivElement | null>(null);
 	const navigate = useNavigate();
 	const { id } = useParams<{ id: string }>();
+	const { favorites, addFavorite, removeFavorite } = useFavorite();
 
 	const [video, setVideo] = useState<Movie | Series | null>(null);
 	const [episodes, setEpisodes] = useState<Episodes | null>(null);
@@ -142,6 +145,19 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 		fetchEpisodes(id, season.seasonNumber);
 	};
 
+	const handleAddFavorite = () => {
+		if (!id) {
+			throw new Error("ID is Missing!");
+		}
+		const isFavorite = favorites.some((fav) => fav.id.toString() === id);
+
+		if (isFavorite) {
+			removeFavorite(Number(id));
+		} else {
+			addFavorite(video as Media);
+		}
+	};
+
 	return (
 		<div className="presenter z-[10000] absolute min-h-screen">
 			{video && credit && keywords ? (
@@ -152,7 +168,10 @@ const DetailModal: FC<DetailModalProps> = ({ mediaType }) => {
 					>
 						<ModalHeader />
 						<ModalPoster video={video}>
-							<ModalPosterButtons />
+							<ModalPosterButtons
+								id={video.id}
+								favoriteOnClick={handleAddFavorite}
+							/>
 						</ModalPoster>
 						<ModalInfoSummary
 							video={video}

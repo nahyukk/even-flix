@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage/page";
 import DetailModal from "./pages/DetailPage/page";
 import OriginalAudio from "./pages/OriginalAudio/page";
 import { MediaType } from "./models/Media";
+import NewContentsPage from "./pages/NewContentsPage/page";
 import SearchPage from "./pages/SearchPage/page";
 import MyList from "./pages/MyList/page";
 import { FavoriteProvider } from "./context/FavoriteContext";
@@ -36,6 +37,7 @@ function App() {
 					<Route path="/" element={<Layout />}>
 						<Route index element={<HomePage />} />
 						<Route path="browse" element={<HomePage />} />
+						<Route path="latest" element={<NewContentsPage />} />
 						<Route path="browse/my-list" element={<MyList />} />
 						<Route path="search" element={<SearchPage />} />
 						<Route
