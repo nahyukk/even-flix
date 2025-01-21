@@ -1,12 +1,14 @@
 import axios from "../api/axios";
 import React, { useEffect, useState } from "react";
 import requests from "../api/requests";
+import { translateGenre } from "../util/seriesGenre";
 
-interface Movie {
+interface Series {
     backdrop_path: string;
     title?: string;
+    name?: string;
     original_title?: string;
-    overview: string;
+    overview?: string;
     videos?: {
         results: { key: string }[];
     };
@@ -18,41 +20,45 @@ interface Genre {
 }
 
 
-export default function MovieBanner() {
-    const [movie, setmovie] = useState<Movie | null>(null);
+export default function SeriesBanner() {
+    const [tv, settv] = useState<Series | null>(null);
     const [isClicked, setisClicked] = useState(false);
     const [genres, setgenres] = useState<Genre[]>([]);
     const [isDropdownOpen, setisDropdownOpen] = useState(false);
 
     useEffect(() => {
         fetchData();
-        fetchGenres();
+        fetchGenresTV();
     }, []);
 
-    const fetchGenres = async () => {
-        const { data } = await axios.get(requests.fetchGenres)
-        setgenres(data.genres || []);
+    const fetchGenresTV = async () => {
+        const { data } = await axios.get(requests.fetchGenresTV);
+        const translatedGenres = data.genres.map((genre: Genre) => ({
+            ...genre,
+            name: translateGenre(genre.id),
+        }));
+        setgenres(translatedGenres);
     };
 
     const fetchData = async () => {
-        const request = await axios.get(requests.fetchMovies);
 
-        const filterMovies = request.data.results.filter(
-            (movie: Movie) => movie.overview && movie.overview.trim() !== ""
+        const request = await axios.get(requests.fetchTV);
+
+        const filterTv = request.data.results.filter(
+            (tv: Series) => tv?.overview && tv?.overview.trim() !== ""
         );
-
-        if (filterMovies.length === 0) {
+        if (filterTv.length === 0) {
             return;
         }
 
-        const randomMovie = filterMovies[Math.floor(Math.random() * filterMovies.length)];
-        const movieId = randomMovie.id;
-        const { data: movieDetail } = await axios.get(`movie/${movieId}`, {
+        const randomTv = filterTv[Math.floor(Math.random() * filterTv.length)];
+        const tvId = randomTv.id;
+        const { data: tvDetail } = await axios.get(`tv/${tvId}`, {
             params: {
                 append_to_response: "videos",
             },
-        });
-        setmovie(movieDetail);
+        })
+        settv(tvDetail);
     };
 
     const truncate = (str: string | undefined, n: number) => {
@@ -63,13 +69,13 @@ export default function MovieBanner() {
         return (
             <header className="relative h-[700px] lg:h-[800px] bg-cover bg-center"
                 style={{
-                    backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
+                    backgroundImage: `url("https://image.tmdb.org/t/p/original/${tv?.backdrop_path}")`,
                 }}
             >
                 <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent z-1">
                     <div className="absolute h-16 flex items-center px-[4%]">
                         <span className="text-xl font-medium md:text-4xl">
-                            영화
+                            시리즈
                         </span>
                         <div className="ml-10 block font-sans align-top relative overflow-visible">
                             <button
@@ -92,17 +98,19 @@ export default function MovieBanner() {
                                 </svg>
                             </button>
                             {isDropdownOpen && (
-                                <ul className="absolute left-0 p-2 z-10 bg-black text-sm grid grid-cols-3 gap-2 max-h-80 overflow-y-auto w-72 shadow-lg
+                                <ul className="absolute left-0 p-2 z-10 bg-black text-sm grid grid-cols-3 gap-2 max-h-80 overflow-y-auto w-80 shadow-lg
                                 border border-white/20 border-solid">
-                                    {Array.isArray(genres) && genres.map((genre) => (
-                                        <li
-                                            key={genre.id}
-                                            className="px-1 cursor-pointer whitespace-nowrap"
-                                            onClick={() => console.log(`장르 ID: ${genre.id}`)}
-                                        >
-                                            {genre.name}
-                                        </li>
-                                    ))}
+                                    {Array.isArray(genres) && genres
+                                        .filter((genre) => genre.name.trim() !== "")
+                                        .map((genre) => (
+                                            <li
+                                                key={genre.id}
+                                                className="px-1 cursor-pointer whitespace-nowrap"
+                                                onClick={() => console.log(`장르 ID: ${genre.id}`)}
+                                            >
+                                                {genre.name}
+                                            </li>
+                                        ))}
                                 </ul>
                             )}
                         </div>
@@ -110,16 +118,11 @@ export default function MovieBanner() {
                 </div>
                 <div className="absolute top-64 inset-x-14 space-y-4 text-white">
                     <h1 className="text-4xl font-bold md:text-6xl mb-4">
-                        {movie?.title || movie?.original_title}
+                        {tv?.title || tv?.name || tv?.original_title}
                     </h1>
-
-                    <div className="items-center cursor-default flex font-medium text-xl pt-2">
-                        <img src="/top10.png" className="w-9 h-9 mr-3" />
-                        <span className="text-2xl">오늘의 영화 추천</span>
-                    </div>
-                    {movie?.overview && movie?.overview.trim() !== "" && (
+                    {tv?.overview && tv?.overview.trim() !== "" && (
                         <h1 className="w-720px leading-snug pt-4 font-medium text-lg max-w-md h-80px">
-                            {truncate(movie?.overview, 120)}
+                            {truncate(tv?.overview, 120)}
                         </h1>
                     )}
                     <div className="flex space-x-4 pt-4">
@@ -162,7 +165,7 @@ export default function MovieBanner() {
         return (
             <div className="flex items-center justify-center w-full h-screen">
                 <iframe className="w-full h-full"
-                    src={`https://www.youtube.com/embed/${movie?.videos?.results[0]?.key}?controls=0&autoplay=1&loop=1&mute=1&playlist=${movie?.videos?.results[0]?.key}`}
+                    src={`https://www.youtube.com/embed/${tv?.videos?.results[0]?.key}?controls=0&autoplay=1&loop=1&mute=1&playlist=${tv?.videos?.results[0]?.key}`}
                     title="youTube video player"
                     allow="autoplay; fullscreen"
                     allowFullScreen>

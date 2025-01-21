@@ -13,6 +13,7 @@ import SearchPage from "./pages/SearchPage/page";
 import MyList from "./pages/MyList/page";
 import { FavoriteProvider } from "./context/FavoriteContext";
 import MoviePage from "./pages/MoviePage/page";
+import SeriesPage from "./pages/SeriesPage/page";
 
 const Layout = () => {
 	return (
@@ -44,6 +45,11 @@ function App() {
 							path="browse/genre/34399"
 							element={<MoviePage />}
 						/>
+						<Route
+                            path="browse/genre/83"
+                            element={<SeriesPage />}
+                        />
+
 						<Route path="browse/original-audio" element={<OriginalAudio />} />
 					</Route>
 				</Routes>
