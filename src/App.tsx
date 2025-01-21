@@ -5,6 +5,7 @@ import { Outlet, Route, Routes, useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage/page";
+import Profile from "./pages/Profile/page";
 import DetailModal from "./pages/DetailPage/page";
 import OriginalAudio from "./pages/OriginalAudio/page";
 import { MediaType } from "./models/Media";
@@ -49,7 +50,7 @@ function App() {
                             path="browse/genre/83"
                             element={<SeriesPage />}
                         />
-
+            <Route path="account/profiles" element={<Profile />} />
 						<Route path="browse/original-audio" element={<OriginalAudio />} />
 					</Route>
 				</Routes>
