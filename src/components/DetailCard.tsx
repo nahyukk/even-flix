@@ -56,9 +56,9 @@ const DetailCard: React.FC<DetailCardProps> = ({
     fetchMediaNew();
   }, [isActive, media]);
 
-  // 디테일 카드 호버 부분
-  useEffect(() => {
-    setVisible(false);
+	// 디테일 카드 호버 부분
+	useEffect(() => {
+		setVisible(false);
 
     if (isActive) {
       const timeout = setTimeout(() => setVisible(true), 1000);
@@ -86,18 +86,18 @@ const DetailCard: React.FC<DetailCardProps> = ({
     }
   };
 
-  // 찜 목록 추가, 삭제 부분
-  const isFavorite = favorites.some((fav) => fav.id === media.id);
+	// 찜 목록 추가, 삭제 부분
+	const isFavorite = favorites.some((fav) => fav.id === media.id);
 
-  const handleFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+	const handleFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+		e.stopPropagation();
 
-    if (isFavorite) {
-      removeFavorite(media.id);
-    } else {
-      addFavorite(media);
-    }
-  };
+		if (isFavorite) {
+			removeFavorite(media.id);
+		} else {
+			addFavorite(media);
+		}
+	};
 
   // 런타임 또는 시즌 정보 계산
   const getRuntimeOrSesaons = () => {
