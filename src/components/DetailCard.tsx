@@ -32,6 +32,7 @@ const DetailCard: React.FC<DetailCardProps> = ({
 }) => {
   const [newMedia, setNewMedia] = useState<Media | null>(null);
   const [visible, setVisible] = useState(false);
+  const [showBanner, setShowBanner] = useState<string | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { favorites, addFavorite, removeFavorite } = useFavorite();
@@ -56,6 +57,30 @@ const DetailCard: React.FC<DetailCardProps> = ({
 
     fetchMediaNew();
   }, [isActive, media]);
+
+  console.log("데이터:", newMedia);
+
+  // "새로운 시즌" 또는 "최신 등록" 배너 표시 여부 확인
+  useEffect(() => {
+    if (!newMedia) return;
+
+    const releaseDate = new Date(newMedia.releaseDate);
+    const currentDate = new Date();
+
+    const daysDifference = Math.floor(
+      (currentDate.getTime() - releaseDate.getTime()) / (1000 * 3600 * 24)
+    );
+
+    if (daysDifference <= 31 && daysDifference >= 0) {
+      if (media.type === MediaType.TV) {
+        setShowBanner("새로운 시즌");
+      } else if (media.type === MediaType.MOVIE) {
+        setShowBanner("최신 등록");
+      }
+    } else {
+      setShowBanner(null);
+    }
+  }, [newMedia]);
 
   // 디테일 카드 호버 부분
   useEffect(() => {
@@ -133,12 +158,17 @@ const DetailCard: React.FC<DetailCardProps> = ({
         console.log("play");
       }}
     >
-      <div className="detail-card-backdrop w-full h-auto">
+      <div className="detail-card-backdrop w-full h-auto relative">
         <img
           className="w-full h-full object-cover"
           src={`https://image.tmdb.org/t/p/original/${media.backdropPath}`}
           alt=""
         />
+        {showBanner && (
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-red-600 text-white text-md font-extrabold px-3 py-[2px] rounded-t-[3px]">
+            {showBanner}
+          </div>
+        )}
       </div>
       <div className="detail-card-contents flex flex-col gap-5 w-full h-auto p-5">
         <div className="buttons flex flex-row justify-between">
