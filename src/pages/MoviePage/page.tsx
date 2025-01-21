@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
-import Banner from "../../components/Banner";
+import MovieBanner from "../../components/MovieBanner";
 import requests from "../../api/requests";
 import CardList from "../../components/CardList";
 import instance from "../../api/axios";
 import PosterList from "../../components/PosterList";
-import { mapMediaList, Media } from "../../models/Media";
+import { mapMedia, mapMediaList, Media } from "../../models/Media";
+import { useParams } from "react-router-dom";
 
-const HomePage: React.FC = () => {
-  const [forYou, setForYou] = useState<Media[]>([]);
-  const [todayTop10SeriesKR, setTodayTop10SeriesKR] = useState<Media[]>([]);
-  const [realitySeries, setRealitySeries] = useState<Media[]>([]);
-  const [topRatedSeries, setTopRatedSeries] = useState<Media[]>([]);
-  const [englishContents, setEnglishContents] = useState<Media[]>([]);
-  const [uSMovies, setUSMovies] = useState<Media[]>([]);
-  const [koreanSeries, setKoreanSeries] = useState<Media[]>([]);
-  const [popularMovies, setPopularMovies] = useState<Media[]>([]);
-  const [nowPlayingMovies, setNowPlayingMovies] = useState<Media[]>([]);
-  const [sFAndFantasySeries, setSFAndFantasySeries] = useState<Media[]>([]);
+
+const MoviePage: React.FC = () => {
+    const [forYou, setForYou] = useState<Media[]>([]);
+    const [todayTop10SeriesKR, setTodayTop10SeriesKR] = useState<Media[]>([]);
+    const [realitySeries, setRealitySeries] = useState<Media[]>([]);
+    const [topRatedSeries, setTopRatedSeries] = useState<Media[]>([]);
+    const [englishContents, setEnglishContents] = useState<Media[]>([]);
+    const [uSMovies, setUSMovies] = useState<Media[]>([]);
+    const [koreanSeries, setKoreanSeries] = useState<Media[]>([]);
+    const [popularMovies, setPopularMovies] = useState<Media[]>([]);
+    const [nowPlayingMovies, setNowPlayingMovies] = useState<Media[]>([]);
+    const [sFAndFantasySeries, setSFAndFantasySeries] = useState<Media[]>([]);
 
   // fetchDataHome 컴포넌트는 fetchData로 따로 컴포넌트화 시켜서 재사용할 수 있지만
   // 각 page에서 개인 api 연결 공부를 위해 page에 넣음
@@ -24,10 +26,12 @@ const HomePage: React.FC = () => {
     try {
       const response = await instance.get(url);
       const results = mapMediaList(response.data);
-			
+
       // backdrop_path가 없는 부분 filtering
       const filteredResults = results
-        .filter((media: any) => media.backdropPath !== null)
+			.filter(
+        (item: any) => item.backdrop_path !== null
+      )
 
       return filteredResults;
     } catch (error) {
@@ -58,7 +62,7 @@ const HomePage: React.FC = () => {
         );
 
         const todayTop10SeriesDataKR = todayTop10SeriesData.filter(
-          (media: Media) => media.originCountry.includes("KR")
+          (media: Media) => media.originCountry?.includes("KR")
         );
 
         let todayTop10SeriesFinalKR: Media[] = [];
@@ -67,7 +71,7 @@ const HomePage: React.FC = () => {
         } else {
           const needed = 10 - todayTop10SeriesDataKR.length;
           const nonKrSeries = todayTop10SeriesData.filter(
-            (media: Media) => !media.originCountry.includes("KR")
+            (media: Media) => !media.originCountry?.includes("KR")
           );
           const fillOthers = nonKrSeries.slice(0, needed);
           todayTop10SeriesFinalKR = [...todayTop10SeriesDataKR, ...fillOthers];
@@ -178,19 +182,19 @@ const HomePage: React.FC = () => {
         setNowPlayingMovies(nowPlayingMovieData);
         setSFAndFantasySeries(sFAndFantasySeriesData.slice(0, 36));
       } catch (error) {
-        console.log("데이터를 못 가져왔습니다.", error);
+        console.log("데이터 못 가져왔지롱~", error);
       }
     };
     fetchHome();
   }, []);
 
   return (
-    <div className="homepage relative">
-      <div className="banner relative z-0 h-[630px]">
-        <Banner />
+    <div className="moviepage relative">
+      <div className="moviebanner relative z-0 h-[630px]">
+        <MovieBanner />
       </div>
       <div className="mainbody relative z-5 pb-10">
-        <CardList
+			<CardList
           title="회원님을 위해 엄선한 오늘의 콘텐츠"
           mediaList={forYou}
         />
@@ -224,4 +228,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default MoviePage;

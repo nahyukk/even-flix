@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { Recommend } from "../../../models/Recommend";
-import { convertReleaseDate } from "../../../util/calculate";
+import { Recommend } from "../../models/Recommend";
+import { convertReleaseDate } from "../../util/calculate";
 
 interface ModalRecommendProps {
 	recommend: Recommend;
@@ -40,7 +40,7 @@ const ModalRecommend: FC<ModalRecommendProps> = ({ recommend }) => {
 						aria-hidden="true"
 					>
 						<path
-							fill-rule="evenodd"
+							fillRule="evenodd"
 							d="M11 11V2H13V11H22V13H13V22H11V13H2V11H11Z"
 							fill="currentColor"
 						></path>

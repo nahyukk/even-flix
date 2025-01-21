@@ -1,28 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Media } from "../models/Media";
 
-interface CardProps {
-	id: number;
-	backdropPath: string;
+export interface CardProps {
+	media: Media;
 }
 
-const Card: React.FC<CardProps> = ({ backdropPath }) => {
-	const navigate = useNavigate();
-
-	const handleClickCard = () => {
-		// navigate("/movie/1241982");
-		navigate("/tv/1408");
-	};
-
+const Card: React.FC<CardProps> = ({ media }) => {
 	return (
-		<div className="relative">
-			<button onClick={handleClickCard}>
-				<img
-					src={backdropPath}
-					alt=""
-					className="h-auto object-cover rounded-sm"
-				/>
-			</button>
+		<div className="relative cursor-pointer">
+			<img
+				src={`https://image.tmdb.org/t/p/original/${media.backdropPath}`}
+				alt=""
+				className="h-auto object-cover rounded-sm"
+			/>
 		</div>
 	);
 };

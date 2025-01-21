@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { Movie, Series } from "../../../models/Media";
-import { Credit, Department } from "../../../models/Credit";
-import { Keyword } from "../../../models/Keyword";
+import { Movie, Series } from "../../models/Media";
+import { Credit, Department } from "../../models/Credit";
+import { Keyword } from "../../models/Keyword";
 
 interface ModalInfoDetailProps {
 	video: Movie | Series;
