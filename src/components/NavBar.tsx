@@ -46,8 +46,8 @@ const NavBar = () => {
 
 	return (
 		<nav className="nav__container sticky top-0 h-auto min-h-[70px] z-[1001] bg-[rgb(20,20,20)] text-[#e5e5e5]">
-			<div className="nav__main flex h-[68px] p-[0_4%] items-center text-[0.7rem]">
-				<a className="nav__logo w-[92.5px]" href="/browse">
+			<div className="nav__main flex h-[68px] p-[0_4%] items-center text-[0.85rem]">
+				<a className="nav__logo w-[92.5px] mr-6" href="/browse">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 276.742">
 						<path
 							fill="#d81f26"
