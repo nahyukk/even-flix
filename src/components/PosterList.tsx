@@ -94,7 +94,7 @@ const PosterList: React.FC<PosterListProps> = ({ title, mediaList }) => {
           breakpoints={{
             1378: {
               slidesPerView: 6,
-              slidesPerGroup: 6,
+              slidesPerGroup: 4,
             },
             998: {
               slidesPerView: 5,
