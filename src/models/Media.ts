@@ -1,6 +1,6 @@
 export enum MediaType {
-	MOVIE = "moive",
-	TV = "tv",
+  MOVIE = "movie",
+  TV = "tv",
 }
 
 export interface Media {

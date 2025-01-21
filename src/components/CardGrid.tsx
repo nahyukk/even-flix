@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Card from "./Card";
-import DummyDetailCard from "./__DummyDetailCard";
+import DetailCard from "./DetailCard";
 import { Media } from "../models/Media";
 
 interface HoverPosition {
@@ -63,7 +63,7 @@ const CardGrid: React.FC<CardGridProps> = ({ mediaList }) => {
         ))}
       </div>
       {hoveredItem && hoverPosition && (
-        <DummyDetailCard
+        <DetailCard
           media={hoveredItem}
           style={{
             position: "absolute",
