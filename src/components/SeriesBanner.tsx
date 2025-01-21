@@ -33,14 +33,23 @@ export default function SeriesBanner() {
 
     const fetchGenresTV = async () => {
         const { data } = await axios.get(requests.fetchGenresTV);
-        
+        const translatedGenres = data.genres.map((genre: Genre) => ({
+            ...genre,
+            name: translateGenre(genre.id),
+        }));
+        setgenres(translatedGenres);
     };
 
     const fetchData = async () => {
 
         const request = await axios.get(requests.fetchTV);
 
-        
+        const filterTv = request.data.results.filter(
+            (tv: Series) => tv?.overview && tv?.overview.trim() !== ""
+        );
+        if (filterTv.length === 0) {
+            return;
+        }
 
         const randomTv = filterTv[Math.floor(Math.random() * filterTv.length)];
         const tvId = randomTv.id;
@@ -88,7 +97,22 @@ export default function SeriesBanner() {
                                     />
                                 </svg>
                             </button>
-                            
+                            {isDropdownOpen && (
+                                <ul className="absolute left-0 p-2 z-10 bg-black text-sm grid grid-cols-3 gap-2 max-h-80 overflow-y-auto w-80 shadow-lg
+                                border border-white/20 border-solid">
+                                    {Array.isArray(genres) && genres
+                                        .filter((genre) => genre.name.trim() !== "")
+                                        .map((genre) => (
+                                            <li
+                                                key={genre.id}
+                                                className="px-1 cursor-pointer whitespace-nowrap"
+                                                onClick={() => console.log(`장르 ID: ${genre.id}`)}
+                                            >
+                                                {genre.name}
+                                            </li>
+                                        ))}
+                                </ul>
+                            )}
                         </div>
                     </div>
                 </div>
