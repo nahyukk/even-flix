@@ -33,7 +33,6 @@ export default function Banner() {
         }
         const randomMovie = filterMovies[Math.floor(Math.random() * filterMovies.length)];
         const movieId = randomMovie.id;
-        // const movieId = request.data.results[Math.floor(Math.random() * request.data.results.length)].id;
         const { data: movieDetail } = await axios.get(`movie/${movieId}`, {
             params: {
                 append_to_response: "videos",
