@@ -25,7 +25,7 @@ const Profile = () => {
                     {/* 프로필 리스트를 가로로 정렬 */}
                     <ul className="flex justify-center space-x-[2vw] my-8 opacity-100 transition-opacity duration-400 ease-out p-0">
                         <li className="relative align-top max-w-[200px] min-w-[84px] w-[10vw]">
-                            <a className="text-white cursor-pointer no-underline" href="#">
+                            <a className="text-white cursor-pointer no-underline" href="/browse">
                                 <div className="relative">
                                     <div className="bg-gray-800 bg-no-repeat bg-cover border-none rounded-md box-border relative w-[10vw] h-[10vw] min-w-[84px] min-h-[84px] max-w-[200px] max-h-[200px] no-underline after:content-[''] after:absolute after:inset-0 after:block after:border-[0.3em] after:border-transparent after:rounded-md">
                                         이미지
@@ -38,7 +38,7 @@ const Profile = () => {
                         </li>
 
                         <li className="relative align-top max-w-[200px] min-w-[84px] w-[10vw]">
-                            <a className="text-white cursor-pointer no-underline bg-transparent">
+                            <a className="text-white cursor-pointer no-underline bg-transparent" href="/browse">
                                 <div className="relative">
                                     <div className="relative bg-gray-800 bg-no-repeat bg-cover border-none rounded-md box-border w-[10vw] h-[10vw] min-w-[84px] min-h-[84px] max-w-[200px] max-h-[200px] no-underline">
                                         이미지
@@ -72,7 +72,7 @@ const Profile = () => {
 
                 {/* Manage Profiles 버튼 */}
                 <span className="text-center">
-                    <a href="/#" className="block bg-transparent border border-gray-500 text-gray-500 cursor-pointer text-[1.2vw] tracking-widest my-[2em] mt-[2em] mb-[1em] px-[1.5em] py-[0.5em] sm:text-[13px]">
+                    <a href="/browse" className="block bg-transparent border border-gray-500 text-gray-500 cursor-pointer text-[1.2vw] tracking-widest my-[2em] mt-[2em] mb-[1em] px-[1.5em] py-[0.5em] sm:text-[13px]">
                         Manage Profiles
                     </a>
                 </span>
