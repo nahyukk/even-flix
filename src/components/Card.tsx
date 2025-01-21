@@ -7,7 +7,7 @@ export interface CardProps {
 
 const Card: React.FC<CardProps> = ({ media }) => {
 	return (
-		<div className="relative">
+		<div className="relative cursor-pointer">
 			<img
 				src={`https://image.tmdb.org/t/p/original/${media.backdropPath}`}
 				alt=""

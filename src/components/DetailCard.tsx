@@ -120,7 +120,7 @@ const DetailCard: React.FC<DetailCardProps> = ({
 
   return (
     <div
-      className={`detail-card w-full h-auto max-w-64 max-h-96 rounded-md bg-[#181818] text-white shadow-lg overflow-hidden absolute z-50 transition-all duration-500  
+      className={`detail-card cursor-pointer w-full h-auto max-w-64 max-h-96 rounded-md bg-[#181818] text-white shadow-lg overflow-hidden absolute z-50 transition-all duration-500  
         ${
           visible ? "opacity-100 scale-100" : "opacity-0 scale-0"
         } sm:max-w-64 md:max-w-72 lg:max-w-80`}
