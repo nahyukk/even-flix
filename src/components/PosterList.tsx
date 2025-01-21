@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -6,21 +6,22 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper as SwiperType } from "swiper";
 
-import Poster from "./Poster";
 import "../styles/swiper.css";
+import DetailCard from "./DetailCard";
+import Poster from "./Poster";
+import { Media } from "../models/Media";
 
-interface PosterProps {
-	id: number;
-	poster_path: string;
+interface HoverPosition {
+  top: number;
+  left: number;
 }
 
 interface PosterListProps {
-	title: string;
-	posterProps: PosterProps[];
+  title: string;
+  mediaList: Media[];
 }
 
-
-const PosterList: React.FC<PosterListProps> = ({ title, posterProps }) => {
+const PosterList: React.FC<PosterListProps> = ({ title, mediaList }) => {
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
@@ -32,6 +33,29 @@ const PosterList: React.FC<PosterListProps> = ({ title, posterProps }) => {
         <span class="${className}"></span>
       `;
     },
+  };
+
+  // 디테일 카드 호버 부분
+  const [hoveredItem, setHoveredItem] = useState<Media | null>(null);
+  const [hoverPosition, setHoverPosition] = useState<HoverPosition | null>(
+    null
+  );
+
+  const handleCardMouseEnter = (media: Media, rect: DOMRect) => {
+    setHoveredItem(media);
+    setHoverPosition({
+      top: rect.top + window.scrollY,
+      left: rect.left + rect.width / 2,
+    });
+  };
+
+  const handleDetailMouseEnter = () => {
+    // 디테일 카드로 마우스 이동시 아무 효과 없음
+  };
+
+  const handleDetailMouseLeave = () => {
+    setHoveredItem(null);
+    setHoverPosition(null);
   };
 
   return (
@@ -86,23 +110,52 @@ const PosterList: React.FC<PosterListProps> = ({ title, posterProps }) => {
             },
           }}
         >
-          {posterProps.map((item, index) => (
-            <SwiperSlide >
-              <Poster id={item.id} poster_path={item.poster_path} rank={index + 1} />
+          {mediaList.map((media, index) => (
+            <SwiperSlide
+              key={`${media.id}-${index}`}
+              style={{ position: "relative" }}
+              onMouseEnter={(event) => {
+                const rect = (
+                  event.currentTarget as HTMLElement
+                ).getBoundingClientRect();
+                handleCardMouseEnter(media, rect);
+              }}
+              onMouseLeave={() => {
+                if (!hoveredItem) {
+                  setHoveredItem(null);
+                }
+              }}
+            >
+              <Poster media={media} rank={index + 1} />
             </SwiperSlide>
           ))}
         </Swiper>
-        <div>
-          <button
-            ref={prevRef}
-            className="absolute top-1/2 -left-12 transform -translate-y-1/2 h-full p-2 px-[0.9rem] rounded-s-s bg-black opacity-0 text-white hover:opacity-70  hover:text-4xl focus:outline-none z-50"
-          >
-            <i className="fas fa-chevron-left text-2xl hover:opacity-100"></i>
-          </button>
-        </div>
+        {/* 디테일 카드 호버 */}
+        {hoveredItem && hoverPosition && (
+          <DetailCard
+            media={hoveredItem}
+            style={{
+              position: "absolute",
+              top: "cal(hoverPosition.top - scrollY)",
+              left: hoverPosition.left,
+              transform: "translate(-75%, -70%)",
+              zIndex: 10,
+            }}
+            isActive={true}
+            onMouseEnter={handleDetailMouseEnter}
+            onMouseLeave={handleDetailMouseLeave}
+          />
+        )}
+        {/* 양쪽 버튼 */}
+        <button
+          ref={prevRef}
+          className="absolute top-1/2 -left-12 transform -translate-y-1/2 h-full p-2 px-[0.9rem] rounded-s-s bg-black opacity-0 text-white hover:opacity-70  hover:text-4xl focus:outline-none z-20"
+        >
+          <i className="fas fa-chevron-left text-2xl hover:opacity-100"></i>
+        </button>
         <button
           ref={nextRef}
-          className="absolute top-1/2 -right-12 transform -translate-y-1/2 h-full p-2 px-[0.9rem] rounded-s-s bg-black opacity-0 text-white hover:opacity-70 hover:text-4xl  focus:outline-none z-50"
+          className="absolute top-1/2 -right-12 transform -translate-y-1/2 h-full p-2 px-[0.9rem] rounded-s-s bg-black opacity-0 text-white hover:opacity-70 hover:text-4xl  focus:outline-none z-20"
         >
           <i className="fas fa-chevron-right text-2xl hover:opacity-100"></i>
         </button>
