@@ -194,7 +194,7 @@ const NavBar = () => {
 											fill="currentColor"
 										></path>
 									</svg>
-									<span>프로필 관리</span>
+									<span className="hover:underline">프로필 관리</span>
 								</NavMenu>
 								<NavMenu href="#">
 									<svg
@@ -214,7 +214,7 @@ const NavBar = () => {
 											fill="currentColor"
 										/>
 									</svg>
-									<span>프로필 이전</span>
+									<span className="hover:underline">프로필 이전</span>
 								</NavMenu>
 								<NavMenu href="#">
 									<svg
@@ -234,7 +234,7 @@ const NavBar = () => {
 											fill="currentColor"
 										/>
 									</svg>
-									<span>계정</span>
+									<span className="hover:underline">계정</span>
 								</NavMenu>
 								<NavMenu href="#">
 									<svg
@@ -254,12 +254,12 @@ const NavBar = () => {
 											fill="currentColor"
 										/>
 									</svg>
-									<span>고객 센터</span>
+									<span className="hover:underline">고객 센터</span>
 								</NavMenu>
 							</ul>
 							<ul className="py-[10px] border-t border-t-[rgba(255,255,255,0.25)]">
 								<li className="block text-[13px] leading-[16px] py-[5px] px-[10px] text-center cursor-pointer">
-									<a>넷플릭스에서 로그아웃</a>
+									<a className="hover:underline">넷플릭스에서 로그아웃</a>
 								</li>
 							</ul>
 						</div>
