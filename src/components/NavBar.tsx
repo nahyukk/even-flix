@@ -175,7 +175,7 @@ const NavBar = () => {
 								</li>
 							</ul>
 							<ul className="pb-[10px] text-[13px]">
-								<NavMenu href="#">
+								<NavMenu href="/account/profiles">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										className="ml-[5px] mr-[13px]"
@@ -196,7 +196,7 @@ const NavBar = () => {
 									</svg>
 									<span className="hover:underline">프로필 관리</span>
 								</NavMenu>
-								<NavMenu href="account/profiles">
+								<NavMenu href="#">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										className="ml-[5px] mr-[13px]"
