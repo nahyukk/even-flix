@@ -11,10 +11,9 @@ const OriginalAudio = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const [sortCriteria, setSortCriteria] = useState('추천 콘텐츠'); // 정렬 기준
   const loadedPages = new Set<number>();
 
-  // API로 가져온 데이터를 Media 형식으로 변환
-  const mediaList: Media[] = mapMediaList({ results: movies });
 
   // API 요청 함수
   const fetchMovies = async (startPage: number, pagesToLoad: number = 1) => {
@@ -81,9 +80,23 @@ const OriginalAudio = () => {
     }
   }, [page]);
 
+  const sortedMovies = [...movies].sort((a, b) => {
+    if (sortCriteria === '출시일순') {
+      return new Date(a.releaseDate).getTime() - new Date(b.releaseDate).getTime();
+    } else if (sortCriteria === '오름차순(ㄱ~Z)') {
+      return a.title.localeCompare(b.title);
+    } else if (sortCriteria === '내림차순(Z~ㄱ)') {
+      return b.title.localeCompare(a.title);
+    }
+    return 0; // 기본 정렬: 추천 콘텐츠
+  });
+
+  // API로 가져온 데이터를 Media 형식으로 변환
+  const mediaList: Media[] = mapMediaList({ results: sortedMovies });
+
   return (
     <div>
-      <SubHeader />
+      <SubHeader onSortChange={(criteria) => setSortCriteria(criteria)} />
       <div className="main__view relative min-h-[1000px]">
         <div className="mt-[4.2%] pt-[5rem] p-[0_4%]">
           <CardGrid mediaList={mediaList} />

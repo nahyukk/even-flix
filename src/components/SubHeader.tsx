@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-const SubHeader = () => {
+interface SubHeaderProps {
+    onSortChange: (sortCriteria: string) => void;
+  }
+
+const SubHeader: React.FC<SubHeaderProps> = ({ onSortChange }) => {
     const [viewModeOpen, setViewModeOpen] = useState(false);
     const [selectedViewMode, setSelectedViewMode] = useState('원어');
     const [langListOpen, setLangListOpen] = useState(false);
@@ -17,7 +21,11 @@ const SubHeader = () => {
     const handleSelection = (dropdown: string, value: string) => {
         if (dropdown === 'viewMode') setSelectedViewMode(value);
         if (dropdown === 'language') setSelectedLanguage(value);
-        if (dropdown === 'sortCriteria') setSelectedSortCriteria(value);
+        if (dropdown === 'sortCriteria') {
+            setSelectedSortCriteria(value);
+            onSortChange(value);
+        }
+        
         setViewModeOpen(false);
         setLangListOpen(false);
         setSortCriteriaOpen(false);
