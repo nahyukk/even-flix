@@ -37,13 +37,16 @@ const CardList: React.FC<CardListProps> = ({ title, mediaList }) => {
   };
 
   // 디테일 카드 호버 부분
-  const [hoveredItem, setHoveredItem] = useState<Media | null>(null);
+  const [hoveredItem, setHoveredItem] = useState<{
+    media: Media;
+    index: number;
+  } | null>(null);
   const [hoverPosition, setHoverPosition] = useState<HoverPosition | null>(
     null
   );
 
-  const handleCardMouseEnter = (media: Media, rect: DOMRect) => {
-    setHoveredItem(media);
+  const handleCardMouseEnter = (media: Media, index: number, rect: DOMRect) => {
+    setHoveredItem({ media, index });
     setHoverPosition({
       top: rect.top + window.scrollY,
       left: rect.left + rect.width / 2,
@@ -57,6 +60,14 @@ const CardList: React.FC<CardListProps> = ({ title, mediaList }) => {
   const handleDetailMouseLeave = () => {
     setHoveredItem(null);
     setHoverPosition(null);
+  };
+
+  const getSlidesPerView = (): number => {
+    const width = window.innerWidth;
+    if (width >= 1378) return 6;
+    if (width >= 998) return 5;
+    if (width >= 625) return 4;
+    return 3;
   };
 
   return (
@@ -121,7 +132,7 @@ const CardList: React.FC<CardListProps> = ({ title, mediaList }) => {
                 const rect = (
                   event.currentTarget as HTMLElement
                 ).getBoundingClientRect();
-                handleCardMouseEnter(media, rect);
+                handleCardMouseEnter(media, index, rect);
               }}
               onMouseLeave={() => {
                 if (!hoveredItem) {
@@ -136,12 +147,45 @@ const CardList: React.FC<CardListProps> = ({ title, mediaList }) => {
         {/* 디테일 카드 호버 */}
         {hoveredItem && hoverPosition && (
           <DetailCard
-            media={hoveredItem}
+            media={hoveredItem.media}
             style={{
               position: "absolute",
               top: "cal(hoverPosition.top - scrollY)",
               left: hoverPosition.left,
-              transform: "translate(-75%, -60%)",
+              transform: (() => {
+                const hoveredElement = document.querySelector(
+                  `.swiper-slide[data-swiper-slide-index="${hoveredItem.index}"]`
+                );
+
+                const activeIndex = parseInt(
+                  document
+                    .querySelector(".swiper-slide-active")
+                    ?.getAttribute("data-swiper-slide-index") || "0",
+                  10
+                );
+                const slidesPerView = getSlidesPerView();
+
+                const targetIndex = activeIndex + (slidesPerView - 1);
+                if (hoveredElement) {
+                  const isActive = hoveredElement.classList.contains(
+                    "swiper-slide-active"
+                  );
+                  const isTarget =
+                    parseInt(
+                      hoveredElement.getAttribute("data-swiper-slide-index") ||
+                        "-1",
+                      10
+                    ) === targetIndex;
+
+                  if (isActive) {
+                    return "translate(-52%, -60%)";
+                  } else if (isTarget) {
+                    return "translate(-78%, -60%)";
+                  }
+                }
+
+                return "translate(-75%, -60%)";
+              })(),
               zIndex: 10,
             }}
             isActive={true}
