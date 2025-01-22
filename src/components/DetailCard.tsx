@@ -95,13 +95,11 @@ const DetailCard: React.FC<DetailCardProps> = ({
     switch (media.type) {
       case MediaType.MOVIE:
         navigate(`/movie/${media.id}`, {
-          replace: true,
           state: { backgroundLocation: location },
         });
         break;
       case MediaType.TV:
         navigate(`/tv/${media.id}`, {
-          replace: true,
           state: { backgroundLocation: location },
         });
         break;
