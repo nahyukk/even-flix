@@ -1,0 +1,9 @@
+{
+	"short_name": "Even-flix",
+	"name": "Create Netflix clone",
+	"icons": [],
+	"start_url": ".",
+	"display": "standalone",
+	"theme_color": "#000000",
+	"background_color": "#141414"
+}
