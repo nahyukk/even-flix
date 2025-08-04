@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/even-flix/static/css/main.157ef109.css",
-    "main.js": "/even-flix/static/js/main.1cdae9e2.js",
+    "main.js": "/even-flix/static/js/main.2232e5b8.js",
     "index.html": "/even-flix/index.html",
     "main.157ef109.css.map": "/even-flix/static/css/main.157ef109.css.map",
-    "main.1cdae9e2.js.map": "/even-flix/static/js/main.1cdae9e2.js.map"
+    "main.2232e5b8.js.map": "/even-flix/static/js/main.2232e5b8.js.map"
   },
   "entrypoints": [
     "static/css/main.157ef109.css",
-    "static/js/main.1cdae9e2.js"
+    "static/js/main.2232e5b8.js"
   ]
 }
